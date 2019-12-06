@@ -1,0 +1,338 @@
+% This file was created with JabRef 2.10.
+% Encoding: UTF8
+
+
+@Article{biederman1988surface,
+  Title                    = {Surface versus edge-based determinants of visual recognition},
+  Author                   = {Biederman, Irving and Ju, Ginny},
+  Journal                  = {Cognitive psychology},
+  Year                     = {1988},
+  Number                   = {1},
+  Pages                    = {38--64},
+  Volume                   = {20},
+
+  Publisher                = {Elsevier}
+}
+
+@Article{Bledsoe,
+  Title                    = {Some Results on Multicategory Pattern Recognition},
+  Author                   = {W.W. Bledsoe},
+  Journal                  = {Journal of the ACM},
+  Year                     = {1966},
+
+  Month                    = apr,
+  Number                   = {2},
+  Pages                    = {304-316},
+  Volume                   = {13},
+
+  Keywords                 = {first}
+}
+
+@Article{bruce1992importance,
+  Title                    = {The importance of ‘mass’ in line drawings of faces},
+  Author                   = {Bruce, Vicki and Hanna, Elias and Dench, Neal and Healey, Pat and Burton, Mike},
+  Journal                  = {Applied cognitive psychology},
+  Year                     = {1992},
+  Number                   = {7},
+  Pages                    = {619--628},
+  Volume                   = {6},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@Article{brunelli1993face,
+  Title                    = {Face recognition: Features versus templates},
+  Author                   = {Brunelli, Roberto and Poggio, Tomaso},
+  Journal                  = {IEEE transactions on pattern analysis and machine intelligence},
+  Year                     = {1993},
+  Number                   = {10},
+  Pages                    = {1042--1052},
+  Volume                   = {15},
+
+  Publisher                = {IEEE}
+}
+
+@Article{canny,
+  Title                    = {A Computational Approach to Edge Detection},
+  Author                   = {Canny, John},
+  Journal                  = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  Year                     = {1986},
+  Number                   = {6},
+  Pages                    = {679--698},
+
+  Publisher                = {IEEE}
+}
+
+@Article{chen2017local,
+  Title                    = {A local start search algorithm to compute exact Hausdorff Distance for arbitrary point sets},
+  Author                   = {Chen, Yilin and He, Fazhi and Wu, Yiqi and Hou, Neng},
+  Journal                  = {Pattern Recognition},
+  Year                     = {2017},
+  Pages                    = {139--148},
+  Volume                   = {67},
+
+  Publisher                = {Elsevier}
+}
+
+@InProceedings{dubuisson1994modified,
+  Title                    = {A modified Hausdorff distance for object matching},
+  Author                   = {Dubuisson, M-P and Jain, Anil K},
+  Booktitle                = {Proceedings of 12th international conference on pattern recognition},
+  Year                     = {1994},
+  Organization             = {IEEE},
+  Pages                    = {566--568}
+}
+
+@Article{gao2003efficiently,
+  Title                    = {Efficiently comparing face images using a modified Hausdorff distance},
+  Author                   = {Gao, Y},
+  Journal                  = {IEE Proceedings-Vision, Image and Signal Processing},
+  Year                     = {2003},
+  Number                   = {6},
+  Pages                    = {346--350},
+  Volume                   = {150},
+
+  Publisher                = {IET}
+}
+
+@Article{gao2002face,
+  Title                    = {Face recognition using line edge map},
+  Author                   = {Gao, Yongsheng and Leung, Maylor KH},
+  Journal                  = {IEEE Transactions on Pattern Analysis \& Machine Intelligence},
+  Year                     = {2002},
+  Number                   = {6},
+  Pages                    = {764--779},
+
+  Publisher                = {IEEE}
+}
+
+@Article{Goldstein,
+  Title                    = {Identification of Human Faces},
+  Author                   = {A.J. Goldstein and L.D. Harmon and A.B. Lesk},
+  Journal                  = {Proc. IEEE},
+  Year                     = {1971},
+  Number                   = {5},
+  Pages                    = {748-760},
+  Volume                   = {59},
+
+  Keywords                 = {second}
+}
+
+@Article{Heath98,
+  Title                    = {Comparison of Edge Detectors: A Methodology and Initial Study},
+  Author                   = {Mike Heath and Sudeep Sarkar and Thomas Sanocki and Kevin Bowyery},
+  Journal                  = {Computer Vision and Image Understanding},
+  Year                     = {1998},
+
+  Month                    = jan,
+  Number                   = {1},
+  Pages                    = {38-54},
+  Volume                   = {69}
+}
+
+@Article{huttenlocher1993comparing,
+  Title                    = {Comparing images using the Hausdorff distance},
+  Author                   = {Huttenlocher, Daniel P. and Klanderman, Gregory A. and Rucklidge, William J},
+  Journal                  = {IEEE Transactions on pattern analysis and machine intelligence},
+  Year                     = {1993},
+  Number                   = {9},
+  Pages                    = {850--863},
+  Volume                   = {15},
+
+  Publisher                = {IEEE}
+}
+
+@Article{Kirby,
+  Title                    = {Application of the Karhunen-Loeve procedure for the characterization of human faces},
+  Author                   = {Kirby, Michael and Sirovich, Lawrence},
+  Journal                  = {IEEE Transactions on Pattern analysis and Machine intelligence},
+  Year                     = {1990},
+  Number                   = {1},
+  Pages                    = {103--108},
+  Volume                   = {12},
+
+  Publisher                = {IEEE}
+}
+
+@Article{van1987simulated,
+  Title                    = {Simulated Annealing: Theory and Application},
+  Author                   = {Laarhoven van PJM, Aarts EHL},
+  Journal                  = {Dordrecht: Reidel},
+  Year                     = {1987}
+}
+
+@Article{CNN,
+  Title                    = {Face Recognition: A Convolutional Neural-Network Approach},
+  Author                   = {S. Lawrence and C.L. Giles and A.C. Tsoi and A.D. Back},
+  Journal                  = {IEEE Trans. Neural Networks},
+  Year                     = {1997},
+  Pages                    = {98-113},
+  Volume                   = {8},
+
+  Keywords                 = {CNN}
+}
+
+@Article{leung1990dynamic,
+  Title                    = {Dynamic two-strip algorithm in curve fitting},
+  Author                   = {Leung, Maylor K and Yang, Yee-Hong},
+  Journal                  = {Pattern recognition},
+  Year                     = {1990},
+  Number                   = {1-2},
+  Pages                    = {69--79},
+  Volume                   = {23},
+
+  Publisher                = {Elsevier}
+}
+
+@Article{BNN,
+  Title                    = {Face Recognition/Detection by Probabilistic Decision-Based Neural Network},
+  Author                   = {S.H. Lin and S.Y. Kung and L.J. Lin},
+  Journal                  = {IEEE Trans. Neural Networks},
+  Year                     = {1997},
+  Pages                    = {114-132},
+  Volume                   = {8},
+
+  Keywords                 = {BNN}
+}
+
+@Article{ARdatabase,
+  Title                    = {The AR Face Database},
+  Author                   = {A.M. Martinez and R. Benavente},
+  Journal                  = {CVC Technical Report},
+  Year                     = {June 1998},
+  Number                   = {24}
+}
+
+@Article{nevatia1980linear,
+  Title                    = {Linear feature extraction and description},
+  Author                   = {Nevatia, Ramakant and Babu, K Ramesh},
+  Journal                  = {Computer Graphics and Image Processing},
+  Year                     = {1980},
+  Number                   = {3},
+  Pages                    = {257--269},
+  Volume                   = {13},
+
+  Publisher                = {Elsevier}
+}
+
+@Article{nutanong2011incremental,
+  Title                    = {An incremental Hausdorff distance calculation algorithm},
+  Author                   = {Nutanong, Sarana and Jacox, Edwin H and Samet, Hanan},
+  Journal                  = {Proceedings of the VLDB Endowment},
+  Year                     = {2011},
+  Number                   = {8},
+  Pages                    = {506--517},
+  Volume                   = {4},
+
+  Publisher                = {VLDB Endowment}
+}
+
+@Article{otten1989annealing,
+  Title                    = {The annealing algorithm},
+  Author                   = {Otten, RHJM and van Ginneken, LPPP},
+  Year                     = {1989},
+
+  Publisher                = {Kluwer, BV}
+}
+
+@Article{HMM,
+  Title                    = {Face Identification and Feauture Extraction Using Hidden Markov Models},
+  Author                   = {F. Samaria and F.Fallside},
+  Journal                  = {Image Processing: Theory and Application},
+  Year                     = {1993},
+
+  Keywords                 = {samaria}
+}
+
+@Article{sharif2017face,
+  Title                    = {Face Recognition: A Survey.},
+  Author                   = {Sharif, Muhammad and Naz, Farah and Yasmin, Mussarat and Shahid, Muhammad Alyas and Rehman, Amjad},
+  Journal                  = {Journal of Engineering Science \& Technology Review},
+  Year                     = {2017},
+  Number                   = {2},
+  Volume                   = {10}
+}
+
+@Article{sharma2016face,
+  Title                    = {Face recognition and detection using hausdorff distance, SURF and SVM},
+  Author                   = {Sharma, P and Sharma, S and Scholar, PG and others},
+  Journal                  = {International Journal of Engineering Science},
+  Year                     = {2016},
+  Volume                   = {3112}
+}
+
+@TechReport{sobel,
+  Title                    = {Camera models and machine perception},
+  Author                   = {Sobel, Irwin},
+  Institution              = {Computer Science Department, Technion},
+  Year                     = {1972}
+}
+
+@Article{taha2015efficient,
+  Title                    = {An efficient algorithm for calculating the exact Hausdorff distance},
+  Author                   = {Taha, Abdel Aziz and Hanbury, Allan},
+  Journal                  = {IEEE transactions on pattern analysis and machine intelligence},
+  Year                     = {2015},
+  Number                   = {11},
+  Pages                    = {2153--2163},
+  Volume                   = {37},
+
+  Publisher                = {IEEE}
+}
+
+@Article{takacs1998comparing,
+  Title                    = {Comparing face images using the modified Hausdorff distance},
+  Author                   = {Takacs, Barnabas},
+  Journal                  = {Pattern Recognition},
+  Year                     = {1998},
+  Number                   = {12},
+  Pages                    = {1873--1881},
+  Volume                   = {31},
+
+  Publisher                = {Elsevier}
+}
+
+@Article{Turk,
+  Title                    = {Eigenfaces for Recognition},
+  Author                   = {Matthew Turk and Alex Pentland},
+  Journal                  = {Journal of cognitive neuroscience},
+  Year                     = {1991},
+  Number                   = {1},
+  Pages                    = {71-86},
+  Volume                   = {3},
+
+  Keywords                 = {turk}
+}
+
+@Article{DLM,
+  Title                    = {Recognizing Faces by Dynamic Link Matching},
+  Author                   = {L. Wiskott and C. von der Malsburg},
+  Journal                  = {Neuroimage 4},
+  Year                     = {1996},
+  Pages                    = {S14-S18},
+
+  Keywords                 = {DLM}
+}
+
+@Article{LEMExpression,
+  Title                    = {Software: LEMExpression.exe},
+  Author                   = {Zhao, S.},
+  Journal                  = {Nathan Campus: Computer Vision \& Image Processing Lab, Griffith University},
+  Year                     = {2007}
+}
+
+@Article{DNChau2016face,
+  Title                    = {Tổng quan các phương pháp nhận dạng khuôn mặt dựa trên đặc trưng cạnh},
+  Author                   = {Đặng Nguyên Châu, Đỗ Hồng Tuấn},
+  Journal                  = {Hội thảo khoa học CITA 2016 CNTT và ứng dụng trong các lĩnh vực},
+  Year                     = {2016},
+
+  Month                    = {11},
+  Pages                    = {17-22}
+}
+
+@Article{Berndatabase,
+  Journal                  = {Bern Univ Face Database, ftp://iamftp.unibe.ch/pub/ Images/FaceImages/},
+  Year                     = {2002}
+}
+

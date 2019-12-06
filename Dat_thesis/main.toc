@@ -1,0 +1,50 @@
+\contentsline {chapter}{L\IeC {\`\OHORN }I C\IeC {\h A}M \IeC {\OHORN }N}{i}{figure.caption.1}
+\contentsline {chapter}{L\IeC {\`\OHORN }I CAM \IeC {\DJ }OAN}{ii}{figure.caption.1}
+\contentsline {chapter}{T\IeC {\'O}M T\IeC {\'\ABREVE }T}{iii}{figure.caption.1}
+\contentsline {chapter}{M\IeC {\d U}C L\IeC {\d U}C}{v}{figure.caption.1}
+\contentsline {chapter}{DANH S\IeC {\'A}CH H\IeC {\`I}NH V\IeC {\~ E}}{viii}{chapter*.2}
+\contentsline {chapter}{DANH S\IeC {\'A}CH B\IeC {\h A}NG}{x}{chapter*.3}
+\contentsline {chapter}{DANH M\IeC {\d U}C VI\IeC {\'\ECIRCUMFLEX }T T\IeC {\'\ABREVE }T}{xi}{chapter*.4}
+\contentsline {chapter}{\numberline {1}T\IeC {\h \OCIRCUMFLEX }NG QUAN}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}\IeC {\DJ }\IeC {\d \abreve }t v\IeC {\'\acircumflex }n \IeC {\dj }\IeC {\`\ecircumflex }}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Nh\IeC {\~\uhorn }ng nghi\IeC {\^e}n c\IeC {\'\uhorn }u li\IeC {\^e}n quan}{2}{section.1.2}
+\contentsline {section}{\numberline {1.3}M\IeC {\d u}c ti\IeC {\^e}u c\IeC {\h u}a lu\IeC {\d \acircumflex }n v\IeC {\u a}n}{3}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}T\IeC {\`\i }m hi\IeC {\h \ecircumflex }u}{3}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}Th\IeC {\d \uhorn }c hi\IeC {\d \ecircumflex }n}{4}{subsection.1.3.2}
+\contentsline {section}{\numberline {1.4}B\IeC {\'\ocircumflex } c\IeC {\d u}c tr\IeC {\`\i }nh b\IeC {\`a}y}{4}{section.1.4}
+\contentsline {chapter}{\numberline {2}C\IeC {\OHORN } S\IeC {\h \OHORN } L\IeC {\'Y} THUY\IeC {\'\ECIRCUMFLEX }T}{6}{chapter.2}
+\contentsline {section}{\numberline {2.1}M\IeC {\d A}NG NEURAL NETWOK}{6}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Ho\IeC {\d a}t \IeC {\dj }\IeC {\d \ocircumflex }ng c\IeC {\h u}a c\IeC {\'a}c neuron sinh h\IeC {\d o}c}{7}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Perceptron}{8}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}Ki\IeC {\'\ecircumflex }n tr\IeC {\'u}c m\IeC {\d a}ng Neuron Network}{10}{subsection.2.1.3}
+\contentsline {subsection}{\numberline {2.1.4}Ho\IeC {\d a}t \IeC {\dj }\IeC {\d \ocircumflex }ng c\IeC {\h u}a m\IeC {\d a}ng}{11}{subsection.2.1.4}
+\contentsline {subsection}{\numberline {2.1.5}Qu\IeC {\'a} tr\IeC {\`\i }nh hu\IeC {\'\acircumflex }n luy\IeC {\d \ecircumflex }n m\IeC {\d \ocircumflex }t m\IeC {\d a}ng NN}{13}{subsection.2.1.5}
+\contentsline {section}{\numberline {2.2}M\IeC {\d a}ng Convolutional Neural Network (CNN)}{23}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Ph\IeC {\'e}p T\IeC {\'\i }nh Convolution}{24}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Ph\IeC {\'e}p convolution trong m\IeC {\d a}ng Neuron Network}{27}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Pooling layer}{32}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}Fully connected layer (Dense layer)}{34}{subsection.2.2.4}
+\contentsline {subsection}{\numberline {2.2.5}K\IeC {\'\ecircumflex }t lu\IeC {\d \acircumflex }n}{35}{subsection.2.2.5}
+\contentsline {chapter}{\numberline {3}\IeC {\UHORN }\IeC {\'\OHORN }C T\IeC {\'I}NH T\IeC {\d O}A \IeC {\DJ }\IeC {\d \OCIRCUMFLEX } KHUNG X\IeC {\UHORN }\IeC {\OHORN }NG TR\IeC {\^E}N \IeC {\h A}NH RGB B\IeC {\`\ABREVE }NG M\IeC {\d A}NG MOBILENET-V2}{36}{chapter.3}
+\contentsline {section}{\numberline {3.1}\IeC {\UHORN }\IeC {\'\OHORN }C T\IeC {\'I}NH D\IeC {\d \UHORN }A TR\IeC {\^E}N CAMERA \IeC {\DJ }\IeC {\d \OCIRCUMFLEX } S\IeC {\^A}U KINECT}{36}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Gi\IeC {\'\ohorn }i thi\IeC {\d \ecircumflex }u camera c\IeC {\h a}m bi\IeC {\'\ecircumflex }n \IeC {\dj }\IeC {\d \ocircumflex } s\IeC {\^a}u Kinect c\IeC {\h u}a Microsoft}{36}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}C\IeC {\ohorn } ch\IeC {\'\ecircumflex } tr\IeC {\'\i }ch xu\IeC {\'\acircumflex }t SJM t\IeC {\`\uhorn } Kinect}{39}{subsection.3.1.2}
+\contentsline {section}{\numberline {3.2}\IeC {\UHORN }\IeC {\'\OHORN }C T\IeC {\'I}NH T\IeC {\`\UHORN } \IeC {\h A}NH 2D D\IeC {\d \UHORN }A TR\IeC {\^E}N M\IeC {\d A}NG NEURAL NETWORK}{39}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}T\IeC {\h \ocircumflex }ng quan ph\IeC {\uhorn }\IeC {\ohorn }ng ph\IeC {\'a}p}{39}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Ki\IeC {\'\ecircumflex }n tr\IeC {\'u}c m\IeC {\d a}ng}{39}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}C\IeC {\'a}c ph\IeC {\`\acircumflex }n c\IeC {\d u} th\IeC {\h \ecircumflex }}{41}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}Ph\IeC {\uhorn }\IeC {\ohorn }ng ph\IeC {\'a}p h\IeC {\`\ocircumflex }i quy}{43}{subsection.3.2.4}
+\contentsline {chapter}{\numberline {4}\IeC {\DJ }\IeC {\^E} XU\IeC {\'\ACIRCUMFLEX }T: NH\IeC {\d \ACIRCUMFLEX }N D\IeC {\d A}NG NG\IeC {\^O}N NG\IeC {\~\UHORN } K\IeC {\'Y} HI\IeC {\d \ECIRCUMFLEX }U T\IeC {\`\UHORN } T\IeC {\d O}A \IeC {\DJ }\IeC {\d \OCIRCUMFLEX } KHUNG X\IeC {\UHORN }\IeC {\OHORN }NG B\IeC {\`\ABREVE }NG M\IeC {\d A}NG DNN}{44}{chapter.4}
+\contentsline {section}{\numberline {4.1}T\IeC {\h \ocircumflex }ng quan}{44}{section.4.1}
+\contentsline {section}{\numberline {4.2}Thu th\IeC {\d \acircumflex }p d\IeC {\~\uhorn } li\IeC {\d \ecircumflex }u}{45}{section.4.2}
+\contentsline {section}{\numberline {4.3}X\IeC {\h \uhorn } l\IeC {\'y} d\IeC {\~\uhorn } li\IeC {\d \ecircumflex }u \IeC {\dj }\IeC {\`\acircumflex }u v\IeC {\`a}o}{47}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Lo\IeC {\d a}i b\IeC {\h o} c\IeC {\'a}c ph\IeC {\`\acircumflex }n SJM d\IeC {\uhorn } th\IeC {\`\uhorn }a}{47}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Chu\IeC {\h \acircumflex }n h\IeC {\'o}a SJM \IeC {\dj }\IeC {\h \ecircumflex } ph\IeC {\^a}n lo\IeC {\d a}i \IeC {\dj }\IeC {\d \abreve }c tr\IeC {\uhorn }ng}{47}{subsection.4.3.2}
+\contentsline {section}{\numberline {4.4}C\IeC {\'\acircumflex }u tr\IeC {\'u}c m\IeC {\d a}ng neural network \IeC {\dj }\IeC {\`\ecircumflex } xu\IeC {\'\acircumflex }t}{49}{section.4.4}
+\contentsline {section}{\numberline {4.5}Hu\IeC {\'\acircumflex }n luy\IeC {\d \ecircumflex }n m\IeC {\d a}ng}{49}{section.4.5}
+\contentsline {section}{\numberline {4.6}K\IeC {\'\ecircumflex }t qu\IeC {\h a}}{50}{section.4.6}
+\contentsline {chapter}{\numberline {5}C\IeC {\'A}C TH\IeC {\h \UHORN } NGHI\IeC {\d \ECIRCUMFLEX }M V\IeC {\`A} K\IeC {\'\ECIRCUMFLEX }T QU\IeC {\h A}}{52}{chapter.5}
+\contentsline {chapter}{\numberline {6}K\IeC {\'\ECIRCUMFLEX }T LU\IeC {\d \ACIRCUMFLEX }N V\IeC {\`A} H\IeC {\UHORN }\IeC {\'\OHORN }NG PH\IeC {\'A}T TRI\IeC {\h \ECIRCUMFLEX }N}{53}{chapter.6}
+\contentsline {section}{\numberline {6.1}K\IeC {\'\ecircumflex }t lu\IeC {\d \acircumflex }n}{53}{section.6.1}
+\contentsline {chapter}{T\IeC {\`A}I LI\IeC {\d \ECIRCUMFLEX }U THAM KH\IeC {\h A}O}{54}{section.6.1}
+\contentsline {chapter}{PH\IeC {\d U} L\IeC {\d U}C}{56}{chapter*.52}

@@ -1,0 +1,130 @@
+\documentclass[12pt,a4paper,oneside]{book}
+%-------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage{vietnam}
+\usepackage{amsfonts}
+\usepackage{latexsym, amsmath, amsxtra, amssymb, amscd, amsthm,fancyhdr} %, txfonts, pxfonts}
+\usepackage[top=3cm, bottom=3cm, left=3cm, right=2cm]{geometry}
+\usepackage{indentfirst} %thụt lề dòng đầu tiên
+\usepackage{graphicx} % chèn ảnh,
+\usepackage{algorithm} %1 chèn thuật toán 
+\usepackage{algpseudocode} %2 chèn thuật toán
+\setcounter{secnumdepth}{4} % subsubsubsection
+\usepackage{placeins} % để sử dụng \FloatBarrier cố định vị trí
+\usepackage{subfigure} % chèn hình phụ
+\usepackage{pdfpages} % chèn pdf vào luận văn
+\usepackage{tabularx} % chèn bảng
+\usepackage{multirow} % bảng có thể gộp hàng hoặc cột
+\usepackage{hyperref} % cite papers, trinh tu build f6 f11 f6 f1
+\usepackage{pgf,tikz,pgfplots} % hình từ geogebra
+\usetikzlibrary{arrows} % hình từ geogebra
+\pgfplotsset{compat=1.5} % hình từ geogebra gốc là 1.15
+\usepackage{mathrsfs} % hình từ geogebra
+\usepackage{fancyhdr} % header và footer
+\usepackage{caption} % không hiện 1 table or figure in list of t, f
+\usepackage{makecell} % xuong hang trong 1 cell table
+
+% Set up------------------------------------------------------------
+\renewcommand{\baselinestretch}{1.5} %khoảng cách giữa các dòng
+\setlength{\parskip}{0.5em} %khoảng cách giữa các đoạn
+\numberwithin{equation}{chapter} % đánh số công thức theo chapter
+\numberwithin{figure}{chapter} % đánh số hình theo chapter
+\numberwithin{table}{chapter} % đánh số bảng theo chapter
+\renewcommand{\algorithmicrequire}{\textbf{Input:}} %thay require trong algorithmic thanh Input
+\renewcommand{\algorithmicensure}{\textbf{Output:}} %thay ensure trong algorithmic thanh Output
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\fontsize{10pt}{0pt}{\selectfont{\leftmark}}}
+\lfoot{\fontsize{10pt}{0pt}{\selectfont{SVTH: Nguyễn Thành Đạt}}}
+\cfoot{\thepage}
+\rfoot{\fontsize{10pt}{0pt}{\selectfont{GVHD: PSG.TS Hà Hoàng Kha}}}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+
+\fancypagestyle{loi_cam_doan}{\fancyhf{}
+\lhead{\fontsize{10pt}{0pt}{\selectfont{Lời cam đoan}}}
+\lfoot{\fontsize{10pt}{0pt}{\selectfont{SVTH: Nguyễn Thành Đạt}}}
+\cfoot{\thepage}
+\rfoot{\fontsize{10pt}{0pt}{\selectfont{GVHD: PGS.TS Hà Hoàng Kha}}}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+}
+
+\fancypagestyle{loi_cam_on}{\fancyhf{}
+\lhead{\fontsize{10pt}{0pt}{\selectfont{Lời cảm ơn}}}
+\lfoot{\fontsize{10pt}{0pt}{\selectfont{SVTH: Nguyễn Thành Đạt}}}
+\cfoot{\thepage}
+\rfoot{\fontsize{10pt}{0pt}{\selectfont{GVHD: PGS.TS Hà Hoàng Kha}}}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+}
+
+\fancypagestyle{tom_tat}{\fancyhf{}
+\lhead{\fontsize{10pt}{0pt}{\selectfont{Tóm tắt}}}
+\lfoot{\fontsize{10pt}{0pt}{\selectfont{SVTH: Nguyễn Thành Đạt}}}
+\cfoot{\thepage}
+\rfoot{\fontsize{10pt}{0pt}{\selectfont{GVHD: PGS.TS Hà Hoàng Kha}}}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+}
+
+\fancypagestyle{abstract}{\fancyhf{}
+\lhead{\fontsize{10pt}{0pt}{\selectfont{Abstract}}}
+\lfoot{\fontsize{10pt}{0pt}{\selectfont{SVTH: Nguyễn Thành Đạt}}}
+\cfoot{\thepage}
+\rfoot{\fontsize{10pt}{0pt}{\selectfont{GVHD: PGS.TS Hà Hoàng Kha}}}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+}
+
+\fancypagestyle{danhmucviettat}{\fancyhf{}
+\lhead{\fontsize{10pt}{0pt}{\selectfont{Danh mục viết tắt}}}
+\lfoot{\fontsize{10pt}{0pt}{\selectfont{SVTH: Nguyễn Thành Đạt}}}
+\cfoot{\thepage}
+\rfoot{\fontsize{10pt}{0pt}{\selectfont{GVHD: PGS.TS Hà Hoàng Kha}}}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+}
+
+\begin{document}
+%\fontsize{13pt}{13pt}\selectfont
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}} % có thể định nghĩa kich thước cho bảng
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+\input{front_pages/front_pages}
+
+\newpage
+\setcounter{page}{1}
+\pagenumbering{arabic}
+\input{chap1/chapter_1}
+
+\newpage
+\input{chap2/chapter_2}
+
+\newpage
+\input{chap3/chapter_3}
+
+\newpage
+\input{chap4/chapter_4}
+
+\newpage
+\input{chap5/chapter_5}
+
+\newpage
+\input{chap6/chapter_6}
+
+\newpage
+\addcontentsline{toc}{chapter}{TÀI LIỆU THAM KHẢO}
+\bibliographystyle{ieeetr}
+\bibliography{references/references}{}
+
+\newpage
+\addcontentsline{toc}{chapter}{PHỤ LỤC}
+\fontsize{25pt}{40pt}{\selectfont{Phụ lục}}
+
+\fontsize{18pt}{30pt}{\selectfont{\textbf{Các từ nhận dạng được}}}
+
+
+\end{document}

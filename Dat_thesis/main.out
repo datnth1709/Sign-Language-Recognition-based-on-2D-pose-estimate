@@ -25,16 +25,16 @@
 \BOOKMARK [2][-]{subsection.2.2.3}{Pooling layer}{section.2.2}% 25
 \BOOKMARK [2][-]{subsection.2.2.4}{Fully connected layer \(Dense layer\)}{section.2.2}% 26
 \BOOKMARK [2][-]{subsection.2.2.5}{Kt lun}{section.2.2}% 27
-\BOOKMARK [0][-]{chapter.3}{C T\315NH TOA \320 KHUNG XNG TR\312N ANH RGB BNG MANG MOBILENET-V2}{}% 28
+\BOOKMARK [0][-]{chapter.3}{C T\315NH TOA \320 KHUNG XNG T ANH RGB}{}% 28
 \BOOKMARK [1][-]{section.3.1}{C T\315NH DA TR\312N CAMERA \320 S\302U KINECT}{chapter.3}% 29
 \BOOKMARK [2][-]{subsection.3.1.1}{Gii thiu camera cam bin \040s\342u Kinect cua Microsoft}{section.3.1}% 30
 \BOOKMARK [2][-]{subsection.3.1.2}{C ch tr\355ch xut SJM t Kinect}{section.3.1}% 31
 \BOOKMARK [1][-]{section.3.2}{C T\315NH T ANH 2D DA TR\312N MANG NEURAL NETWORK}{chapter.3}% 32
 \BOOKMARK [2][-]{subsection.3.2.1}{Tng quan phng ph\341p}{section.3.2}% 33
-\BOOKMARK [2][-]{subsection.3.2.2}{Kin tr\372c mang}{section.3.2}% 34
-\BOOKMARK [2][-]{subsection.3.2.3}{C\341c phn cu th}{section.3.2}% 35
-\BOOKMARK [2][-]{subsection.3.2.4}{Phng ph\341p hi quy}{section.3.2}% 36
-\BOOKMARK [0][-]{chapter.4}{\320\312 XUT: NHN DANG NG\324N NG K\335 HIU T TOA \320 KHUNG XNG BNG MANG DNN}{}% 37
+\BOOKMARK [2][-]{subsection.3.2.2}{Giai th\355ch c\341c phn}{section.3.2}% 34
+\BOOKMARK [2][-]{subsection.3.2.3}{Kin tr\372c mang}{section.3.2}% 35
+\BOOKMARK [2][-]{subsection.3.2.4}{Ph\342n t\355ch nhiu ngi s dung PAFs}{section.3.2}% 36
+\BOOKMARK [0][-]{chapter.4}{X\302Y DNG MANG NHN DANG NG\324N NG K\335 HIU T TOA \320 KHUNG XNG}{}% 37
 \BOOKMARK [1][-]{section.4.1}{Tng quan}{chapter.4}% 38
 \BOOKMARK [1][-]{section.4.2}{Thu thp d liu}{chapter.4}% 39
 \BOOKMARK [1][-]{section.4.3}{X l\375 d liu u v\340o}{chapter.4}% 40
@@ -42,9 +42,14 @@
 \BOOKMARK [2][-]{subsection.4.3.2}{Chun h\363a SJM \040ph\342n loai c trng}{section.4.3}% 42
 \BOOKMARK [1][-]{section.4.4}{Cu tr\372c mang neural network \040xut}{chapter.4}% 43
 \BOOKMARK [1][-]{section.4.5}{Hun luyn mang}{chapter.4}% 44
-\BOOKMARK [1][-]{section.4.6}{Kt qua}{chapter.4}% 45
-\BOOKMARK [0][-]{chapter.5}{C\301C TH NGHIM V\300 KT QUA}{}% 46
-\BOOKMARK [0][-]{chapter.6}{KT LUN V\300 HNG PH\301T TRIN}{}% 47
-\BOOKMARK [1][-]{section.6.1}{Kt lun}{chapter.6}% 48
-\BOOKMARK [0][-]{section.6.1}{T\300I LIU THAM KHAO}{}% 49
-\BOOKMARK [0][-]{chapter*.52}{PHU LUC}{}% 50
+\BOOKMARK [2][-]{subsection.4.5.1}{Gradient Descent}{section.4.5}% 45
+\BOOKMARK [2][-]{subsection.4.5.2}{Stochastic Gradient Descent}{section.4.5}% 46
+\BOOKMARK [2][-]{subsection.4.5.3}{\320iu kin dng}{section.4.5}% 47
+\BOOKMARK [2][-]{subsection.4.5.4}{\301p dung v\340o b\340i to\341n}{section.4.5}% 48
+\BOOKMARK [1][-]{section.4.6}{Kt qua}{chapter.4}% 49
+\BOOKMARK [0][-]{chapter.5}{C\301C TH NGHIM V\300 KT QUA}{}% 50
+\BOOKMARK [0][-]{chapter.6}{KT LUN V\300 HNG PH\301T TRIN}{}% 51
+\BOOKMARK [1][-]{section.6.1}{Kt lun}{chapter.6}% 52
+\BOOKMARK [1][-]{section.6.2}{Hng ph\341t trin}{chapter.6}% 53
+\BOOKMARK [0][-]{section.6.2}{T\300I LIU THAM KHAO}{}% 54
+\BOOKMARK [0][-]{chapter*.59}{PHU LUC}{}% 55

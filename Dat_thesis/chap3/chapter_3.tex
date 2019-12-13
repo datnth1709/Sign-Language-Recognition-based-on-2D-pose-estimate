@@ -1,4 +1,4 @@
-\chapter{ƯỚC TÍNH TỌA ĐỘ KHUNG XƯƠNG TRÊN ẢNH RGB BẰNG MẠNG MOBILENET-V2}
+\chapter{ƯỚC TÍNH TỌA ĐỘ KHUNG XƯƠNG TỪ ẢNH RGB}
 \label{s:pose estimate}
 Trong nội dung này, em sẽ trình bày hai phương pháp đề xuất để trích xuất đặc trưng khung xương. Đó là trích xuất đặc trưng từ thiết bị Kinect và trích xuất đặc trưng từ mạng neuron network. Phương pháp trích xuất đặc trưng khung xương từ ảnh RGB qua mạng mobilenet v2 được áp dụng trong đề tài vì tính khả thi, có thể ứng dụng được trong đời sống bằng cách tích hợp lên điện thoại thông minh.
 
@@ -44,7 +44,30 @@ Cơ chế hoạt động: Ban đầu, bộ phần phát tia hồng ngoại sẽ 
 \FloatBarrier
 
 \subsection{Cơ chế trích xuất SJM từ Kinect}
+Ưu điểm của việc sử dụng Kinect là các thiết kế phần cứng đã tối ưu cho việc tạo ra SJM, không yêu cầu phải thực hiện lại hoặc tạo ra thuật toán mới cho phần trích xuất đặc trưng. Sơ đồ khối trích xuất SJM của Kinect v2 minh họa bằng hình \ref{figure:TrichKhungXuong}.
 
+\FloatBarrier
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[scale=0.15]{chap3/c3_figs/TrichKhungXuong.png}
+\end{center}
+\caption{Sơ đồ khối thuật toán trích xuất SJM của thiết bị Kinect \\(Nguồn : "Nhận dạng ngôn ngữ ký hiệu cho người câm" - B.V Phúc, H.C Thịnh)}
+\label{fig:TrichKhungXuong}
+\end{figure}
+\FloatBarrier
+
+\underline{\textbf{Dữ liệu ngõ vào}}
+
+Hành động di chuyển của người trong không gian nhận diện được của thiết bị Kienct v2 (các thông số sẽ được đề cập kỹ hơn trong mục~\ref{GanDacTrung}).\\
+
+\underline{\textbf{Dữ liệu ngõ ra}}
+\begin{itemize}
+\item Ảnh màu kých thước 1920x1080 pxs.
+
+\item Ảnh biểu diễn độ sâu 512x424 pxs.
+
+\item SJM tương ứng với ảnh hiện tại biễu diễn tọa độ bằng meter (đo tương đối bằng ảnh độ sâu) hoặc px (tương ứng với vị trí của ảnh độ sâu).
+\end{itemize}
 
 \section{ƯỚC TÍNH TỪ ẢNH 2D DỰA TRÊN MẠNG NEURAL NETWORK}
 \label{ss:2Dpose}
@@ -54,8 +77,8 @@ Phương pháp trích xuất hình dáng khung xương được áp dụng từ 
 
 Mạng sử dụng  detect tư thế 2D song song của nhiều người trong một ảnh. Phương pháp sử dụng một đại diện không có thông số, PAFs được tham khảo để học cách liên kết các bộ phần cơ thể với mỗi cá nhân trong ảnh. Mô hình mã hóa toàn bộ bối cảnh, cho phép một bước phân tích từ dưới lên trên (bước này có độ chính xác cao, realtime và thực hiện song song nhiều người). Mô hình được thiết kế để kết hợp tìm vị trí các phần và liên kết giữa chúng thông qua 2 nhánh của quá trình dự đoán chuỗi giống nhau. Phương pháp của chúng tối đạt giải nhất cuộc thi COCO 2016 keypoints challenge và vượt trội hơn so với kết quả trước đó trong MPII Multi-Person benchmark về performance và sự hiệu quả.
 
-\subsection{Kiến trúc mạng}
-\label{sss:method}
+%\subsection{Kiến trúc mạng}
+%\label{sss:method}
 
 \FloatBarrier
 \begin{figure}[htp]
@@ -89,7 +112,7 @@ Phương pháp này đưa toàn bộ ảnh đầu vào qua một mạng CNN 2 nh
 \item Cuối cùng, \textbf{Confidence Maps} và \textbf{Part Affinity Fields} được xử lý bằng thuật toán tham lam để có được tư thế cho mỗi người trong ảnh.
 \end{itemize}
 
-\subsection{Các phần cụ thể}
+\subsection{Giải thích các phần}
 %\renewcommand{\labelitemi}{$\square$}
 %\renewcommand\labelitemii{$\nabla$}
 %\renewcommand\labelitemiii{$\square$}
@@ -136,6 +159,85 @@ $$S^t = \rho^t(F, L^{T_P}, S^{t-1}), \forall T_P \leq t \leq T_P + T_C$$
 \textbf{Chú thích:}
 CNN nhiều giai đoạn này là từ phiên bản tạp chí 2018. Trong phiên bản CVPR 2017 gốc, họ đã tinh chỉnh cả bản đồ độ tin cậy và các trường mối quan hệ một phần (PAF) ở mỗi giai đoạn. Do đó, họ đòi hỏi nhiều tính toán và thời gian hơn ở mỗi giai đoạn. Trong cách tiếp cận mới, tác giả nhận thấy rằng cách tiếp cận mới làm tăng cả tốc độ và độ chính xác tương ứng 200\% và 7\%.
 
-\subsection{Phương pháp hồi quy}
-\label{sss:MHD3_ly_thuyet_do_phuc_tap}
+\subsection{Kiến trúc mạng}
+\label{sss:structure}
+\subsubsection{Phát hiện và liên kết đồng thời}
 
+Kiến trúc của mạng, được show trong hình \ref{fig:structure}, dự đoán đồng thời những cfm và affinity fields \textbf{(af)} cái mà mã hóa liên kết giữa các phần. Mạng được tách thành 2 nhánh: Nhánh trên, màu hường da, dự đoán những \textbf{cfm}, và nhánh dưới, màu xanh, dự đoán những \textbf{af}. Mỗi nhánh là một kiến trúc dự đoán lặp lại, theo như \ref{wei2016convolutional}, nó tinh chỉnh những dự đoán qua các giai đoạn liên tiếp $t \in {{1 \ldots T}}$,  với giám sát trung gian ở từng giai đoạn.
+
+\FloatBarrier
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[scale=0.45]{chap3/c3_figs/structure.png}
+\end{center}
+\caption{Kiến trúc của mạng CNN nhiều bước 2 nhánh. Mỗi bước trong nhánh đầu tiên dự đoán những $CFM S^{t}$, và mỗi bước trong nhánh thứ 2 dự đoán $PAFs L^{t}$. Sau mỗi bước, những dự đoán từ 2 nhánh, cùng với những đặc trưng ảnh, được nối lại cho bước tiếp theo.}
+\label{fig:structure}
+\end{figure}
+\FloatBarrier
+
+\subsection{Phân tích nhiều người sử dụng PAFs}
+\label{ss:Multi-Person Parsing using PAFs}
+
+Trong phần này, sẽ nói về tổng quan về thuật toán tham lam được sử dụng để phân tích tư thế của nhiều người từ PAFs và CFMs.
+
+Quá trình phân tích được tóm tắt thành 3 bước sau:
+\begin{itemize}
+\item Bước 1: Tìm tất cả những vị trí khớp sử dụng confidence maps.
+\item Bước 2: Tìm những khớp cùng nhau tạo các chi (bộ phận cơ thể) sử dụng PAFs và những khớp trong bước 1.
+\item Bước 3: Kết nối các chi thuộc cùng một người và tạo danh sách những tư thế cơ thể.
+\end{itemize}
+
+\subsubsection{Bước 1 - Tìm tất cả những vị trí khớp sử dụng confidence maps.}
+\begin{itemize}
+\item \textbf{Đầu vào:}
+	\begin{itemize}
+	\item Confidence maps, $S = (S_1, S_2, .., S_J)$ trong đó $S_j \in R^{w \times h},j \in (1 \ldots J)$.
+	\item Up-sampling scale: Sự khác biệt giữa dài/rộng giữa ảnh đầu vào và confidence maps.
+	\end{itemize}
+\item \textbf{Đầu ra: }
+	%\begin{itemize}
+	%\item Danh sách khớp(joints_list): một danh sách những vị trí khớp của kích thước J, mỗi phần tử là một danh sách các đỉnh (x, y, xác suất).
+	%\item Ví dụ, kích thước của joints_list là 18 cho 18 vị trí khớp (mũi, cổ,...) và những phần tử trong joints_list là những danh sách có độ dài khác nhau. Những phần tử này lưu trữ thông tin đỉnh (vị trí x, y và điểm xác suất) cho mỗi vị trí khớp.
+	%\end{itemize}
+\item \textbf{Xử lý: Cho mỗi khớp từ 1 dến J:}
+	\begin{itemize}
+	\item Lấy heatmap 2D tương ứng cho khớp trong confidence maps.
+	\item Tìm những đỉnh bằng cách lấy ngưỡng heatmap 2D.
+	\item Đối với mỗi đỉnh:
+		\begin{itemize}
+		\item Lấy một đốm xung quanh đỉnh trong heap.
+		\item Phóng to đốm sử dụng up-sampling scale.
+		\item Lấy vị trí đỉnh lớn nhất trong đốm được phóng to.
+		\item Thêm thông tin đỉnh vào danh sách các đỉnh của khớp.
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{Bước 2 - Tìm những khớp cùng nhau tạo các chi (bộ phận cơ thể) sử dụng PAFs và những khớp trong bước 1.}
+\begin{itemize}
+\item \textbf{Đầu vào:}
+	%\begin{itemize}
+	%\item joints_list ngõ ra của bước 1.
+	%\item \textbf{PAFs}: \textbf{$L = (L_1, L_2, ..., L_c)$} trong đó \textbf{$L_c \in R^{w \times h \times 2},c \in (1 \ldots C)$}
+
+	%\end{itemize}
+%\end{itemize}
+\item \textbf{Đầu ra: }
+	%\begin{itemize}
+	%\item Danh sách khớp (joints_list): một danh sách những vị trí khớp của kích thước J, mỗi phần tử là một danh sách các đỉnh (x, y, xác suất). Ví dụ, kích thước của joints_list là 18 cho 18 vị trí khớp (mũi, cổ,...) và những phần tử trong joints_list là những danh sách có độ dài khác nhau. Những phần tử này lưu trữ thông tin đỉnh (vị trí x, y và điểm xác suất) cho mỗi vị trí khớp.
+	%\end{itemize}
+\item \textbf{Xử lý: Cho mỗi khớp từ 1 dến J:}
+	\begin{itemize}
+	\item Lấy heatmap 2D tương ứng cho khớp trong confidence maps.
+	\item Tìm những đỉnh bằng cách lấy ngưỡng heatmap 2D.
+	\item Đối với mỗi đỉnh:
+		\begin{itemize}
+		\item Lấy một đốm xung quanh đỉnh trong heap.
+		\item Phóng to đốm sử dụng up-sampling scale.
+		\item Lấy vị trí đỉnh lớn nhất trong đốm được phóng to.
+		\item Thêm thông tin đỉnh vào danh sách các đỉnh của khớp.
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{Bước 3 - Kết nối các chi thuộc cùng một người và tạo danh sách những tư thế cơ thể.}

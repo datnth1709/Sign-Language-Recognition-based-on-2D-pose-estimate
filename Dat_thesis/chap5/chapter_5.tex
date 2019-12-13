@@ -1,1 +1,33 @@
-\chapter{CÁC THỬ NGHIỆM VÀ KẾT QUẢ}
+\chapter{THỰC NGHIỆM KẾT QUẢ VÀ ĐÁNH GIÁ}
+Qua các chương trước, luận văn đã trình bày thuật toán, lý thuyết cũng nhhư cách thức hoạt động của chương trình nhận dạng ngôn ngữ ạký hiệu. Ở chương này, luận văn sẽ trình bày kết quả thực nghiệm mà luận văn đã đạt được sau khi huấn luyện và các phương pháp đánh giá độ chính xác của mô hình.
+\section{Thực hiện phần mềm nhận dạng ngôn ngữ ký hiệu}
+Sau khi đã huấn luyện được mô hình nhận dạng ngôn ngữ ký hiệu. Tiếp sau đó, luận văn tiến hành xây dựng phần mềm nhận dạng thời gian thực với để ứng dụng được mô hình đã huấn luyện ra thực tế.
+\begin{itemize}
+\item[$\square$] \textbf{Ngôn ngữ lập trình}
+
+\end{itemize}
+
+
+\section{Kết quả}
+Chương trình thực nghiệm đã nhận dạng được khá chính xác các hành động đã huấn luyện (16 ngôn ngữ ký hiệu). Chương trình chạy trên hệ điều hành ubuntu, sử dụng camera là webcam. Giao diện và các mode hoạt động được trình bày như các hình \ref{fig:xxx}
+
+\section{Đánh giá}
+Khi xây dựng một mô hình Machine Learning, chúng ta cần một phép đánh giá để xem mô hình sử dụng có hiệu quả không và để so sánh khả năng của các mô hình. Trong phần này, luận văn sẽ trình bày các mô hình classification.
+
+Hiệu năng của một mô hình thường được đánh giá dựa trên tập dữ liệu kiểm thử (test data). Cụ thể, giả sử đầu ra của mô hình khi đầu vào là tập kiểm thử được mô tả bởi vector y_pred - là vector dự đoán đầu ra với mỗi phần tử là class được dự đoán của một điểm dữ liệu trong tập kiểm thử. Ta cần so sánh giữa vector dự đoán y_pred này với vector class thật của dữ liệu, được mô tả bởi vector y_true. Đối với bài toán phân loại của luận văn, có 16 lớp dữ liệu được gán nhãn là tên các từ được huấn luyện.
+
+Có rất nhiều cách đánh giá một mô hình phân lớp. Tuỳ vào những bài toán khác nhau mà chúng ta sử dụng các phương pháp khác nhau. Các phương pháp thường được sử dụng là: accuracy score, confusion matrix, ROC curve, Area Under the Curve, Precision and Recall, F1 score, Top R error, etc.
+
+Trong phần này, luận văn sẽ trình bày về accuracy score, confusion matrix, ROC curve, và Area Under the Curve. Và đánh giá mô hình của luận văn trên tập dữ liệu test gồm 400 SJM đối với mỗi từ.
+
+\subsection{Accuracy}
+Cách đơn giản và hay được sử dụng nhất là accuracy (độ chính xác). Cách đánh giá này đơn giản tính tỉ lệ giữa số điểm được dự đoán đúng và tổng số điểm trong tập dữ liệu kiểm thử.
+\FloatBarrier
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[scale=1]{chap5/c5_figs/confusion_matrix.png}
+\end{center}
+\caption{Confusion matrix của 16 lớp phân loại}
+\label{fig:pipelineS}
+\end{figure}
+\FloatBarrier

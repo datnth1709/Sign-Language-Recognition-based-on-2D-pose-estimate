@@ -244,8 +244,17 @@ Trong thực nghiệm, có một vài phương pháp như dưới đây để x�
 \item Trong SGD và mini-batch GD, cách thường dùng là so sánh nghiệm sau một vài lần cập nhật.
 \end{itemize}
 
+
 \subsection{Áp dụng vào bài toán}
-Áp dụng thuật toán SGD, với bộ dữ liệu của bài toán nhận dạng ngôn ngữ ký hiệu, ta có kết quả như sau.
+Với bộ dữ liệu của bài toán nhận dạng ngôn ngữ ký hiệu, dữ liệu là các SJM được thu thập từ trước. Dữ liệu sẽ được chia ra thành 2 tập gồm: train data (dữ liệu để huấn luyện) và test data (dữ liệu đánh giá) với tỷ lệ 80 và 20. Nghĩa là với mỗi hành động (data gồm 800 SJM) sẽ có 640 SJM để train và 160 SJM để đánh giá.
+Áp dụng thuật toán SGD, với các thông số ban đầu được khởi tạo trước khi huấn luyện như sau:
+\begin{itemize}
+\item epoch: 50
+\item learning rate: 0.01
+\item
+\end{itemize}
+Trong quá trình huấn luyện, luận văn sử dụng phương pháp lưu lại checkpoint. Cách thức hoạt động của phương pháp này là sau mỗi epoch, accuracy trên tập test của model hiện tại được so sánh với accuracy của model trước đó. Nếu nó lớn hơn thì trọng số của mô hình sẽ được cập nhật theo trọng số mới nhất. Nếu nhỏ hơn, trọng số của mô hình trước đó vẫn được giữ lại cho đến khi accuracy khác cao hơn. Phương pháp này giúp tìm được model tối ưu nhất với accuracy cao nhất có thể.
+Sau 50 epoch, ta có kết quả về độ chính xác(accuracy) và sai số (loss) trên tập train và tập test như sau:
 \FloatBarrier
 \begin{figure}[htp]
 \begin{center}
@@ -266,15 +275,19 @@ Trong thực nghiệm, có một vài phương pháp như dưới đây để x�
 \end{figure}
 \FloatBarrier
 
+Từ biểu đồ accuracy và loss của mô hình, có thể thấy mô hình đã học được rất tốt. Kể từ epoch thứ 10, mô hình đã đạt được accuracy cao và loss giảm xuống thấp. Đường biểu diễn của 2 tập đối với accuracy và loss đi sát nhau có thể phần nào dự đoán được mô hình không bị overfiting. 
+
 \section{Kết quả}
 
 Nhận thấy kết quả mô hình đã học được rất tốt với thuật toán này. Với kết quả cuối cùng:
 \begin{itemize}
+\item Train Accuracy: 1.0000
 \item Test Accuracy: 0.9996
-\item Test Loss    : 0.1235 
+\item Train Loss: 0.0153
+\item Test Loss    : 0.0123
 \end{itemize}
 
-
+Dựa vào những thông số trên có thể thấy kết quả sau khi huấn luyện mô hình khá tốt. Nhưng để áp dụng mô hình vào thực tế được, ta cần phải thử nghiệm và đánh giá bằng nhiều phương pháp trên tập dữ liệu mới. Chương tiếp theo sẽ trình bày về cách thức thử nghiệm, đánh giá mô hình cũng như xây dựng phần mềm ứng dụng từ mô hình. 
 
 
 

@@ -50,10 +50,14 @@
 \contentsline {subsection}{\numberline {4.5.2}Stochastic Gradient Descent}{58}{subsection.4.5.2}
 \contentsline {subsection}{\numberline {4.5.3}\IeC {\DJ }i\IeC {\`\ecircumflex }u ki\IeC {\d \ecircumflex }n d\IeC {\`\uhorn }ng}{59}{subsection.4.5.3}
 \contentsline {subsection}{\numberline {4.5.4}\IeC {\'A}p d\IeC {\d u}ng v\IeC {\`a}o b\IeC {\`a}i to\IeC {\'a}n}{60}{subsection.4.5.4}
-\contentsline {section}{\numberline {4.6}K\IeC {\'\ecircumflex }t qu\IeC {\h a}}{61}{section.4.6}
-\contentsline {chapter}{\numberline {5}C\IeC {\'A}C TH\IeC {\h \UHORN } NGHI\IeC {\d \ECIRCUMFLEX }M V\IeC {\`A} K\IeC {\'\ECIRCUMFLEX }T QU\IeC {\h A}}{62}{chapter.5}
-\contentsline {chapter}{\numberline {6}K\IeC {\'\ECIRCUMFLEX }T LU\IeC {\d \ACIRCUMFLEX }N V\IeC {\`A} H\IeC {\UHORN }\IeC {\'\OHORN }NG PH\IeC {\'A}T TRI\IeC {\h \ECIRCUMFLEX }N}{63}{chapter.6}
-\contentsline {section}{\numberline {6.1}K\IeC {\'\ecircumflex }t lu\IeC {\d \acircumflex }n}{63}{section.6.1}
-\contentsline {section}{\numberline {6.2}H\IeC {\uhorn }\IeC {\'\ohorn }ng ph\IeC {\'a}t tri\IeC {\h \ecircumflex }n}{63}{section.6.2}
-\contentsline {chapter}{T\IeC {\`A}I LI\IeC {\d \ECIRCUMFLEX }U THAM KH\IeC {\h A}O}{64}{section.6.2}
-\contentsline {chapter}{PH\IeC {\d U} L\IeC {\d U}C}{66}{chapter*.59}
+\contentsline {section}{\numberline {4.6}K\IeC {\'\ecircumflex }t qu\IeC {\h a}}{62}{section.4.6}
+\contentsline {chapter}{\numberline {5}TH\IeC {\d \UHORN }C NGHI\IeC {\d \ECIRCUMFLEX }M K\IeC {\'\ECIRCUMFLEX }T QU\IeC {\h A} V\IeC {\`A} \IeC {\DJ }\IeC {\'A}NH GI\IeC {\'A}}{63}{chapter.5}
+\contentsline {section}{\numberline {5.1}Th\IeC {\d \uhorn }c hi\IeC {\d \ecircumflex }n ph\IeC {\`\acircumflex }n m\IeC {\`\ecircumflex }m nh\IeC {\d \acircumflex }n d\IeC {\d a}ng ng\IeC {\^o}n ng\IeC {\~\uhorn } k\IeC {\'y} hi\IeC {\d \ecircumflex }u}{63}{section.5.1}
+\contentsline {section}{\numberline {5.2}K\IeC {\'\ecircumflex }t qu\IeC {\h a}}{64}{section.5.2}
+\contentsline {section}{\numberline {5.3}\IeC {\DJ }\IeC {\'a}nh gi\IeC {\'a}}{64}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Accuracy}{65}{subsection.5.3.1}
+\contentsline {chapter}{\numberline {6}K\IeC {\'\ECIRCUMFLEX }T LU\IeC {\d \ACIRCUMFLEX }N V\IeC {\`A} H\IeC {\UHORN }\IeC {\'\OHORN }NG PH\IeC {\'A}T TRI\IeC {\h \ECIRCUMFLEX }N}{67}{chapter.6}
+\contentsline {section}{\numberline {6.1}K\IeC {\'\ecircumflex }t lu\IeC {\d \acircumflex }n}{67}{section.6.1}
+\contentsline {section}{\numberline {6.2}H\IeC {\uhorn }\IeC {\'\ohorn }ng ph\IeC {\'a}t tri\IeC {\h \ecircumflex }n}{67}{section.6.2}
+\contentsline {chapter}{T\IeC {\`A}I LI\IeC {\d \ECIRCUMFLEX }U THAM KH\IeC {\h A}O}{68}{section.6.2}
+\contentsline {chapter}{PH\IeC {\d U} L\IeC {\d U}C}{70}{chapter*.60}

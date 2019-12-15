@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.11.28)  10 DEC 2019 11:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.11.28)  15 DEC 2019 23:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1540,7 +1540,7 @@ enefit from \pgfplotsset{compat=1.15} (current compat level: 1.5).
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 (./front_pages/front_pages.tex
-<front_pages/Logo_BK.png, id=224, 514.3215pt x 491.9178pt>
+<front_pages/Logo_BK.png, id=240, 514.3215pt x 491.9178pt>
 File: front_pages/Logo_BK.png Graphic file (type png)
 <use front_pages/Logo_BK.png>
 Package pdftex.def Info: front_pages/Logo_BK.png  used on input line 14.
@@ -1576,63 +1576,48 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [2]
-
-pdfTeX warning: pdflatex (file ./front_pages/nhiem_vu_lv.pdf): PDF inclusion: f
-ound PDF version <1.7>, but at most version <1.5> allowed
-<front_pages/nhiem_vu_lv.pdf, id=239, 614.295pt x 794.97pt>
-File: front_pages/nhiem_vu_lv.pdf Graphic file (type pdf)
-<use front_pages/nhiem_vu_lv.pdf>
-Package pdftex.def Info: front_pages/nhiem_vu_lv.pdf  used on input line 39.
-(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-
-
-pdfTeX warning: pdflatex (file ./front_pages/nhiem_vu_lv.pdf): PDF inclusion: f
-ound PDF version <1.7>, but at most version <1.5> allowed
-File: front_pages/nhiem_vu_lv.pdf Graphic file (type pdf)
-<use front_pages/nhiem_vu_lv.pdf>
-Package pdftex.def Info: front_pages/nhiem_vu_lv.pdf  used on input line 39.
-(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-
-
-pdfTeX warning: pdflatex (file ./front_pages/nhiem_vu_lv.pdf): PDF inclusion: f
-ound PDF version <1.7>, but at most version <1.5> allowed
-
-
-pdfTeX warning: pdflatex (file ./front_pages/nhiem_vu_lv.pdf): PDF inclusion: f
-ound PDF version <1.7>, but at most version <1.5> allowed
-<front_pages/nhiem_vu_lv.pdf, id=242, page=1, 614.295pt x 794.97pt>
-File: front_pages/nhiem_vu_lv.pdf Graphic file (type pdf)
-<use front_pages/nhiem_vu_lv.pdf, page 1>
-Package pdftex.def Info: front_pages/nhiem_vu_lv.pdf , page1 used on input line
- 39.
-(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-File: front_pages/nhiem_vu_lv.pdf Graphic file (type pdf)
-<use front_pages/nhiem_vu_lv.pdf, page 1>
-Package pdftex.def Info: front_pages/nhiem_vu_lv.pdf , page1 used on input line
- 39.
-(pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
-File: front_pages/nhiem_vu_lv.pdf Graphic file (type pdf)
-<use front_pages/nhiem_vu_lv.pdf, page 1>
-Package pdftex.def Info: front_pages/nhiem_vu_lv.pdf , page1 used on input line
- 39.
-(pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
-File: front_pages/nhiem_vu_lv.pdf Graphic file (type pdf)
-<use front_pages/nhiem_vu_lv.pdf, page 1>
-Package pdftex.def Info: front_pages/nhiem_vu_lv.pdf , page1 used on input line
- 39.
-(pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
-File: front_pages/nhiem_vu_lv.pdf Graphic file (type pdf)
-<use front_pages/nhiem_vu_lv.pdf, page 1>
-Package pdftex.def Info: front_pages/nhiem_vu_lv.pdf , page1 used on input line
- 39.
-(pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
+<front_pages/nhiem_vu.pdf, id=255, 597.50786pt x 845.01837pt>
+File: front_pages/nhiem_vu.pdf Graphic file (type pdf)
+<use front_pages/nhiem_vu.pdf>
+Package pdftex.def Info: front_pages/nhiem_vu.pdf  used on input line 39.
+(pdftex.def)             Requested size: 597.5064pt x 845.01631pt.
+File: front_pages/nhiem_vu.pdf Graphic file (type pdf)
+<use front_pages/nhiem_vu.pdf>
+Package pdftex.def Info: front_pages/nhiem_vu.pdf  used on input line 39.
+(pdftex.def)             Requested size: 597.5064pt x 845.01631pt.
+<front_pages/nhiem_vu.pdf, id=258, page=1, 597.50786pt x 845.01837pt>
+File: front_pages/nhiem_vu.pdf Graphic file (type pdf)
+<use front_pages/nhiem_vu.pdf, page 1>
+Package pdftex.def Info: front_pages/nhiem_vu.pdf , page1 used on input line 39
+.
+(pdftex.def)             Requested size: 597.5064pt x 845.01631pt.
+File: front_pages/nhiem_vu.pdf Graphic file (type pdf)
+<use front_pages/nhiem_vu.pdf, page 1>
+Package pdftex.def Info: front_pages/nhiem_vu.pdf , page1 used on input line 39
+.
+(pdftex.def)             Requested size: 597.53374pt x 845.055pt.
+File: front_pages/nhiem_vu.pdf Graphic file (type pdf)
+<use front_pages/nhiem_vu.pdf, page 1>
+Package pdftex.def Info: front_pages/nhiem_vu.pdf , page1 used on input line 39
+.
+(pdftex.def)             Requested size: 597.53374pt x 845.055pt.
+File: front_pages/nhiem_vu.pdf Graphic file (type pdf)
+<use front_pages/nhiem_vu.pdf, page 1>
+Package pdftex.def Info: front_pages/nhiem_vu.pdf , page1 used on input line 39
+.
+(pdftex.def)             Requested size: 597.53374pt x 845.055pt.
+File: front_pages/nhiem_vu.pdf Graphic file (type pdf)
+<use front_pages/nhiem_vu.pdf, page 1>
+Package pdftex.def Info: front_pages/nhiem_vu.pdf , page1 used on input line 39
+.
+(pdftex.def)             Requested size: 597.53374pt x 845.055pt.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.39 ...epdf[pages=-]{front_pages/nhiem_vu_lv.pdf}
-                                                   [1 <./front_pages/nhiem_vu_l
-v.pdf>]
+l.39 ...ludepdf[pages=-]{front_pages/nhiem_vu.pdf}
+                                                   [1 <./front_pages/nhiem_vu.p
+df>]
 
 Package hyperref Warning: Composite letter `\textasciigrave+\OHORN'
 (hyperref)                not defined in PD1 encoding,
@@ -1709,11 +1694,6 @@ Package hyperref Warning: Composite letter `\textdotbelow+U'
 (./main.toc [5
 
 ]
-Overfull \hbox (9.89514pt too wide) in paragraph at lines 41--41
- [] [][]\T5/cmr/bx/n/12 ^^^– XU‡T: NHŠN D„NG NGÆN NGÚ KÞ HI›U TØ TÅA ^^^Ë KHUNG
- 
- []
-
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -2029,7 +2009,7 @@ Package hyperref Warning: Composite letter `\textdotbelow+o'
 (hyperref)                not defined in PD1 encoding,
 (hyperref)                removing `\textdotbelow' on input line 21.
 
-<chap2/c2_figs/neuron.png, id=536, 431.81325pt x 237.88875pt>
+<chap2/c2_figs/neuron.png, id=546, 431.81325pt x 237.88875pt>
 File: chap2/c2_figs/neuron.png Graphic file (type png)
 <use chap2/c2_figs/neuron.png>
 Package pdftex.def Info: chap2/c2_figs/neuron.png  used on input line 26.
@@ -2037,7 +2017,7 @@ Package pdftex.def Info: chap2/c2_figs/neuron.png  used on input line 26.
 [6
 
 ]
-<chap2/c2_figs/perceptron.PNG, id=541, 606.76688pt x 201.00093pt>
+<chap2/c2_figs/perceptron.PNG, id=551, 606.76688pt x 201.00093pt>
 File: chap2/c2_figs/perceptron.PNG Graphic file (type png)
 <use chap2/c2_figs/perceptron.PNG>
 Package pdftex.def Info: chap2/c2_figs/perceptron.PNG  used on input line 47.
@@ -2050,7 +2030,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [7 <./chap2/c2_figs/neuron.png>]
-<chap2/c2_figs/single_neuron.PNG, id=548, 422.32782pt x 230.36063pt>
+<chap2/c2_figs/single_neuron.PNG, id=558, 422.32782pt x 230.36063pt>
 File: chap2/c2_figs/single_neuron.PNG Graphic file (type png)
 <use chap2/c2_figs/single_neuron.PNG>
 Package pdftex.def Info: chap2/c2_figs/single_neuron.PNG  used on input line 61
@@ -2064,7 +2044,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [8 <./chap2/c2_figs/perceptron.PNG> <./chap2/c2_figs/single_neuron.PNG>]
-<chap2/c2_figs/activation_function.PNG, id=558, 557.08125pt x 156.585pt>
+<chap2/c2_figs/activation_function.PNG, id=568, 557.08125pt x 156.585pt>
 File: chap2/c2_figs/activation_function.PNG Graphic file (type png)
 <use chap2/c2_figs/activation_function.PNG>
 Package pdftex.def Info: chap2/c2_figs/activation_function.PNG  used on input l
@@ -2092,7 +2072,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [9 <./chap2/c2_figs/activation_function.PNG>]
-<chap2/c2_figs/structure_NN.PNG, id=569, 391.4625pt x 264.99pt>
+<chap2/c2_figs/structure_NN.PNG, id=579, 391.4625pt x 264.99pt>
 File: chap2/c2_figs/structure_NN.PNG Graphic file (type png)
 <use chap2/c2_figs/structure_NN.PNG>
 Package pdftex.def Info: chap2/c2_figs/structure_NN.PNG  used on input line 107
@@ -2142,7 +2122,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 135--136
 
  []
 
-<chap2/c2_figs/nn_full-2.png, id=578, 348.1005pt x 227.04825pt>
+<chap2/c2_figs/nn_full-2.png, id=588, 348.1005pt x 227.04825pt>
 File: chap2/c2_figs/nn_full-2.png Graphic file (type png)
 <use chap2/c2_figs/nn_full-2.png>
 Package pdftex.def Info: chap2/c2_figs/nn_full-2.png  used on input line 140.
@@ -2193,13 +2173,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [12]
-<chap2/c2_figs/feed_forward.jpg, id=592, 518.93875pt x 150.5625pt>
+<chap2/c2_figs/feed_forward.jpg, id=602, 518.93875pt x 150.5625pt>
 File: chap2/c2_figs/feed_forward.jpg Graphic file (type jpg)
 <use chap2/c2_figs/feed_forward.jpg>
 Package pdftex.def Info: chap2/c2_figs/feed_forward.jpg  used on input line 197
 .
 (pdftex.def)             Requested size: 415.15157pt x 120.45015pt.
-<chap2/c2_figs/ff.png, id=593, 641.39626pt x 61.4295pt>
+<chap2/c2_figs/ff.png, id=603, 641.39626pt x 61.4295pt>
 File: chap2/c2_figs/ff.png Graphic file (type png)
 <use chap2/c2_figs/ff.png>
 Package pdftex.def Info: chap2/c2_figs/ff.png  used on input line 208.
@@ -2209,7 +2189,7 @@ Overfull \hbox (25.8019pt too wide) in paragraph at lines 208--209
  [] 
  []
 
-<chap2/c2_figs/1.jpg, id=594, 356.33125pt x 100.375pt>
+<chap2/c2_figs/1.jpg, id=604, 356.33125pt x 100.375pt>
 File: chap2/c2_figs/1.jpg Graphic file (type jpg)
 <use chap2/c2_figs/1.jpg>
 Package pdftex.def Info: chap2/c2_figs/1.jpg  used on input line 224.
@@ -2221,17 +2201,17 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [13 <./chap2/c2_figs/feed_forward.jpg> <./chap2/c2_figs/ff.png>]
-<chap2/c2_figs/2.jpg, id=602, 422.57875pt x 102.3825pt>
+<chap2/c2_figs/2.jpg, id=612, 422.57875pt x 102.3825pt>
 File: chap2/c2_figs/2.jpg Graphic file (type jpg)
 <use chap2/c2_figs/2.jpg>
 Package pdftex.def Info: chap2/c2_figs/2.jpg  used on input line 240.
 (pdftex.def)             Requested size: 338.06345pt x 81.9061pt.
-<chap2/c2_figs/3.jpg, id=603, 605.26125pt x 117.43875pt>
+<chap2/c2_figs/3.jpg, id=613, 605.26125pt x 117.43875pt>
 File: chap2/c2_figs/3.jpg Graphic file (type jpg)
 <use chap2/c2_figs/3.jpg>
 Package pdftex.def Info: chap2/c2_figs/3.jpg  used on input line 251.
 (pdftex.def)             Requested size: 453.94481pt x 88.07883pt.
-<chap2/c2_figs/4.jpg, id=604, 185.69376pt x 199.74625pt>
+<chap2/c2_figs/4.jpg, id=614, 185.69376pt x 199.74625pt>
 File: chap2/c2_figs/4.jpg Graphic file (type jpg)
 <use chap2/c2_figs/4.jpg>
 Package pdftex.def Info: chap2/c2_figs/4.jpg  used on input line 261.
@@ -2255,7 +2235,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [15 <./chap2/c2_figs/4.jpg>]
-<chap2/c2_figs/6.png, id=617, 385.44pt x 234.37563pt>
+<chap2/c2_figs/6.png, id=627, 385.44pt x 234.37563pt>
 File: chap2/c2_figs/6.png Graphic file (type png)
 <use chap2/c2_figs/6.png>
 Package pdftex.def Info: chap2/c2_figs/6.png  used on input line 303.
@@ -2268,7 +2248,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [16 <./chap2/c2_figs/6.png>]
-<chap2/c2_figs/5.jpg, id=625, 211.79124pt x 94.3525pt>
+<chap2/c2_figs/5.jpg, id=635, 211.79124pt x 94.3525pt>
 File: chap2/c2_figs/5.jpg Graphic file (type jpg)
 <use chap2/c2_figs/5.jpg>
 Package pdftex.def Info: chap2/c2_figs/5.jpg  used on input line 341.
@@ -2281,7 +2261,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [17]
-<chap2/c2_figs/6.jpg, id=630, 577.15625pt x 113.42375pt>
+<chap2/c2_figs/6.jpg, id=640, 577.15625pt x 113.42375pt>
 File: chap2/c2_figs/6.jpg Graphic file (type jpg)
 <use chap2/c2_figs/6.jpg>
 Package pdftex.def Info: chap2/c2_figs/6.jpg  used on input line 354.
@@ -2311,12 +2291,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [19]
-<chap2/c2_figs/1.png, id=641, 355.92975pt x 240.29774pt>
+<chap2/c2_figs/1.png, id=652, 355.92975pt x 240.29774pt>
 File: chap2/c2_figs/1.png Graphic file (type png)
 <use chap2/c2_figs/1.png>
 Package pdftex.def Info: chap2/c2_figs/1.png  used on input line 405.
 (pdftex.def)             Requested size: 266.94666pt x 180.22285pt.
-<chap2/c2_figs/2.png, id=642, 462.528pt x 206.57175pt>
+<chap2/c2_figs/2.png, id=653, 462.528pt x 206.57175pt>
 File: chap2/c2_figs/2.png Graphic file (type png)
 <use chap2/c2_figs/2.png>
 Package pdftex.def Info: chap2/c2_figs/2.png  used on input line 419.
@@ -2354,12 +2334,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [20 <./chap2/c2_figs/1.png> <./chap2/c2_figs/2.png>]
-<chap2/c2_figs/3.png, id=650, 326.4195pt x 213.1965pt>
+<chap2/c2_figs/3.png, id=660, 326.4195pt x 213.1965pt>
 File: chap2/c2_figs/3.png Graphic file (type png)
 <use chap2/c2_figs/3.png>
 Package pdftex.def Info: chap2/c2_figs/3.png  used on input line 434.
 (pdftex.def)             Requested size: 244.81401pt x 159.89697pt.
-<chap2/c2_figs/7.png, id=651, 641.39626pt x 61.4295pt>
+<chap2/c2_figs/7.png, id=661, 641.39626pt x 61.4295pt>
 File: chap2/c2_figs/7.png Graphic file (type png)
 <use chap2/c2_figs/7.png>
 Package pdftex.def Info: chap2/c2_figs/7.png  used on input line 457.
@@ -2372,7 +2352,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [21 <./chap2/c2_figs/3.png>]
-<chap2/c2_figs/8.png, id=657, 678.73575pt x 111.41624pt>
+<chap2/c2_figs/8.png, id=667, 678.73575pt x 111.41624pt>
 File: chap2/c2_figs/8.png Graphic file (type png)
 <use chap2/c2_figs/8.png>
 Package pdftex.def Info: chap2/c2_figs/8.png  used on input line 465.
@@ -2393,7 +2373,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 LaTeX Warning: Command \textellipsis invalid in math mode on input line 489.
 
-<chap2/c2_figs/9.png, id=666, 462.528pt x 214.401pt>
+<chap2/c2_figs/9.png, id=676, 462.528pt x 214.401pt>
 File: chap2/c2_figs/9.png Graphic file (type png)
 <use chap2/c2_figs/9.png>
 Package pdftex.def Info: chap2/c2_figs/9.png  used on input line 498.
@@ -2405,7 +2385,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [23]
-<chap2/c2_figs/10.png, id=672, 295.1025pt x 274.626pt>
+<chap2/c2_figs/10.png, id=682, 295.1025pt x 274.626pt>
 File: chap2/c2_figs/10.png Graphic file (type png)
 <use chap2/c2_figs/10.png>
 Package pdftex.def Info: chap2/c2_figs/10.png  used on input line 512.
@@ -2422,12 +2402,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [24 <./chap2/c2_figs/9.png> <./chap2/c2_figs/10.png>]
-<chap2/c2_figs/11.png, id=679, 295.70474pt x 275.8305pt>
+<chap2/c2_figs/11.png, id=689, 295.70474pt x 275.8305pt>
 File: chap2/c2_figs/11.png Graphic file (type png)
 <use chap2/c2_figs/11.png>
 Package pdftex.def Info: chap2/c2_figs/11.png  used on input line 543.
 (pdftex.def)             Requested size: 192.2058pt x 179.28769pt.
-<chap2/c2_figs/12.png, id=680, 296.307pt x 292.09125pt>
+<chap2/c2_figs/12.png, id=690, 296.307pt x 292.09125pt>
 File: chap2/c2_figs/12.png Graphic file (type png)
 <use chap2/c2_figs/12.png>
 Package pdftex.def Info: chap2/c2_figs/12.png  used on input line 555.
@@ -2445,7 +2425,7 @@ Package hyperref Warning: Composite letter `\textdotbelow+a'
 (hyperref)                not defined in PD1 encoding,
 (hyperref)                removing `\textdotbelow' on input line 570.
 
-<chap2/c2_figs/13.png, id=686, 327.2225pt x 464.73625pt>
+<chap2/c2_figs/13.png, id=696, 327.2225pt x 464.73625pt>
 File: chap2/c2_figs/13.png Graphic file (type png)
 <use chap2/c2_figs/13.png>
 Package pdftex.def Info: chap2/c2_figs/13.png  used on input line 576.
@@ -2457,7 +2437,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [26 <./chap2/c2_figs/12.png>]
-<chap2/c2_figs/14.png, id=692, 462.528pt x 310.15875pt>
+<chap2/c2_figs/14.png, id=702, 462.528pt x 310.15875pt>
 File: chap2/c2_figs/14.png Graphic file (type png)
 <use chap2/c2_figs/14.png>
 Package pdftex.def Info: chap2/c2_figs/14.png  used on input line 588.
@@ -2493,7 +2473,7 @@ T1/cmr/m/n/12 + \OML/cmm/m/it/12 x[] \OMS/cmsy/m/n/12 ^^C \OML/cmm/m/it/12 w[]\
 OT1/cmr/m/n/12 +
  []
 
-<chap2/c2_figs/8.jpg, id=704, 1003.75pt x 564.1075pt>
+<chap2/c2_figs/8.jpg, id=714, 1003.75pt x 564.1075pt>
 File: chap2/c2_figs/8.jpg Graphic file (type jpg)
 <use chap2/c2_figs/8.jpg>
 Package pdftex.def Info: chap2/c2_figs/8.jpg  used on input line 601.
@@ -2503,7 +2483,7 @@ Overfull \hbox (2.4584pt too wide) in paragraph at lines 601--602
  [] 
  []
 
-<chap2/c2_figs/15.png, id=705, 514.92375pt x 180.675pt>
+<chap2/c2_figs/15.png, id=715, 514.92375pt x 180.675pt>
 File: chap2/c2_figs/15.png Graphic file (type png)
 <use chap2/c2_figs/15.png>
 Package pdftex.def Info: chap2/c2_figs/15.png  used on input line 619.
@@ -2515,7 +2495,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [29 <./chap2/c2_figs/8.jpg>]
-<chap2/c2_figs/16.png, id=710, 596.82974pt x 165.61874pt>
+<chap2/c2_figs/16.png, id=720, 596.82974pt x 165.61874pt>
 File: chap2/c2_figs/16.png Graphic file (type png)
 <use chap2/c2_figs/16.png>
 Package pdftex.def Info: chap2/c2_figs/16.png  used on input line 639.
@@ -2532,12 +2512,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [30 <./chap2/c2_figs/15.png> <./chap2/c2_figs/16.png>]
-<chap2/c2_figs/9.jpg, id=717, 863.225pt x 359.3425pt>
+<chap2/c2_figs/9.jpg, id=727, 863.225pt x 359.3425pt>
 File: chap2/c2_figs/9.jpg Graphic file (type jpg)
 <use chap2/c2_figs/9.jpg>
 Package pdftex.def Info: chap2/c2_figs/9.jpg  used on input line 663.
 (pdftex.def)             Requested size: 258.9695pt x 107.80357pt.
-<chap2/c2_figs/pooling.jpeg, id=718, 515.9275pt x 407.5225pt>
+<chap2/c2_figs/pooling.jpeg, id=728, 515.9275pt x 407.5225pt>
 File: chap2/c2_figs/pooling.jpeg Graphic file (type jpg)
 <use chap2/c2_figs/pooling.jpeg>
 Package pdftex.def Info: chap2/c2_figs/pooling.jpeg  used on input line 675.
@@ -2550,7 +2530,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [31 <./chap2/c2_figs/9.jpg>]
-<chap2/c2_figs/10.jpg, id=724, 598.235pt x 440.64626pt>
+<chap2/c2_figs/10.jpg, id=734, 598.235pt x 440.64626pt>
 File: chap2/c2_figs/10.jpg Graphic file (type jpg)
 <use chap2/c2_figs/10.jpg>
 Package pdftex.def Info: chap2/c2_figs/10.jpg  used on input line 687.
@@ -2563,7 +2543,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [32 <./chap2/c2_figs/pooling.jpeg>]
-<chap2/c2_figs/17.png, id=729, 370.0224pt x 176.8206pt>
+<chap2/c2_figs/17.png, id=739, 370.0224pt x 176.8206pt>
 File: chap2/c2_figs/17.png Graphic file (type png)
 <use chap2/c2_figs/17.png>
 Package pdftex.def Info: chap2/c2_figs/17.png  used on input line 702.
@@ -2598,7 +2578,7 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 LaTeX Warning: Reference `fig:tonghopCNN' on page 34 undefined on input line 71
 4.
 
-<chap2/c2_figs/18.png, id=734, 462.528pt x 134.60287pt>
+<chap2/c2_figs/18.png, id=744, 462.528pt x 134.60287pt>
 File: chap2/c2_figs/18.png Graphic file (type png)
 <use chap2/c2_figs/18.png>
 Package pdftex.def Info: chap2/c2_figs/18.png  used on input line 719.
@@ -2747,7 +2727,7 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 [35
 
 ]
-<chap3/c3_figs/kinect.png, id=746, 481.8pt x 271.76532pt>
+<chap3/c3_figs/kinect.png, id=756, 481.8pt x 271.76532pt>
 File: chap3/c3_figs/kinect.png Graphic file (type png)
 <use chap3/c3_figs/kinect.png>
 Package pdftex.def Info: chap3/c3_figs/kinect.png  used on input line 15.
@@ -2760,7 +2740,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [36 <./chap3/c3_figs/kinect.png>]
-<chap3/c3_figs/depth.jpg, id=754, 504.88625pt x 341.275pt>
+<chap3/c3_figs/depth.jpg, id=764, 504.88625pt x 341.275pt>
 File: chap3/c3_figs/depth.jpg Graphic file (type jpg)
 <use chap3/c3_figs/depth.jpg>
 Package pdftex.def Info: chap3/c3_figs/depth.jpg  used on input line 39.
@@ -2801,7 +2781,7 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 LaTeX Warning: Reference `figure:TrichKhungXuong' on page 37 undefined on input
  line 47.
 
-<chap3/c3_figs/TrichKhungXuong.png, id=757, 928.46875pt x 2017.5375pt>
+<chap3/c3_figs/TrichKhungXuong.png, id=767, 928.46875pt x 2017.5375pt>
 File: chap3/c3_figs/TrichKhungXuong.png Graphic file (type png)
 <use chap3/c3_figs/TrichKhungXuong.png>
 Package pdftex.def Info: chap3/c3_figs/TrichKhungXuong.png  used on input line 
@@ -2892,7 +2872,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [39]
-<chap3/c3_figs/pipeline.png, id=772, 1435.3625pt x 427.5975pt>
+<chap3/c3_figs/pipeline.png, id=783, 1435.3625pt x 427.5975pt>
 File: chap3/c3_figs/pipeline.png Graphic file (type png)
 <use chap3/c3_figs/pipeline.png>
 Package pdftex.def Info: chap3/c3_figs/pipeline.png  used on input line 86.
@@ -2918,7 +2898,7 @@ Package hyperref Warning: Composite letter `\textasciigrave+\acircumflex'
 Package hyperref Warning: Glyph not defined in PD1 encoding,
 (hyperref)                removing `\acircumflex' on input line 115.
 
-<chap3/c3_figs/CNN_m.png, id=779, 709.65125pt x 496.85625pt>
+<chap3/c3_figs/CNN_m.png, id=790, 709.65125pt x 496.85625pt>
 File: chap3/c3_figs/CNN_m.png Graphic file (type png)
 <use chap3/c3_figs/CNN_m.png>
 Package pdftex.def Info: chap3/c3_figs/CNN_m.png  used on input line 137.
@@ -2960,7 +2940,7 @@ Package hyperref Warning: Composite letter `\textdotbelow+a'
 LaTeX Warning: Reference `wei2016convolutional' on page 43 undefined on input l
 ine 166.
 
-<chap3/c3_figs/structure.png, id=791, 963.6pt x 430.60875pt>
+<chap3/c3_figs/structure.png, id=801, 963.6pt x 430.60875pt>
 File: chap3/c3_figs/structure.png Graphic file (type png)
 <use chap3/c3_figs/structure.png>
 Package pdftex.def Info: chap3/c3_figs/structure.png  used on input line 171.
@@ -3161,7 +3141,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [49]
-<chap4/c4_figs/joints_order.png, id=828, 361.35pt x 479.54156pt>
+<chap4/c4_figs/joints_order.png, id=838, 361.35pt x 479.54156pt>
 File: chap4/c4_figs/joints_order.png Graphic file (type png)
 <use chap4/c4_figs/joints_order.png>
 Package pdftex.def Info: chap4/c4_figs/joints_order.png  used on input line 73.
@@ -3238,7 +3218,7 @@ Package hyperref Warning: Composite letter `\textasciigrave+\uhorn'
 Package hyperref Warning: Glyph not defined in PD1 encoding,
 (hyperref)                removing `\uhorn' on input line 83.
 
-<chap4/c4_figs/joints_choose.png, id=831, 289.08pt x 239.09325pt>
+<chap4/c4_figs/joints_choose.png, id=841, 289.08pt x 239.09325pt>
 File: chap4/c4_figs/joints_choose.png Graphic file (type png)
 <use chap4/c4_figs/joints_choose.png>
 Package pdftex.def Info: chap4/c4_figs/joints_choose.png  used on input line 89
@@ -3309,7 +3289,7 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 LaTeX Warning: Reference `fig:skeleton' on page 52 undefined on input line 133.
 
 
-<chap4/c4_figs/datajoint.png, id=843, 1725.44624pt x 1266.7325pt>
+<chap4/c4_figs/datajoint.png, id=853, 1725.44624pt x 1266.7325pt>
 File: chap4/c4_figs/datajoint.png Graphic file (type png)
 <use chap4/c4_figs/datajoint.png>
 Package pdftex.def Info: chap4/c4_figs/datajoint.png  used on input line 146.
@@ -3364,7 +3344,7 @@ Package hyperref Warning: Composite letter `\textacute+\acircumflex'
 Package hyperref Warning: Glyph not defined in PD1 encoding,
 (hyperref)                removing `\acircumflex' on input line 153.
 
-<chap4/c4_figs/model_param.png, id=856, 389.0535pt x 272.81924pt>
+<chap4/c4_figs/model_param.png, id=866, 389.0535pt x 272.81924pt>
 File: chap4/c4_figs/model_param.png Graphic file (type png)
 <use chap4/c4_figs/model_param.png>
 Package pdftex.def Info: chap4/c4_figs/model_param.png  used on input line 165.
@@ -3389,7 +3369,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [55 <./chap4/c4_figs/model_param.png>]
-<chap4/c4_figs/model.png, id=866, 355.3275pt x 497.4585pt>
+<chap4/c4_figs/model.png, id=876, 355.3275pt x 497.4585pt>
 File: chap4/c4_figs/model.png Graphic file (type png)
 <use chap4/c4_figs/model.png>
 Package pdftex.def Info: chap4/c4_figs/model.png  used on input line 175.
@@ -3432,7 +3412,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [57]
-<chap4/c4_figs/momentum.png, id=877, 7829.25pt x 3398.6975pt>
+<chap4/c4_figs/momentum.png, id=887, 7829.25pt x 3398.6975pt>
 File: chap4/c4_figs/momentum.png Graphic file (type png)
 <use chap4/c4_figs/momentum.png>
 Package pdftex.def Info: chap4/c4_figs/momentum.png  used on input line 214.
@@ -3486,19 +3466,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 Package hyperref Warning: Composite letter `\textdotbelow+u'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textdotbelow' on input line 247.
+(hyperref)                removing `\textdotbelow' on input line 248.
 
-<chap4/c4_figs/train_val_acc.png, id=893, 387.4475pt x 279.0425pt>
+<chap4/c4_figs/train_val_acc.png, id=904, 387.4475pt x 279.0425pt>
 File: chap4/c4_figs/train_val_acc.png Graphic file (type png)
 <use chap4/c4_figs/train_val_acc.png>
-Package pdftex.def Info: chap4/c4_figs/train_val_acc.png  used on input line 25
-2.
-(pdftex.def)             Requested size: 387.44655pt x 279.04181pt.
-<chap4/c4_figs/train_val_l.png, id=894, 387.4475pt x 279.0425pt>
-File: chap4/c4_figs/train_val_l.png Graphic file (type png)
-<use chap4/c4_figs/train_val_l.png>
-Package pdftex.def Info: chap4/c4_figs/train_val_l.png  used on input line 262.
-
+Package pdftex.def Info: chap4/c4_figs/train_val_acc.png  used on input line 26
+1.
 (pdftex.def)             Requested size: 387.44655pt x 279.04181pt.
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3506,19 +3480,33 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[60 <./chap4/c4_figs/train_val_acc.png>]
+[60]
+<chap4/c4_figs/train_val_l.png, id=909, 387.4475pt x 279.0425pt>
+File: chap4/c4_figs/train_val_l.png Graphic file (type png)
+<use chap4/c4_figs/train_val_l.png>
+Package pdftex.def Info: chap4/c4_figs/train_val_l.png  used on input line 271.
+
+(pdftex.def)             Requested size: 387.44655pt x 279.04181pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 30.20145pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[61 <./chap4/c4_figs/train_val_acc.png> <./chap4/c4_figs/train_val_l.png>]
 
 Package hyperref Warning: Composite letter `\textacute+\ecircumflex'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textacute' on input line 269.
+(hyperref)                removing `\textacute' on input line 280.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\ecircumflex' on input line 269.
+(hyperref)                removing `\ecircumflex' on input line 280.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\h' on input line 269.
+(hyperref)                removing `\h' on input line 280.
 
 )
 
@@ -3527,11 +3515,14 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[61 <./chap4/c4_figs/train_val_l.png>] (./chap5/chapter_5.tex
+[62
+
+] (./chap5/chapter_5.tex
 Ch\uhorn \ohorn ng 5.
 
-Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\h' on input line 1.
+Package hyperref Warning: Composite letter `\textdotbelow+\UHORN'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textdotbelow' on input line 1.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
@@ -3559,15 +3550,128 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 Package hyperref Warning: Glyph not defined in PD1 encoding,
 (hyperref)                removing `\h' on input line 1.
 
-<chap5/c5_figs/confusion_matrix.png, id=906, 356.33125pt x 295.1025pt>
+
+Package hyperref Warning: Composite letter `\textdotbelow+\uhorn'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textdotbelow' on input line 3.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\uhorn' on input line 3.
+
+
+Package hyperref Warning: Composite letter `\textdotbelow+\ecircumflex'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textdotbelow' on input line 3.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\ecircumflex' on input line 3.
+
+
+Package hyperref Warning: Composite letter `\textasciigrave+\acircumflex'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciigrave' on input line 3.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\acircumflex' on input line 3.
+
+
+Package hyperref Warning: Composite letter `\textasciigrave+\ecircumflex'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciigrave' on input line 3.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\ecircumflex' on input line 3.
+
+
+Package hyperref Warning: Composite letter `\textdotbelow+\acircumflex'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textdotbelow' on input line 3.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\acircumflex' on input line 3.
+
+
+Package hyperref Warning: Composite letter `\textdotbelow+a'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textdotbelow' on input line 3.
+
+
+Package hyperref Warning: Composite letter `\texttilde+\uhorn'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\texttilde' on input line 3.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\uhorn' on input line 3.
+
+
+Package hyperref Warning: Composite letter `\textdotbelow+\ecircumflex'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textdotbelow' on input line 3.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\ecircumflex' on input line 3.
+
+
+Package hyperref Warning: Composite letter `\textacute+\ecircumflex'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textacute' on input line 11.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\ecircumflex' on input line 11.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\h' on input line 11.
+
+[63
+
+]
+<chap5/c5_figs/1.png, id=925, 1927.2pt x 1084.05pt>
+File: chap5/c5_figs/1.png Graphic file (type png)
+<use chap5/c5_figs/1.png>
+Package pdftex.def Info: chap5/c5_figs/1.png  used on input line 17.
+(pdftex.def)             Requested size: 481.79883pt x 271.01184pt.
+
+Overfull \hbox (26.55472pt too wide) in paragraph at lines 17--18
+ [] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 15.70145pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[64 <./chap5/c5_figs/1.png>]
+<chap5/c5_figs/confusion_matrix.png, id=931, 356.33125pt x 295.1025pt>
 File: chap5/c5_figs/confusion_matrix.png Graphic file (type png)
 <use chap5/c5_figs/confusion_matrix.png>
 Package pdftex.def Info: chap5/c5_figs/confusion_matrix.png  used on input line
- 6.
+ 39.
 (pdftex.def)             Requested size: 356.33037pt x 295.10176pt.
-) [62
 
- <./chap5/c5_figs/confusion_matrix.png>] (./chap6/chapter_6.tex
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 15.70145pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[65]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 15.70145pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[66 <./chap5/c5_figs/confusion_matrix.png>]) (./chap6/chapter_6.tex
 Ch\uhorn \ohorn ng 6.
 
 Package hyperref Warning: Composite letter `\textacute+\ECIRCUMFLEX'
@@ -3647,7 +3751,7 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 Package hyperref Warning: Glyph not defined in PD1 encoding,
 (hyperref)                removing `\ecircumflex' on input line 5.
 
-) [63
+) [67
 
 ]
 
@@ -3663,7 +3767,7 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 Package hyperref Warning: Glyph not defined in PD1 encoding,
 (hyperref)                removing `\h' on input line 119.
 
-(./main.bbl [64
+(./main.bbl [68
 
 ])
 
@@ -3672,7 +3776,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[65]
+[69]
 
 Package hyperref Warning: Composite letter `\textdotbelow+U'
 (hyperref)                not defined in PD1 encoding,
@@ -3689,21 +3793,15 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[66]
+[70]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 130.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 130.
  (./main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 130.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 130.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 4275B1F68242423DEED1706B5AE3C873;4168.
 
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: 131DD733F604B7C6F61EF4AB038DDD2C;3897
-(rerunfilecheck)             After:  AEC053FF01743FC573BF5CF6938A62A6;3886.
 
 LaTeX Warning: There were undefined references.
 
@@ -3713,10 +3811,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 130.
  ) 
 Here is how much of TeX's memory you used:
- 31089 strings out of 492982
- 714202 string characters out of 6134895
+ 31107 strings out of 492982
+ 714434 string characters out of 6134895
  900138 words of memory out of 5000000
- 33798 multiletter control sequences out of 15000+600000
+ 33807 multiletter control sequences out of 15000+600000
  25805 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,18n,96p,1459b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -3737,10 +3835,10 @@ ve/texmf-dist/fonts/type1/vntex/vnr/vnr10.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/vntex/vnr/vnr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/vntex/
 vnr/vnr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vnti12.pfb><
 /usr/share/texlive/texmf-dist/fonts/type1/vntex/vnr/vntt12.pfb>
-Output written on main.pdf (81 pages, 2787998 bytes).
+Output written on main.pdf (85 pages, 3911779 bytes).
 PDF statistics:
- 1038 PDF objects out of 1200 (max. 8388607)
- 818 compressed objects within 9 object streams
- 204 named destinations out of 1000 (max. 500000)
- 723 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1069 PDF objects out of 1200 (max. 8388607)
+ 852 compressed objects within 9 object streams
+ 213 named destinations out of 1000 (max. 500000)
+ 760 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -40,8 +40,9 @@
 \contentsline {figure}{\numberline {4.4}{\ignorespaces C\IeC {\'a}c th\IeC {\^o}ng s\IeC {\'\ocircumflex } c\IeC {\h u}a m\IeC {\d a}ng DNN\relax }}{55}{figure.caption.53}
 \contentsline {figure}{\numberline {4.5}{\ignorespaces C\IeC {\'\acircumflex }u tr\IeC {\'u}c m\IeC {\d a}ng sau khi \IeC {\dj }\IeC {\uhorn }\IeC {\d \ohorn }c v\IeC {\~ e} b\IeC {\`\abreve }ng th\IeC {\uhorn } vi\IeC {\d \ecircumflex }n keras\relax }}{56}{figure.caption.54}
 \contentsline {figure}{\numberline {4.6}{\ignorespaces So s\IeC {\'a}nh Gradient Descent v\IeC {\'\ohorn }i c\IeC {\'a}c hi\IeC {\d \ecircumflex }n t\IeC {\uhorn }\IeC {\d \ohorn }ng v\IeC {\d \acircumflex }t l\IeC {\'y} (Ngu\IeC {\`\ocircumflex }n: "Machine learning c\IeC {\ohorn } b\IeC {\h a}n" - V\IeC {\~u} H\IeC {\~\uhorn }u Ti\IeC {\d \ecircumflex }p)\relax }}{58}{figure.caption.55}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Accurracy c\IeC {\h u}a t\IeC {\d \acircumflex }p train v\IeC {\`a} validate\relax }}{60}{figure.caption.56}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Accurracy c\IeC {\h u}a t\IeC {\d \acircumflex }p train v\IeC {\`a} validate\relax }}{61}{figure.caption.56}
 \contentsline {figure}{\numberline {4.8}{\ignorespaces Loss c\IeC {\h u}a t\IeC {\d \acircumflex }p train v\IeC {\`a} validate\relax }}{61}{figure.caption.57}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Confusion matrix c\IeC {\h u}a 16 l\IeC {\'\ohorn }p ph\IeC {\^a}n lo\IeC {\d a}i\relax }}{62}{figure.caption.58}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Giao di\IeC {\d \ecircumflex }n ph\IeC {\`\acircumflex }n m\IeC {\`\ecircumflex }m nh\IeC {\d \acircumflex }n d\IeC {\d a}ng\relax }}{64}{figure.caption.58}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Confusion matrix c\IeC {\h u}a 16 l\IeC {\'\ohorn }p ph\IeC {\^a}n lo\IeC {\d a}i\relax }}{66}{figure.caption.59}
 \addvspace {10\p@ }

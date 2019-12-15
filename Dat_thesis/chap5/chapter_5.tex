@@ -9,12 +9,23 @@ Sau khi đã huấn luyện được mô hình nhận dạng ngôn ngữ ký hi�
 
 
 \section{Kết quả}
-Chương trình thực nghiệm đã nhận dạng được khá chính xác các hành động đã huấn luyện (16 ngôn ngữ ký hiệu). Chương trình chạy trên hệ điều hành ubuntu, sử dụng camera là webcam. Giao diện và các mode hoạt động được trình bày như các hình \ref{fig:xxx}
+Chương trình thực nghiệm đã nhận dạng được khá chính xác các hành động đã huấn luyện (16 ngôn ngữ ký hiệu). Chương trình chạy trên hệ điều hành ubuntu, sử dụng camera là webcam. Giao diện và các mode hoạt động được trình bày như các hình \ref{fig:gui}
+
+\FloatBarrier
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[scale=0.25]{chap5/c5_figs/1.png}
+\end{center}
+\caption{Giao diện phần mềm nhận dạng}
+\label{fig:gui}
+\end{figure}
+\FloatBarrier
 
 \section{Đánh giá}
 Khi xây dựng một mô hình Machine Learning, chúng ta cần một phép đánh giá để xem mô hình sử dụng có hiệu quả không và để so sánh khả năng của các mô hình. Trong phần này, luận văn sẽ trình bày các mô hình classification.
 
-Hiệu năng của một mô hình thường được đánh giá dựa trên tập dữ liệu kiểm thử (test data). Cụ thể, giả sử đầu ra của mô hình khi đầu vào là tập kiểm thử được mô tả bởi vector y_pred - là vector dự đoán đầu ra với mỗi phần tử là class được dự đoán của một điểm dữ liệu trong tập kiểm thử. Ta cần so sánh giữa vector dự đoán y_pred này với vector class thật của dữ liệu, được mô tả bởi vector y_true. Đối với bài toán phân loại của luận văn, có 16 lớp dữ liệu được gán nhãn là tên các từ được huấn luyện.
+Hiệu năng của một mô hình thường được đánh giá dựa trên tập dữ liệu kiểm thử (test data). Cụ thể, giả sử đầu ra của mô hình khi đầu vào là tập kiểm thử được mô tả bởi vector y-pred - là vector dự đoán đầu ra với mỗi phần tử là class được dự đoán của một điểm dữ liệu trong tập kiểm thử. Ta cần so sánh giữa vector dự đoán y-pred này với vector class thật của dữ liệu, được mô tả bởi vector y-true. Đối với bài toán phân loại của luận văn, có 16 lớp dữ liệu được gán nhãn là tên các từ được huấn luyện.
+
 
 Có rất nhiều cách đánh giá một mô hình phân lớp. Tuỳ vào những bài toán khác nhau mà chúng ta sử dụng các phương pháp khác nhau. Các phương pháp thường được sử dụng là: accuracy score, confusion matrix, ROC curve, Area Under the Curve, Precision and Recall, F1 score, Top R error, etc.
 

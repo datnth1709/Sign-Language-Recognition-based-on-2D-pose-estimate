@@ -12,11 +12,8 @@
 %				https://towardsdatascience.com/machine-learning-for-beginners-an-introduction-to-neural-networks-d49f22d238f9
 				
 %				http://cs231n.github.io/neural-networks-1/
-Con chó có thể phân biệt được người thân trong gia đình và người lạ hay đứa trẻ có thể phân biệt được các con vật. Những việc tưởng chừng như rất đơn giản nhưng lại cực kì khó để thực hiện bằng máy tính. Vậy sự khác biệt nằm ở đâu? Câu trả lời nằm ở bộ não với lượng lớn các neuron thần kinh liên kết với nhau. Vậy thì liệu máy tính có thể mô phỏng lại mô hình ấy để giải các bài toán trên ?
 
-Neural là tính từ của neuron (nơ-ron), network chỉ cấu trúc đồ thị nên neural network (NN) là một hệ thống tính toán lấy cảm hứng từ sự hoạt động của các nơ-ron trong hệ thần kinh.
-
-Mạng noron nhân tạo (Neural Network - NN) là một mô hình tính toán được lấy cảm hứng từ cách mạng noron sinh học trong não người xử lý thông tin. Kết hợp với các kĩ thuật học sâu (Deep Learning - DL), NN  trở thành một công cụ hiệu quả và có nhiều kết quả đột phá cho nhiều bài toán khó như nhận dạng ảnh, nhận dạng giọng nói thị giác máy tính và xử lý ngôn ngữ tự nhiên. Trong nội dung này, luận văn sẽ trình bày các lý thuyết cơ bản của mạng NN từ các thành phần cơ bản, kiến trúc mạng và các kỹ thuật huấn luyện (training) một mạng NN.
+Mạng noron nhân tạo (Neural Network - NN) là một mô hình tính toán được lấy cảm hứng từ các mạng neuron sinh học trong não người để xử lý thông tin. Kết hợp với các kĩ thuật học sâu khác (Deep Learning - DL), NN  trở thành một công cụ hiệu quả và có nhiều kết quả đột phá cho nhiều bài toán khó như nhận dạng ảnh, nhận dạng giọng nói trong lĩnh vực thị giác máy tính và xử lý ngôn ngữ tự nhiên. Trong nội dung này, luận văn sẽ trình bày các lý thuyết cơ bản của mạng NN từ các thành phần cơ bản, kiến trúc mạng đến các kỹ thuật huấn luyện (training) một mạng NN.
 
 \subsection{Hoạt động của các neuron sinh học}
 
@@ -218,14 +215,7 @@ $\newline z^{(2)} = (W^{(2)})^T * a^{(1)} + b^{(2)}\newline  a^{(2)} = \sigma(z^
 Tuy nhiên khi làm việc với dữ liệu ta cần tính dự đoán cho nhiều dữ liệu một lúc, nên gọi $X$ là ma trận $n*d$, trong đó $n$ là số dữ liệu và $d$ là số trường trong mỗi dữ liệu, trong đó $x_j^{[i]}$ là giá trị trường dữ liệu thứ $j$ của dữ liệu thứ $i$.
 Biểu diễn dạng ma trận của vector dữ liệu đầu vào như sau:
 
-\FloatBarrier
-\begin{figure}[htp]
-\begin{center}
-\includegraphics[scale=0.8]{chap2/c2_figs/1.jpg}
-\end{center}
-\label{fig:feed_forward}
-\end{figure}
-\FloatBarrier
+$$X = \begin{bmatrix}x_{1}^{[1]}&x_{2}^{[1]}&...&x_{d}^{[1]}\\x_{1}^{[2]}&x_{2}^{[2]}&...&x_{d}^{[2]}\\...&...&...&...\\x_{1}^{[n]}&x_{2}^{[n]}&...&x_{d}^{[n]}\end{bmatrix} =  \begin{bmatrix}-(x^{[1]})^{T}-\\-(x^{[2]})^{T}-\\...\\-(x^{[n]})^{T}-\end{bmatrix} $$
 
 Do $x^{[1]}$ là vector kích thước $d*1$ tuy nhiên ở $X$ mỗi dữ liệu được viết theo hàng nên cần transpose $x^{[1]}$ thành kích thước $1*d$, kí hiệu: $(x^{[1]})^T$
 Gọi ma trận $Z^{(i)}$ kích thước$ N*l^{(i)}$ trong đó $z_{j}^{(i)[k]}$ là giá trị thứ $j$ trong layer $i$ sau bước tính tổng linear của dữ liệu thứ $k$ trong dataset.
@@ -234,14 +224,7 @@ Gọi ma trận $Z^{(i)}$ kích thước$ N*l^{(i)}$ trong đó $z_{j}^{(i)[k]}$
 
 Tương tự, gọi ma trận $A^{(i)}$ kích thước $N*l^{(i)}$ trong đó $a_{j}^{(i)[k]}$ là giá trị thứ $j$ trong layer $i$ sau khi áp dụng activation function của dữ liệu thứ $k$ trong dataset.
 
-\FloatBarrier
-\begin{figure}[htp]
-\begin{center}
-\includegraphics[scale=0.8]{chap2/c2_figs/2.jpg}
-\end{center}
-\label{fig:feed_forward}
-\end{figure}
-\FloatBarrier
+$$ X = \begin{bmatrix}z_{1}^{(i)[1]}&z_{2}^{(i)[1]}&...&z_{l^{(i)}}^{(i)[1]}\\z_{1}^{(i)[2]}&z_{2}^{(i)[2]}&...&z_{l^{(i)}}^{(i)[2]}\\...&...&...&...\\z_{1}^{(i)[n]}&z_{2}^{(i)[n]}&...&z_{l^{(i)}}^{(i)[n]}\end{bmatrix} =  \begin{bmatrix}-(z^{(i)[1]})^{T}-\\-(z^{(i)[2]})^{T}-\\...\\-(z^{(i)[n]})^{T}-\end{bmatrix} $$
 
 Do đó:
 

@@ -195,10 +195,10 @@ Quá trình phân tích được tóm tắt thành 3 bước sau:
 	\item Up-sampling scale: Sự khác biệt giữa dài/rộng giữa ảnh đầu vào và confidence maps.
 	\end{itemize}
 \item \textbf{Đầu ra: }
-	%\begin{itemize}
-	%\item Danh sách khớp(joints_list): một danh sách những vị trí khớp của kích thước J, mỗi phần tử là một danh sách các đỉnh (x, y, xác suất).
-	%\item Ví dụ, kích thước của joints_list là 18 cho 18 vị trí khớp (mũi, cổ,...) và những phần tử trong joints_list là những danh sách có độ dài khác nhau. Những phần tử này lưu trữ thông tin đỉnh (vị trí x, y và điểm xác suất) cho mỗi vị trí khớp.
-	%\end{itemize}
+	\begin{itemize}
+	\item Danh sách khớp(joints$\_$list): một danh sách những vị trí khớp của kích thước J, mỗi phần tử là một danh sách các đỉnh (x, y, xác suất).
+	\item Ví dụ, kích thước của joints$\_$list là 18 cho 18 vị trí khớp (mũi, cổ,...) và những phần tử trong joints$\_$list là những danh sách có độ dài khác nhau. Những phần tử này lưu trữ thông tin đỉnh (vị trí x, y và điểm xác suất) cho mỗi vị trí khớp.
+	\end{itemize}
 \item \textbf{Xử lý: Cho mỗi khớp từ 1 dến J:}
 	\begin{itemize}
 	\item Lấy heatmap 2D tương ứng cho khớp trong confidence maps.
@@ -216,28 +216,64 @@ Quá trình phân tích được tóm tắt thành 3 bước sau:
 \subsubsection{Bước 2 - Tìm những khớp cùng nhau tạo các chi (bộ phận cơ thể) sử dụng PAFs và những khớp trong bước 1.}
 \begin{itemize}
 \item \textbf{Đầu vào:}
-	%\begin{itemize}
-	%\item joints_list ngõ ra của bước 1.
-	%\item \textbf{PAFs}: \textbf{$L = (L_1, L_2, ..., L_c)$} trong đó \textbf{$L_c \in R^{w \times h \times 2},c \in (1 \ldots C)$}
-
-	%\end{itemize}
+	\begin{itemize}
+	\item joints-list ngõ ra của bước 1.
+	\item \textbf{PAFs}: \textbf{$L = (L_1, L_2, ..., L_c)$} trong đó \textbf{$L_c \in R^{w \times h \times 2},c \in (1 \ldots C)$}
+	\item  Up-sampling scale: sự khác nhau giữa dài rộng của ảnh đầu vào và PAFs maps.
+	\item Số lượng những điểm trung gian: số lượng những điểm trung gian giữa một khớp nguồn và những khớp đích để có được giá trị PAFs.
+	\end{itemize}
 %\end{itemize}
 \item \textbf{Đầu ra: }
-	%\begin{itemize}
-	%\item Danh sách khớp (joints_list): một danh sách những vị trí khớp của kích thước J, mỗi phần tử là một danh sách các đỉnh (x, y, xác suất). Ví dụ, kích thước của joints_list là 18 cho 18 vị trí khớp (mũi, cổ,...) và những phần tử trong joints_list là những danh sách có độ dài khác nhau. Những phần tử này lưu trữ thông tin đỉnh (vị trí x, y và điểm xác suất) cho mỗi vị trí khớp.
-	%\end{itemize}
-\item \textbf{Xử lý: Cho mỗi khớp từ 1 dến J:}
 	\begin{itemize}
-	\item Lấy heatmap 2D tương ứng cho khớp trong confidence maps.
-	\item Tìm những đỉnh bằng cách lấy ngưỡng heatmap 2D.
-	\item Đối với mỗi đỉnh:
+	\item Những chi được kết nối (connected-limbs): một danh sách những chi được kết nối có kích thước C. Trong đó, mỗi phần tử là một danh sách tất cả các chi của loại đó.
+	\item Mỗi thông tin chi chứa: id của chi nguồn, id của chi đích và điểm số thể hiện độ tốt của kết nối.
+	\end{itemize}
+\item \textbf{Xử lý: }
+	\begin{itemize}
+	\item  Phóng to PAFs đến kích thước của ngõ vào sử dụng up-sampling scale.
+	\item Đối với mỗi loại chi, ví dụ cổ tay-khuỷu tay trái:
 		\begin{itemize}
-		\item Lấy một đốm xung quanh đỉnh trong heap.
-		\item Phóng to đốm sử dụng up-sampling scale.
-		\item Lấy vị trí đỉnh lớn nhất trong đốm được phóng to.
-		\item Thêm thông tin đỉnh vào danh sách các đỉnh của khớp.
+		\item Lấy tất cả những đỉnh khớp nguồn và những đỉnh khớp đích, ví dụ: tất cả những đỉnh cổ tay trái và tất cả những đỉnh khuỷu tay trái.
+		\item Nếu kích thước của những đỉnh nguồn hoặc đỉnh đích bằng 0, thì bỏ qua chi đó.
+		\item Tạo một danh sách để lưu trữ tất cả những candidates kết nối chi.
+		\item Đối với mỗi đỉnh nguồn và mỗi đỉnh đích:
+			\begin{itemize}
+			\item Lấy vector trực tiếp bằng cách trừ những vị trí nguồn và vị trí đích.
+			\item Chuẩn hóa vector trực tiếp thành vector đơn vị.
+			\item  Lấy giá trị PAFs tại mỗi điểm trung gian giữa những đỉnh nguồn và đỉnh đích.
+			\item Tính điểm số của kết nối chi hiện tại bằng cách lấy trung bình những giá trị PAFs.
+			\item Thêm điểm số để xác định khoảng cách chi phù hợp:  
+			
+			\textbf{min(0.5 * paf\_height / limb\_dist - 1, 0)}.
+			\item Thêm những kết nối chi hiện tại vào những candidates kết nối chi:
+			
+			+ Sắp xếp những candidates kết nối chi.
+			
+			+ Đối với mỗi candidate kết nối chi: Thêm sự kết nối vào danh sách cuối cùng nếu nguồn và đích không được chọn cho bất kỳ sự kết nối nào.
+			\end{itemize}
 		\end{itemize}
 	\end{itemize}
 \end{itemize}
 
 \subsubsection{Bước 3 - Kết nối các chi thuộc cùng một người và tạo danh sách những tư thế cơ thể.}
+\begin{itemize}
+\item \textbf{Đầu vào:}
+	\begin{itemize}
+	\item Danh sách khớp (\textbf{joint$\_$list}) từ bước 1.
+	\item Những chi được kết nối (connected$\_$limbs) từ bước 2
+	\end{itemize}
+\item \textbf{Đầu ra:} Những tư thế: một danh sách những tư thế người cho mỗi các nhân trong ảnh. Mỗi phần từ chứa những vị trí khớp cho người đó.
+\item \textbf{Xử lý:}
+	\begin{itemize}
+	\item Đối với mỗi loại chi và đối với mỗi kết nối giữa các chi (connected\_limbs) của loại đó:
+		\begin{itemize}
+		\item Tìm những cá nhân liên kết với khớp của kết nối hiện tại.
+		\item Nếu không có người nào: Tạo một người mới với kết nối hiện tại.
+		\item Nếu có một người: Thêm kết nối hiện tại vào người đó.
+		\item Nếu có 2 người: Xác nhập 2 người này thành một người.
+		\end{itemize}
+	\item Loại bỏ những người có quá ít khớp.
+	\end{itemize}
+\end{itemize}
+
+

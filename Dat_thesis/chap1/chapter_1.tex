@@ -28,7 +28,7 @@ Như đã đề cập ở các phần trên, phương pháp SVM chỉ hoạt đ�
 Mặc dù đã được nghiên cứu trong thời gian dài, tuy nhiên do đặc điểm của việc nhận dạng hành động con người rất phức tạp và không có một cấu trúc rõ ràng dẫn đến việc rất khó áp dụng cho thực tế hoặc một lĩnh vực rộng rãi.
 
 \section{Mục tiêu của luận văn}
-\subsection{Tìm hiểu}
+
 Để có thể thực hiện việc nhận dạng ngôn ngữ ký hiệu, cần xác định được phương pháp thực hiện, lựa chọn các giải thuật hợp lý phù hợp với điều kiện thực tế và khả năng có thể ứng dụng cao nhất.
 Phương án thực hiện được lựa chọn ban đầu có 3 phương án: 
 
@@ -38,14 +38,29 @@ Phương án 2: Thực hiện xây dựng mạng kết hợp Convoluntion Neural
 
 Phương án 3: Trích xuất hình dáng khung xương từ từng frame ảnh 2D bằng mạng CNN để xuất ra tọa độ khung xương trên hệ tọa độ 2D. Sử dụng một mạng Deep neural network để nhận dạng ngôn ngữ ký hiệu từ chuỗi khung xương đó.
 
-Ở phương án 1 việc sử dụng thiết bị kinect sẽ là quá cồng kềnh để có thể mang theo, và sử dụng trong đời sống hàng ngày. Mô hình HMM có thể là một mô hình máy học cổ điển, còn nhiều nhược điểm hơn so với các mô hình mới hiện nay. Ở phương án 2, để phân loại hành động, cần có tập dữ liệu lớn vì với mỗi góc nhìn khác nhau sẽ cho ra một ảnh khác nhau và với cùng một hành động sẽ cho ra những đặc trưng khác nhau, như vậy sẽ khó để có thể xây dựng mô hình này. Phương án 3 được chọn vì có nhiều ưu điểm hơn phương án 1 và 2.
+Ở phương án 1 việc sử dụng thiết bị kinect sẽ là quá cồng kềnh để có thể mang theo, và sử dụng trong đời sống hàng ngày. Mô hình HMM có thể là một mô hình máy học cổ điển, còn nhiều nhược điểm hơn so với các mô hình mới hiện nay. Ở phương án 2, để phân loại hành động, cần có tập dữ liệu lớn vì với mỗi góc nhìn khác nhau sẽ cho ra một ảnh khác nhau và với cùng một hành động sẽ cho ra những đặc trưng khác nhau, như vậy sẽ khó để có thể xây dựng mô hình này. Phương án 3 được chọn vì có nhiều ưu điểm hơn phương án 1 và 2. Vì tính khả thi có thể ứng dụng được trên các thiết bị có camera mà người sử dụng có thể mang đi như điện thoại thông minh.
 
-\subsection{Thực hiện}
 Ứng dụng hướng tới hỗ trợ cộng đồng người người khiếm thính trong giao tiếp thường ngày nên việc đầu tiên cần hướng đến là tính tiện lợi và dễ sử dụng. Vì vậy thiết bị giúp hỗ trợ người khiếm thính cần có thể dễ dàng mang đi gọn nhẹ. Do đó mục tiêu luận văn hướng đến là thực hiện phần mềm để có thể hoạt động trên điện thoại thông minh. 
+
+\section{Nội dụng luận văn}
+Nội dụng luận văn sẽ hướng đến xây dựng phần mềm nhận diện một số từ ngữ trong bộ ngôn ngữ ký hiệu của người khiếm thính ở TP.HCM. Các nội dụng này sẽ sắp xếp xoay quanh theo thứ tự hoạt động của mô hình nhận diện ngôn ngữ ký hiệu được xây dựng trong luận văn. Tổng quan, phần mềm nhận diện sẽ hoạt động theo các bước trong sơ đồ hình \ref{fig:diagram}.
+
+\FloatBarrier
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[scale=0.7]{chap1/c1_figs/diagram.png}
+\end{center}
+\caption{Thứ tự hoạt động mô hình nhận dạng}
+\label{fig:diagram}
+\end{figure}
+\FloatBarrier
 
 
 \section{Bố cục trình bày}
 \label{ss:bo_cuc_trinh_bay}
+
+Toàn bộ nội dung của luận văn sẽ đi theo bố cục chặt chẽ theo thứ tự các bước mà luận văn đã nghiên cứu và thực hiện. Các nội dung chính của luận văn sẽ được chia thành các chương cụ thể để có thể dễ dàng xem xét, và nắm bắt vấn đề. Tại mỗi chương sẽ trình bày cụ thể từ lý thuyết của chương đó cho đến cụ thể các bước thực hiện cũng như kết luận từng chương.
+
 Bố cục của luận văn sẽ được trình bày theo trình tự và những nội dung được khái quát trong bảng \ref{table:bo_cuc_luan_van}.
 
 \FloatBarrier
@@ -64,9 +79,9 @@ Chương  & Nội dung \\
  \hline 
  Chương 3 & Giới thiệu các nghiên cứu về ước lượng đặc trưng khung xương; Cách thức hoạt động của mạng ước tính đặc trưng khung xương mà luận văn sử dụng .\\
  \hline
- Chương 4 & Trình bày về mạng neural network được luận văn đề xuất để phân loại các từ trong ngôn ngữ ký hiệu; Cách xử lý dữ liệu đầu vào của mạng; cách huấn luyện mạng \\
+ Chương 4 & Trình bày về mạng neural network được luận văn xây dựng để phân loại các từ trong ngôn ngữ ký hiệu; Cách xử lý dữ liệu đầu vào của mạng và cách huấn luyện mạng. \\
  \hline 
- Chương 5 & Cách thức ứng dụng hoạt động.\\
+ Chương 5 & Giải thuật Deep Sort dùng để theo dõi từng người.\\
  \hline
  Chương 6 & Các thử nghiệm, kết quả và đánh g.iá\\
  \hline

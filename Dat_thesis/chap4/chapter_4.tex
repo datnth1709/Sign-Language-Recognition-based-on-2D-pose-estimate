@@ -150,7 +150,7 @@ Sau khi loại bỏ các phần thừa và chuẩn hóa hết bộ dữ liệu c
 \end{figure}
 \FloatBarrier
 
-\section{Cấu trúc mạng neural network đề xuất}
+\section{Cấu trúc mạng neural network xây dựng}
 Từ dữ liệu đầu vào là một ảnh RGB, qua bước phát hiện khung xương với mạng CNN và các bước chuẩn hóa, loại bỏ khớp xương thừa, dữ liệu cần phân loại gần như đã lấy ra hết đặc trưng cần tìm và giảm số chiều đến tối đa. Do đó mạng DNN cần dùng để phân loại các từ ngôn ngữ ký hiệu chỉ cần một cấu trúc vừa phải và giảm thiểu số trọng số đến tối đa.
 \begin{itemize}
 \item Input: Mạng với đầu vào là 20 nodes ứng với tọa độ của 10 khớp xương (mỗi khớp là 2 tọa độ).
@@ -250,8 +250,8 @@ Với bộ dữ liệu của bài toán nhận dạng ngôn ngữ ký hiệu, d�
 Áp dụng thuật toán SGD, với các thông số ban đầu được khởi tạo trước khi huấn luyện như sau:
 \begin{itemize}
 \item epoch: 50
-\item learning rate: 0.01
-\item
+\item learning rate: 0.0001
+\item batch$\_$size : 32
 \end{itemize}
 Trong quá trình huấn luyện, luận văn sử dụng phương pháp lưu lại checkpoint. Cách thức hoạt động của phương pháp này là sau mỗi epoch, accuracy trên tập test của model hiện tại được so sánh với accuracy của model trước đó. Nếu nó lớn hơn thì trọng số của mô hình sẽ được cập nhật theo trọng số mới nhất. Nếu nhỏ hơn, trọng số của mô hình trước đó vẫn được giữ lại cho đến khi accuracy khác cao hơn. Phương pháp này giúp tìm được model tối ưu nhất với accuracy cao nhất có thể.
 Sau 50 epoch, ta có kết quả về độ chính xác(accuracy) và sai số (loss) trên tập train và tập test như sau:

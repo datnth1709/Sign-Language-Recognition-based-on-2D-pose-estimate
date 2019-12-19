@@ -9,7 +9,7 @@ Kinect là một thiết bị đầu vào,là cảm biến chuyển động do h
 
 Chức năng chính của Kinect là một công cụ để người dùng tương tác với Xbox 360 bằng cử chỉ và lệnh nói. Vì lý do này, các bộ cảm biến có khả năng thu thập dữ liệu ở độ phân giải 640x480 điểm ảnh. Với các dữ liệu chiều sâu, có thể lấy được "các vector đặc trưng mang hình dáng của khung xương con người(SJM)" của người đứng phía trước của cảm biến. Và với các SJM đó, nó có thể nhận biết được cử chỉ của người sử dụng.
 
-
+\FloatBarrier
 \begin{figure}[htp]
 \begin{center}
 \includegraphics[scale=0.8]{chap3/c3_figs/kinect.png}
@@ -17,7 +17,7 @@ Chức năng chính của Kinect là một công cụ để người dùng tươ
 \caption{Camera cảm biến độ sâu Kinect \\(Nguồn : \url{https://www.ifixit.com)}}
 \label{fig:kinect}
 \end{figure}
-
+\FloatBarrier
 
 Các thông số cơ bản của cảm biến như sau:
 \begin{itemize}
@@ -69,7 +69,7 @@ Hành động di chuyển của người dùng trong không gian nhận diện �
 \item SJM tương ứng với ảnh hiện tại biễu diễn tọa độ bằng meter (đo tương đối bằng ảnh độ sâu) hoặc px (tương ứng với vị trí của ảnh độ sâu).
 \end{itemize}
 
-Sau khi ước tính tọa độ khung xương bằng Kinect, ta thu được tọa độ các vị trí của 18 khớp xương trong không gian 3 chiều (hình \ref{fig:skeleton_kinect})
+Sau khi ước tính tọa độ khung xương bằng Kinect, ta thu được tọa độ các vị trí của 25 khớp xương trong không gian 3 chiều (hình \ref{fig:skeleton_kinect})
 
 \FloatBarrier
 \begin{figure}[htp]
@@ -77,7 +77,7 @@ Sau khi ước tính tọa độ khung xương bằng Kinect, ta thu được t�
 \includegraphics[scale=0.4]{chap3/c3_figs/kinectskeleton.png}
 \end{center}
 \caption{Khung xương được trích xuất từ Kinect \\(Nguồn : \url{https://www.zonetrigger.com/)}}
-\label{fig:kinect}
+\label{fig:skeleton_kinect}
 \end{figure}
 \FloatBarrier
 
@@ -104,7 +104,7 @@ Mạng sử dụng  detect tư thế 2D song song của nhiều người trong m
 \end{figure}
 \FloatBarrier
 
-Hình \ref{fig:pipeline} mình họa toàn bộ nội dung phương pháp. Hệ thống lấy đầu vào, một ảnh màu có kích thước wxh (hình \ref{fig:pipeline}a) và tạo ra ngõ ra, tọa độ của những keyponts cho mỗi cá nhân trong ảnh (hình \ref{fig:pipeline}e). Đầu tiên, một mạng CNN đồng thời dự đoán một loạt những confidence maps (cfm) S của những vị trí bộ phận cơ thể (hình \ref{fig:pipeline}b) và một loạt những miền vector 2D (vf) L của part affinities, cái mà mã hóa độ liên kết giữa các phần cơ thể (hình \ref{fig:pipeline}c). Tập hợp  có J cfm, một map cho mỗi bộ phận, trong đó . Tập hợp  có C vf, một cho mỗi chi, trong đó , mỗi vị trí ảnh trong Lc mã hóa một vector 2D (được show trong hình 1). Cuối cùng, cfm và affinity fields được phân tích bởi suy luận tham lam (hình \ref{fig:pipeline}d) để tạo ra các keypoints 2D cho tất cả người trong ảnh.
+Hình \ref{fig:pipeline} mình họa toàn bộ nội dung phương pháp. Hệ thống lấy đầu vào, một ảnh màu có kích thước $w*h$ (hình \ref{fig:pipeline}a) và tạo ra ngõ ra, tọa độ của những keyponts cho mỗi cá nhân trong ảnh (hình \ref{fig:pipeline}e). Đầu tiên, một mạng CNN đồng thời dự đoán một loạt những confidence maps (cfm) S của những vị trí bộ phận cơ thể (hình \ref{fig:pipeline}b) và một loạt những miền vector 2D (vf) L của part affinities, cái mà mã hóa độ liên kết giữa các phần cơ thể (hình \ref{fig:pipeline}c). Tập hợp  có J cfm, một map cho mỗi bộ phận, trong đó . Tập hợp  có C vf, một cho mỗi chi, trong đó , mỗi vị trí ảnh trong Lc mã hóa một vector 2D (được show trong hình 1). Cuối cùng, cfm và affinity fields được phân tích bởi suy luận tham lam (hình \ref{fig:pipeline}d) để tạo ra các keypoints 2D cho tất cả người trong ảnh.
 
 Phương pháp này đưa toàn bộ ảnh đầu vào qua một mạng CNN 2 nhánh để đồng thời dự đoán những confidence map cho sự detect phần cơ thể, thể hiện trong hình \ref{fig:pipeline}b, và part affinity fields cho sự liên kết các phần, thể hiện trong hình \ref{fig:pipeline}c. Bước phân tích thể hiện một loạt những liên kết giữa hai điểm (liên kết lưỡng cực) để liên kết những phần cơ thể (\ref{fig:pipeline}d). Cuối cùng, chúng được lắp ráp chúng lại với nhau tạo thành những tư thế cơ thể hoàn chỉnh cho tất cả những người trong ảnh (\ref{fig:pipeline}e).
 
@@ -290,3 +290,17 @@ Quá trình phân tích được tóm tắt thành 3 bước sau:
 \end{itemize}
 
 \subsection{Kết quả}
+Ảnh RGB đầu vào chứa nhiều người sau khi xử lý qua mạng ta nhận được tọa độ 18 khớp xương của từng người được vẽ ra trên ảnh đầu ra. Kết quả ước lượng có thể đáp ứng được xử lý thời gian thực (realtime) trên máy tính cấu hình thấp với FPS đạt được khoảng 2.5 -> 4(FPS). Tốc độ nhận dạng tùy thuộc vào số người trong khung hình, tốc độ xử lý sẽ càng nhanh khi số lượng người trong khung hình càng ít và ngược lại.
+
+\FloatBarrier
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[scale=0.37]{chap3/c3_figs/skeleton_out.png}
+\end{center}
+\caption{Kết quả ước tính tọa độ khung xương từ mạng NN}
+\label{fig:kq_skeleton}
+\end{figure}
+\FloatBarrier
+
+\section{Kết luận}
+Ước lượng khung xương hay ước tính tư thế con người là một hướng nghiên cứu quan trọng và đầy thách thức của thị giác máy tính. Phương pháp này được khá nhiều nghiên cứu áp dụng để giải quyết nhiều bài toán khó như nhận dạng dáng đi, tư thế con người, nhận dạng hành động hay giúp robot học theo chuyển động của con người...Chương tiếp theo, luận văn sẽ trình bày về ứng dụng của ước lượng tọa độ khung xương trong nhận dạng ngôn ngữ ký hiệu, là phần nghiên cứu chính của luận văn.

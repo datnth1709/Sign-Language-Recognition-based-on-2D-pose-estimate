@@ -41,16 +41,17 @@
 \contentsline {subsubsection}{\numberline {3.2.4.2}B\IeC {\uhorn }\IeC {\'\ohorn }c 2 - T\IeC {\`\i }m nh\IeC {\~\uhorn }ng kh\IeC {\'\ohorn }p c\IeC {\`u}ng nhau t\IeC {\d a}o c\IeC {\'a}c chi (b\IeC {\d \ocircumflex } ph\IeC {\d \acircumflex }n c\IeC {\ohorn } th\IeC {\h \ecircumflex }) s\IeC {\h \uhorn } d\IeC {\d u}ng PAFs v\IeC {\`a} nh\IeC {\~\uhorn }ng kh\IeC {\'\ohorn }p trong b\IeC {\uhorn }\IeC {\'\ohorn }c 1.}{51}{subsubsection.3.2.4.2}
 \contentsline {subsubsection}{\numberline {3.2.4.3}B\IeC {\uhorn }\IeC {\'\ohorn }c 3 - K\IeC {\'\ecircumflex }t n\IeC {\'\ocircumflex }i c\IeC {\'a}c chi thu\IeC {\d \ocircumflex }c c\IeC {\`u}ng m\IeC {\d \ocircumflex }t ng\IeC {\uhorn }\IeC {\`\ohorn }i v\IeC {\`a} t\IeC {\d a}o danh s\IeC {\'a}ch nh\IeC {\~\uhorn }ng t\IeC {\uhorn } th\IeC {\'\ecircumflex } c\IeC {\ohorn } th\IeC {\h \ecircumflex }.}{52}{subsubsection.3.2.4.3}
 \contentsline {subsection}{\numberline {3.2.5}K\IeC {\'\ecircumflex }t qu\IeC {\h a}}{53}{subsection.3.2.5}
-\contentsline {chapter}{\numberline {4}X\IeC {\^A}Y D\IeC {\d \UHORN }NG M\IeC {\d A}NG NEURON NH\IeC {\d \ACIRCUMFLEX }N D\IeC {\d A}NG NG\IeC {\^O}N NG\IeC {\~\UHORN } K\IeC {\'Y} HI\IeC {\d \ECIRCUMFLEX }U}{54}{chapter.4}
-\contentsline {section}{\numberline {4.1}T\IeC {\h \ocircumflex }ng quan}{54}{section.4.1}
-\contentsline {section}{\numberline {4.2}Thu th\IeC {\d \acircumflex }p d\IeC {\~\uhorn } li\IeC {\d \ecircumflex }u}{55}{section.4.2}
-\contentsline {section}{\numberline {4.3}X\IeC {\h \uhorn } l\IeC {\'y} d\IeC {\~\uhorn } li\IeC {\d \ecircumflex }u \IeC {\dj }\IeC {\`\acircumflex }u v\IeC {\`a}o}{60}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Lo\IeC {\d a}i b\IeC {\h o} c\IeC {\'a}c ph\IeC {\`\acircumflex }n SJM d\IeC {\uhorn } th\IeC {\`\uhorn }a}{60}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Chu\IeC {\h \acircumflex }n h\IeC {\'o}a SJM \IeC {\dj }\IeC {\h \ecircumflex } ph\IeC {\^a}n lo\IeC {\d a}i \IeC {\dj }\IeC {\d \abreve }c tr\IeC {\uhorn }ng}{61}{subsection.4.3.2}
-\contentsline {section}{\numberline {4.4}C\IeC {\'\acircumflex }u tr\IeC {\'u}c m\IeC {\d a}ng neural network x\IeC {\^a}y d\IeC {\d \uhorn }ng}{65}{section.4.4}
+\contentsline {section}{\numberline {3.3}K\IeC {\'\ecircumflex }t lu\IeC {\d \acircumflex }n}{54}{section.3.3}
+\contentsline {chapter}{\numberline {4}X\IeC {\^A}Y D\IeC {\d \UHORN }NG M\IeC {\d A}NG NEURON NH\IeC {\d \ACIRCUMFLEX }N D\IeC {\d A}NG NG\IeC {\^O}N NG\IeC {\~\UHORN } K\IeC {\'Y} HI\IeC {\d \ECIRCUMFLEX }U}{55}{chapter.4}
+\contentsline {section}{\numberline {4.1}T\IeC {\h \ocircumflex }ng quan}{55}{section.4.1}
+\contentsline {section}{\numberline {4.2}Thu th\IeC {\d \acircumflex }p d\IeC {\~\uhorn } li\IeC {\d \ecircumflex }u}{56}{section.4.2}
+\contentsline {section}{\numberline {4.3}X\IeC {\h \uhorn } l\IeC {\'y} d\IeC {\~\uhorn } li\IeC {\d \ecircumflex }u \IeC {\dj }\IeC {\`\acircumflex }u v\IeC {\`a}o}{61}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Lo\IeC {\d a}i b\IeC {\h o} c\IeC {\'a}c ph\IeC {\`\acircumflex }n SJM d\IeC {\uhorn } th\IeC {\`\uhorn }a}{61}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Chu\IeC {\h \acircumflex }n h\IeC {\'o}a SJM \IeC {\dj }\IeC {\h \ecircumflex } ph\IeC {\^a}n lo\IeC {\d a}i \IeC {\dj }\IeC {\d \abreve }c tr\IeC {\uhorn }ng}{62}{subsection.4.3.2}
+\contentsline {section}{\numberline {4.4}C\IeC {\'\acircumflex }u tr\IeC {\'u}c m\IeC {\d a}ng neural network x\IeC {\^a}y d\IeC {\d \uhorn }ng}{66}{section.4.4}
 \contentsline {section}{\numberline {4.5}Hu\IeC {\'\acircumflex }n luy\IeC {\d \ecircumflex }n m\IeC {\d a}ng}{68}{section.4.5}
 \contentsline {subsection}{\numberline {4.5.1}Gradient Descent}{68}{subsection.4.5.1}
-\contentsline {subsection}{\numberline {4.5.2}Stochastic Gradient Descent}{70}{subsection.4.5.2}
+\contentsline {subsection}{\numberline {4.5.2}Stochastic Gradient Descent}{69}{subsection.4.5.2}
 \contentsline {subsection}{\numberline {4.5.3}\IeC {\DJ }i\IeC {\`\ecircumflex }u ki\IeC {\d \ecircumflex }n d\IeC {\`\uhorn }ng}{70}{subsection.4.5.3}
 \contentsline {subsection}{\numberline {4.5.4}\IeC {\'A}p d\IeC {\d u}ng v\IeC {\`a}o b\IeC {\`a}i to\IeC {\'a}n}{71}{subsection.4.5.4}
 \contentsline {section}{\numberline {4.6}K\IeC {\'\ecircumflex }t qu\IeC {\h a}}{73}{section.4.6}

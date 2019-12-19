@@ -126,13 +126,13 @@ Số thứ tự khớp xương  & Vị trí \\
  \hline 
  2 & Vai phải\\
  \hline
- 3 & Khủy tay phải \\
+ 3 & Khủyu tay phải \\
  \hline 
  4 & Cổ tay phải\\
  \hline
  5 & Vai trái\\
  \hline
- 6 & Khủy trái\\
+ 6 & Khủyu tay trái\\
  \hline
  7 & Cổ tay trái\\
  \hline
@@ -147,7 +147,7 @@ Số thứ tự khớp xương  & Vị trí \\
 
 \subsection{Chuẩn hóa SJM để phân loại đặc trưng}
 
-Dựa vào dữ liệu thu thập được, ta có thể nhận thấy là tùy vào vị trí camera, khoảng cách từ camera đến người được quan sát sẽ làm thay đổi giá trị của các vector khung xương SJM. Hình \ref{fig:skeleton} ta có thể thấy khoảng cách các vector tọa độ khung xương của người ở xa camera sẽ gần nhau hơn so với người ở gần. Do đó cần phải sử dụng phương pháp chuẩn hóa dữ liệu các vector, đưa các vector đặc trưng SJM về cùng kích cỡ thì dữ liệu đưa vào train mới có thể có cùng những đặc trưng giống nhau.
+Dựa vào dữ liệu thu thập được, ta có thể nhận thấy là tùy vào vị trí camera, khoảng cách từ camera đến người được quan sát sẽ làm thay đổi giá trị của các vector khung xương SJM. Hình \ref{fig:kq_skeleton} từ kết quả chương 3 có thể thấy khoảng cách các SJM của người ở xa camera sẽ gần nhau hơn so với người ở gần. Do đó cần phải sử dụng phương pháp chuẩn hóa dữ liệu các vector, đưa các vector đặc trưng SJM về cùng kích cỡ thì dữ liệu đưa vào train mới có thể có cùng những đặc trưng giống nhau.
 
 Phương pháp chuẩn hóa được áp dụng như sau:
 
@@ -159,21 +159,21 @@ Phương pháp chuẩn hóa được áp dụng như sau:
 \caption{Một SJM đặc trưng nhận được từ quá trình thí nghiệm}
 \begin{tabular}{|c|c|c|}
 \hline 
- Điểm SJM-J & Tên SJM-J & $(x_i; y_i; z_i) $\\ 
+ Điểm SJM-J & Tên SJM-J & $(x_i; y_i) $\\ 
 \hline 
-A & Đầu  & (992.574; 411.311; 2.126) \\ 
+A & Mũi  & (992.574; 411.311) \\
 \hline 
-B & Cột sống vai & (987.327; 519.09; 2.147) \\ 
+B & Vai trái & (987.327; 519.09) \\ 
 \hline 
-C & Cột sống gốc & (987.795; 783.878; 2.105) \\ 
+C & Vai phải  & (987.795; 783.878) \\ 
 \hline 
-D & Khuỷu tay trái & (870.784; 666.671; 2.125) \\ 
+D & Cổ tay trái & (870.784; 666.671) \\ 
 \hline 
-E & Bàn tay trái & (826.394; 825.466; 2.03) \\ 
+E & Cổ tay phải & (826.394; 825.466) \\ 
 \hline
-F & Khuỷu tay phải & (1114.381; 662.63; 2.136) \\ 
+F & Khuỷu tay trái & (1114.381; 662.63) \\ 
 \hline
-G & Bàn tay phải & (1174.36; 825.96; 2.007) \\ 
+G & Khuỷu tay phải & (1174.36; 825.96) \\ 
 \hline 
 \end{tabular} 
 \label{BangSJM}
@@ -313,7 +313,7 @@ Từ dữ liệu đầu vào là một ảnh RGB, qua bước phát hiện khung
 \item Hidden layer: Là các lớp Fully connected (Dense) và Normalization xen kẽ nhau.
 \item Output: Với softmax với 16 nodes ứng với 16 từ ngữ nhận diện được.
 \end{itemize}
-Cụ thể các thông số và cấu trúc được thể hiện trong hình \ref{fig:model_params} và \ref{fig:model}.
+Cụ thể các thông số và cấu trúc được thể hiện trong hình \ref{fig:model_params}.
 
 \FloatBarrier
 \begin{figure}[htp]
@@ -325,22 +325,13 @@ Cụ thể các thông số và cấu trúc được thể hiện trong hình \r
 \end{figure}
 \FloatBarrier
 
-\FloatBarrier
-\begin{figure}[htp]
-\begin{center}
-\includegraphics[scale=0.9]{chap4/c4_figs/model.png}
-\end{center}
-\caption{Cấu trúc mạng sau khi được vẽ bằng thư viện keras}
-\label{fig:model}
-\end{figure}
-\FloatBarrier
 
 Model sử dụng khá nhiều lớp Batch Normalization. Về lý thuyết toán thì layer này có tác dụng trong 2 việc đó là:
 \begin{itemize}
 \item Tránh gradient tiến về 0 sẽ chẳng biết là đi lên hay xuống.
 \item Gradient quá lớn khiến các tham số không thể tối ưu được (loss sẽ nhảy lung tùng).
 \end{itemize}
-Cụ thể là nó giúp chuẩn hóa dữ liệu về 1 khoảng nào đó ví dụ (0,1).
+Cụ thể là nó giúp chuẩn hóa dữ liệu về 1 khoảng (0,1).
 
 \section{Huấn luyện mạng}
 Mạng được huấn luyện theo thuật toán Stochastic Gradient Descent (SGD) là một biến thể của Gradient Descent. Cụ thể ta sẽ tìm hiểu về nó qua các phần dưới dây.
@@ -443,9 +434,7 @@ Nhận thấy kết quả mô hình đã học được rất tốt với thuậ
 \item Test Loss    : 0.0123
 \end{itemize}
 
-Dựa vào những thông số trên có thể thấy kết quả sau khi huấn luyện mô hình khá tốt. Nhưng để áp dụng mô hình vào thực tế được, ta cần phải thử nghiệm và đánh giá bằng nhiều phương pháp trên tập dữ liệu mới. Chương tiếp theo sẽ trình bày về cách thức thử nghiệm, đánh giá mô hình cũng như xây dựng phần mềm ứng dụng từ mô hình. 
-
-
+Dựa vào những thông số trên có thể thấy kết quả sau khi huấn luyện mô hình khá tốt. Nhưng để áp dụng mô hình vào thực tế được, ta cần phải thử nghiệm và đánh giá bằng nhiều phương pháp trên tập dữ liệu mới. Trong chương 5 luận văn sẽ trình bày về cách thức thử nghiệm, đánh giá mô hình cũng như xây dựng phần mềm ứng dụng từ mô hình.  Chương 4 tiếp theo luận văn sẽ trình bày giải thuật Deep Sort dùng để theo dõi những người trong khung ảnh, từ đó có thể áp dụng nhận diện dc chuỗi các ký tự của ngôn ngữ ký hiệu mà từng người diễn đạt.
 
 
 

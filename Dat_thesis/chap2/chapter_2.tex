@@ -1,9 +1,6 @@
 \chapter{CƠ SỞ LÝ THUYẾT}
 \label{c:co_so_ly_thuyet}
 
-%\section{CÁC LÝ THUYẾT LIÊN QUAN ĐẾN HỌC SÂU}
-%\label{s:ly_thuyet_hoc_sau}
-
 \section{MẠNG NEURAL NETWOK}
 %Nguồn tham khao: https://dominhhai.github.io/vi/2018/04/nn-intro/
 
@@ -13,7 +10,7 @@
 				
 %				http://cs231n.github.io/neural-networks-1/
 
-Mạng noron nhân tạo (Neural Network - NN) là một mô hình tính toán được lấy cảm hứng từ các mạng neuron sinh học trong não người để xử lý thông tin. Kết hợp với các kĩ thuật học sâu khác (Deep Learning - DL), NN  trở thành một công cụ hiệu quả và có nhiều kết quả đột phá cho nhiều bài toán khó như nhận dạng ảnh, nhận dạng giọng nói trong lĩnh vực thị giác máy tính và xử lý ngôn ngữ tự nhiên. Trong nội dung này, luận văn sẽ trình bày các lý thuyết cơ bản của mạng NN từ các thành phần cơ bản, kiến trúc mạng đến các kỹ thuật huấn luyện (training) một mạng NN.
+Mạng noron nhân tạo (Neural Network - NN) là một mô hình tính toán được lấy cảm hứng từ các mạng neuron sinh học trong não người để xử lý thông tin. Kết hợp với các kĩ thuật học sâu khác (Deep Learning - DL), NN  trở thành một công cụ hiệu quả và có nhiều kết quả đột phá cho nhiều bài toán khó như nhận dạng ảnh, nhận dạng giọng nói trong lĩnh vực thị giác máy tính và xử lý ngôn ngữ tự nhiên. Trong chương này, luận văn sẽ trình bày các lý thuyết cơ bản của mạng NN từ các thành phần cơ bản, kiến trúc mạng đến các kỹ thuật huấn luyện (training) một mạng NN.
 
 \subsection{Hoạt động của các neuron sinh học}
 
@@ -22,23 +19,21 @@ Mạng noron nhân tạo (Neural Network - NN) là một mô hình tính toán �
 \begin{center}
 \includegraphics[scale=0.8]{chap2/c2_figs/neuron.png}
 \end{center}
-\caption{Cấu trúc một tế bào thần kinh}
+\caption{Cấu trúc một tế bào thần kinh \\ (Nguồn: \url{https://askabiologist.asu.edu/neuron-anatomy)}}
 \label{fig:neuronsinhhoc}
 \end{figure}
 \FloatBarrier
-\centerline{Nguồn: https://askabiologist.asu.edu/neuron-anatomy}
 
 Neuron là đơn vị cơ bản cấu tạo hệ thống thần kinh và là một phần quan trọng nhất của não. Não chúng ta gồm khoảng 10 triệu neuron và mỗi neuron liên kết với khoangr 10.000 neuron khác.
 
 Ở mỗi neuron có phần thân (soma) chứa nhân, các tín hiệu đầu vào qua sợi nhánh (dendrites) và các tín hiệu đầu ra qua sợi trục (axon) kết nối với các neuron khác. Hiểu đơn giản mỗi neuron nhận dữ liệu đầu vào qua sợi nhánh và truyền dữ liệu đầu ra qua sợi trục, đến các sợi nhánh của các neuron khác.
 
-Mỗi neuron nhận xung điện từ các neuron khác qua sợi nhánh. Nếu các xung điện này đủ lớn để kích hoạt neuron, thì tín hiệu này đi qua sợi trục đến các sợi nhánh của các neuron khác. => Ở mỗi neuron cần quyết định có kích hoạt neuron đấy hay không.
+Mỗi neuron nhận xung điện từ các neuron khác qua sợi nhánh. Nếu các xung điện này đủ lớn để kích hoạt neuron, thì tín hiệu này đi qua sợi trục đến các sợi nhánh của các neuron khác. Mạng neuron cần quyết định có kích hoạt neuron đấy hay không.
 
-Tuy nhiên NN chỉ là lấy cảm hứng từ não bộ và cách nó hoạt động, chứ không phải bắt chước toàn bộ các chức năng của nó. Việc chính của chúng ta là dùng mô hình đấy đi giải quyết các bài toán chúng ta cần.
 
 \subsection{Perceptron}
 \label{s:perceptron}
-\FloatBarrier
+
 \begin{figure}[htp]
 \begin{center}
 \includegraphics[scale=0.6]{chap2/c2_figs/perceptron.PNG}
@@ -46,11 +41,11 @@ Tuy nhiên NN chỉ là lấy cảm hứng từ não bộ và cách nó hoạt �
 \caption{Perceptron}
 \label{fig:perceptron}
 \end{figure}
-\FloatBarrier
+
 
 Lấy ý tưởng từ neuron sinh học, neuron nhân tạo với tên gọi perceptron cũng họat động theo cách gần giống với neuron sinh học để tạo thành một mạng thần kinh nhân tạo cho máy tính.
 
-Đơn vị tính toán cơ bản trong một mạng NN được gọi là perceptron và thường được gọi là \textbf{node} hay \textbf{unit}. Một node nhận các đầu vào từ các nodes khác hoặc từ nguồn bên ngoài, sau đó tính toán tạo ra giá trị ngõ ra. Mỗi ngõ vào có một trọng số liên kết và giá trị này biểu thi mức độ liên quan giữa node hiện tại và node trước nó. Node áp dụng một hàm $f$ (được giới thiệu ở nội dung bên dưới) vào tổng các các tích ngõ vào và trọng số để tạo giá trị ngõ ra. Hình \ref{fig:single_neuron} miêu tả chi tiết một neuron và các hoạt động của nó.
+Đơn vị tính toán cơ bản trong một mạng NN được gọi là perceptron (hình \ref{fig:perceptron}) và thường được gọi là \textbf{node} hay \textbf{unit}. Một node nhận các đầu vào từ các nodes khác hoặc từ nguồn bên ngoài, sau đó tính toán tạo ra giá trị ngõ ra. Mỗi ngõ vào có một trọng số liên kết và giá trị này biểu thi mức độ liên quan giữa node hiện tại và node trước nó. Node áp dụng một hàm $f$ (được giới thiệu ở nội dung bên dưới) vào tổng các các tích ngõ vào và trọng số để tạo giá trị ngõ ra. Hình \ref{fig:single_neuron} miêu tả chi tiết một neuron và các hoạt động của nó.
 
 \FloatBarrier
 \begin{figure}[htp]
@@ -92,7 +87,6 @@ f(x) = \max (0,x)
 \end{figure}
 \FloatBarrier
 
-Tầm quan trọng của bias: 
 
 \subsection{Kiến trúc mạng Neuron Network}
 
@@ -188,14 +182,12 @@ Quá trình huấn luyện một mạng NN được thể hiện qua sự lặp 
 Để nhất quán về mặt ký hiệu, gọi input layer là $a^{(0)} (=x)$ kích thước $2*1$.
 
 
-\FloatBarrier
-\begin{figure}[htp]
-\begin{center}
-\includegraphics[scale=0.8]{chap2/c2_figs/feed_forward.jpg}
-\end{center}
-\label{fig:feed_forward0}
-\end{figure}
-\FloatBarrier
+$$z^{(1)} =  \begin{bmatrix}z_{1}^{(1)}\\z_{2}^{(1)}\\z_{3}^{(1)}\end{bmatrix} 
+=  \begin{bmatrix}a_{1}^{(0)}*w_{11}^{(1)}+a_{2}^{(0)}*w_{21}^{(1)}+a_{3}^{(0)}*w_{31}^{(1)}+b_{1}^{(1)}\\a_{1}^{(0)}*w_{12}^{(1)}+a_{2}^{(0)}*w_{22}^{(1)}+a_{3}^{(0)}*w_{32}^{(1)}+b_{2}^{(1)}\\a_{1}^{(0)}*w_{13}^{(1)}+a_{2}^{(0)}*w_{23}^{(1)}+a_{3}^{(0)}*w_{33}^{(1)}+b_{3}^{(1)}\end{bmatrix} 
+= (W^{(1)})^{T}*a^{(0)} + b(1)$$
+
+$a^{(1)} =  \sigma (z^{(1)})$
+
 Tương tự ta có:
 $\newline z^{(2)} = (W^{(2)})^T * a^{(1)} + b^{(2)}\newline  a^{(2)} = \sigma(z^{(2)}) \newline z^{(3)} = (W^{(3)})^T * a^{(2)} + b^{(3)}\newline  \hat{y} = a^{(3)} = \sigma(z^{(3)})$
 
@@ -228,24 +220,17 @@ $$ X = \begin{bmatrix}z_{1}^{(i)[1]}&z_{2}^{(i)[1]}&...&z_{l^{(i)}}^{(i)[1]}\\z_
 
 Do đó:
 
-\FloatBarrier
-\begin{figure}[htp]
-\begin{center}
-\includegraphics[scale=0.75]{chap2/c2_figs/3.jpg}
-\end{center}
-\label{fig:feed_forward}
-\end{figure}
-\FloatBarrier
+$$Z^{(1)} = \begin{bmatrix}(z^{(1)[1]})^{T}\\(z^{(1)[2]})^{T}\\...\\(x^{(1)[n]})^{T}\end{bmatrix} 
+= \begin{bmatrix}(x^{[1]})^{T}*w^{[1]}+(b^{(1)})^{T}\\(x^{[2]})^{T}*w^{(1)}+(b^{(1)})^{T}\\...\\(x^{[n]})^{T}*w^{(1)}+(b^{(1)})^{T}\end{bmatrix}
+= X*W^{(1)}+\begin{bmatrix}(b^{(1)})^{T}\\(b^{(1)})^{T}\\...\\(b^{(1)})^{T}\end{bmatrix}
+= X*W^{(1)}+b^{(1)}$$
 Như vậy:
 
-\FloatBarrier
-\begin{figure}[htp]
-\begin{center}
-\includegraphics[scale=0.75]{chap2/c2_figs/4.jpg}
-\end{center}
-\label{fig:feed_forward}
-\end{figure}
-\FloatBarrier
+$$A^{(1)} =  \sigma (Z^{(1)})$$
+$$Z^{(2)} = A^{(1)}*W^{(2)} + b^{(2)}$$
+$$A^{(2)} =  \sigma (Z^{(2)})$$
+$$Z^{(3)} = A^{(2)}*W^{(3)} + b^{(3)}$$
+$$\hat{Y} = A^{(3)} =  \sigma (Z^{(3)})$$
 
 Vậy là có thể tính được giá trị dự đoán của nhiều dữ liệu 1 lúc dưới dạng ma trận.
 
@@ -314,18 +299,13 @@ $$\frac{\partial L}{\partial a_2 ^ {(1)}} =  w_{21} ^ {(2)}  *     (\hat{y_i}-y_
 
 
 \begin{itemize}
-\item[$\square$] \textbf{Biểu diễn dưới dạng ma trận:}
+\item[$\blacksquare$] \textbf{Biểu diễn dưới dạng ma trận:}
 \end{itemize} 
 \textbf{*** Lưu ý:} đạo hàm của L đối với ma trận W kích thước m*n cũng là một ma trận cùng kích thước $m*n$.
 
-\FloatBarrier
-\begin{figure}[htp]
-\begin{center}
-\includegraphics[scale=1]{chap2/c2_figs/5.jpg}
-\end{center}
-\label{fig:feed_forward}
-\end{figure}
-\FloatBarrier
+$$ \frac{\partial L}{\partial W} =  \begin{bmatrix}\frac{\partial L}{\partial w_{11}}&...&\frac{\partial L}{\partial w_{1n}}\\
+ \frac{\partial L}{\partial w_{21}}&...&\frac{\partial L}{\partial w_{2n}}\\
+ ...&...&...\\\frac{\partial L}{\partial w_{m1}}&...&\frac{\partial L}{\partial w_{mn}}\end{bmatrix} $$
 
 Do đó:
 $$\frac{\partial J}{\partial W^{(2)}} = (A^{(1)})^T * (\hat{Y} - Y), \frac{\partial J}{\partial b^{(2)}} = (sum(\hat{Y} - Y))^T,  \frac{\partial J}{\partial A^{(1)}} = (\hat{Y} - Y) * (W^{(2)})^T$$ 
@@ -369,14 +349,14 @@ Từ trên đã tính được: $$\frac{\partial J}{\partial A^{(1)}} = (\hat{Y}
 Cuối cùng, $Z^{(1)} = X * W^{(1)} + b^{(1)}$ nên có thể tạm hiểu $\frac{\partial Z^{(1)}}{\partial W^{(1)}} = X$ , nó giống như $f(x)= a*x +b$ $ => \frac{df}{dx} = a$ .
 
 Kết hợp tất cả lại ta được:
-$$\frac{\partial J}{\partial W^{(1)}} = X^T * (((\hat{Y} – Y) * (W^{(2)})^T)\otimes A^{(1)}\otimes (1-A^{(1)}) ) $$
+$$\frac{\partial J}{\partial W^{(1)}} = X^T * (((\hat{Y} - Y) * (W^{(2)})^T)\otimes A^{(1)}\otimes (1-A^{(1)}) ) $$
 
 Vậy khi nào cần dùng element-wise $(\otimes)$, khi nào dùng nhân ma trận $(*)$?
 \begin{itemize}
 \item Khi tính đạo hàm ngược lại qua bước activation thì dùng $(\otimes)$.
 \item Khi có phép tính nhân ma trận thì dùng $(*)$, nhưng đặc biệt chú ý đến \textbf{kích thước ma trận} và dùng \textbf{transpose} nếu cần thiết. Ví dụ: ma trận $X$ kích thước $N*3$, W kích thước $3*4$, $Z = X * W$ sẽ có kích thước $N*4$ thì $\frac{\partial J}{\partial W} = X^T * (\frac{\partial J}{\partial Z})$ và $\frac{\partial J}{\partial X} = (\frac{\partial J}{\partial Z}) * W^T$.
 \end{itemize}
-Tương tự: $$\frac{\partial L}{\partial b^{(1)}} = sum(((\hat{Y} – Y) * (W^{(2)})^T)\otimes A^{(1)})^T$$
+Tương tự: $$\frac{\partial L}{\partial b^{(1)}} = sum(((\hat{Y} - Y) * (W^{(2)})^T)\otimes A^{(1)})^T$$
 
 Vậy là đã tính xong hết đạo hàm của loss function với các hệ số $W$ và bias $b$, giờ có thể áp dụng gradient descent để giải bài toán.
 
@@ -407,7 +387,7 @@ Tuy nhiên $x_1$ không những tác động đến $a_1^{(1)}$ mà còn tác đ
 \FloatBarrier
 
 Do đó:
-$$\frac{\partial L}{\partial x_1} = \frac{\partial L}{\partial a_1^{(1)}} * \frac{\partial a_1^{(1)}}{\partial x_1} + \frac{\partial L}{\partial a_2^{(1)}} * \frac{\partial a_2^{(1)}}{\partial x_1} =  w_{11}^{(1)}* a_1 ^ {(1)} * (1 – a_1^{(1)}) * w_{11}^{(2)} * (y_i – \hat{y_i}) + w_{12}^{(1)}* a_2 ^ {(1)} * (1 – a_2^{(1)}) * w_{21}^{(2)} * (y_i – \hat{y_i})  \newline$$
+$$\frac{\partial L}{\partial x_1} = \frac{\partial L}{\partial a_1^{(1)}} * \frac{\partial a_1^{(1)}}{\partial x_1} + \frac{\partial L}{\partial a_2^{(1)}} * \frac{\partial a_2^{(1)}}{\partial x_1} =  w_{11}^{(1)}* a_1 ^ {(1)} * (1 - a_1^{(1)}) * w_{11}^{(2)} * (y_i - \hat{y_i}) + w_{12}^{(1)}* a_2 ^ {(1)} * (1 - a_2^{(1)}) * w_{21}^{(2)} * (y_i - \hat{y_i})  \newline$$
 
 Sau tất cả, mô hình tổng quát sẽ bao gồm các bước như sau:
 
@@ -434,15 +414,15 @@ Nếu hàm activation là sigmoid thì $\frac{\partial A^{(i)}}{\partial Z^{(i)}
 
 Tổng kết lại, 2 quá trình Feedfoward và Backpropagation sẽ diễn ra lần lượt như sau:
 
-\FloatBarrier
+
 \begin{figure}[htp]
 \begin{center}
 \includegraphics[scale=0.7]{chap2/c2_figs/7.png}
 \end{center}
 \end{figure}
-\FloatBarrier
 
-\FloatBarrier
+
+
 \begin{figure}[htp]
 \begin{center}
 \includegraphics[scale=0.65]{chap2/c2_figs/8.png}
@@ -450,7 +430,7 @@ Tổng kết lại, 2 quá trình Feedfoward và Backpropagation sẽ diễn ra 
 \caption{Feedforward và Backpropagation}
 \label{fig:backpropagation}
 \end{figure}
-\FloatBarrier
+
 
 (Nội dung dựa theo "Sách Deep Learning cơ bản" - tác giả: Nguyễn Thanh Tuấn)
 
@@ -465,15 +445,29 @@ Nhận xét:
 \item Trong ảnh các pixel ở cạnh nhau thường có liên kết với nhau hơn là những pixel ở xa. Ví dụ để thể hiện một vật thể trên ảnh cần các pixel gần nhau và có màu sắc tương tự nhau.
 \item Ngoài ra để so sánh các đối tượng là giống hay khác nhau cần phải so sánh giữa khu vực này với khu vực kia của bức ảnh. Do vậy cần phải có một bộ hệ số tính toán với các pixel quét hết toàn bộ bức ảnh để so sánh các vùng. Hay nói cách khác là các pixel ảnh chia sẻ hệ số với nhau.
 \end{itemize}
-=> Do vậy ý tưởng sử dụng mạng Convolutional Neural Network ra đời. Áp dụng phép tính convolution vào layer trong neural network ta có thể giải quyết được vấn đề lượng lớn parameter mà vẫn lấy ra được các đặc trưng của ảnh.
+Do vậy ý tưởng sử dụng mạng CNNs ra đời. Áp dụng phép tính convolution vào các layer trong neural network ta có thể giải quyết được vấn đề giảm thiểu lượng lớn parameter mà vẫn lấy ra được các đặc trưng của ảnh. Một mô hình mạng CNNs sẽ có cấu trúc chung gồm các lớp convolution và các lớp khác như pooling, fully connected, softmax,... (ví dụ mô hình mạng CNN - LeNet-5 trong hình \ref{fig:lenet}).
+
+\FloatBarrier
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[scale=1]{chap2/c2_figs/18.png}
+\end{center}
+\caption{Ví dụ mô hình 1 mô hình convolutional neural network (LeNet-5 \cite{lecun1998gradient})}
+\label{fig:lenet}
+\end{figure}
+\FloatBarrier
+%\centerline{Input image -> Convolutional layer (Conv) + Pooling layer (Pool) -> Fully connected layer (FC) -> Output}
+%\centerline{Nguồn: https://www.easy-tensorflow.com/tf-tutorials/convolutional-neural-nets-cnns}
+
+
 \subsection{Phép Tính Convolution}
 \label{ss: convolution}
-Để cho dễ hình dung mình sẽ lấy ví dụ trên ảnh xám, tức là ảnh được biểu diễn dưới dạng ma trận $A$ kích thước $m*n$.
+Lấy ví dụ trên ảnh xám, ảnh được biểu diễn dưới dạng ma trận $A$ kích thước $m*n$.
 Ta định nghĩa kernel là một ma trận vuông kích thước $k*k$ trong đó $k$ là số lẻ. $k$ có thể bằng $1, 3, 5, 7, 9,…$ Ví dụ kernel kích thước $3*3$.
 
-Kí hiệu phép tính convolution $(\otimes)$, kí hiệu $Y = X \otimes W$.
+Kí hiệu phép tính convolution là $(\otimes)$, kí hiệu $Y = X \otimes W$.
 
-Với mỗi phần tử $x_{ij}$ trong ma trận $X$ lấy ra một ma trận có kích thước bằng kích thước của kernel $W$ có phần tử $x_{ij}$ làm trung tâm (đây là vì sao kích thước của kernel thường lẻ) gọi là ma trận $A$. Sau đó tính tổng các phần tử của phép tính element-wise của ma trận $A$ và ma trận $W$, rồi viết vào ma trận kết quả $Y$.
+Với mỗi phần tử $x_{ij}$ trong ma trận $X$ lấy ra một ma trận có kích thước bằng kích thước của kernel $W$ có phần tử $x_{ij}$ làm trung tâm gọi là ma trận $A$. Sau đó tính tổng các phần tử của phép tính element-wise của ma trận $A$ và ma trận $W$, rồi viết vào ma trận kết quả $Y$.
 
 \FloatBarrier
 \begin{figure}[htp]
@@ -492,16 +486,16 @@ Vì tâm của kernel $W$ không thể lướt hết ma trận $X$ nên $Y$ sẽ
 \FloatBarrier
 \begin{figure}[htp]
 \begin{center}
-\includegraphics[scale=0.65]{chap2/c2_figs/10.png}
+\includegraphics[scale=0.4]{chap2/c2_figs/convolution_1.png}
 \end{center}
-\caption{Convolution feature có kích thước nhỏ hơn ảnh ban đầu}
+\caption{Convolution feature map có kích thước nhỏ hơn ma trận ban đầu}
 \label{fig:convolution-feature}
 \end{figure}
 \FloatBarrier
 
 \begin{itemize}
 \item[$\blacksquare$] \textbf{Padding}
-Mỗi lần thực hiện phép tính convolution xong thì kích thước ma trận Y đều nhỏ hơn X. Tuy nhiên giờ ta muốn ma trận Y thu được có kích thước bằng ma trận X vì vậy cần tìm cách giải quyết cho các phần tử ở viền bằng cách thêm giá trị 0 ở viền ngoài ma trận X.
+Mỗi lần thực hiện phép tính convolution xong thì kích thước ma trận Y đều nhỏ hơn X. Tuy nhiên nếu ta muốn ma trận Y thu được có kích thước bằng ma trận X ta cần tìm cách giải quyết cho các phần tử ở viền bằng cách thêm giá trị 0 ở viền ngoài ma trận X.
 
 \FloatBarrier
 \begin{figure}[htp]
@@ -513,7 +507,7 @@ Mỗi lần thực hiện phép tính convolution xong thì kích thước ma tr
 \end{figure}
 \FloatBarrier
 
-Rõ ràng là giờ đã giải quyết được vấn đề tìm A cho phần tử $x_{11}$, và ma trận $Y$ thu được sẽ bằng kích thước ma trận $X$ ban đầu.
+Vậy ta đã giải quyết được vấn đề tìm A cho phần tử $x_{11}$, và ma trận $Y$ thu được sẽ bằng kích thước ma trận $X$ ban đầu.
 
 Phép tính này gọi là convolution với $padding=1$. $Padding=k$ nghĩa là thêm $k$ vector $0$ vào mỗi phía của ma trận.
 
@@ -542,16 +536,14 @@ Tuy nhiên nếu $stride=k (k > 1)$ thì ta chỉ thực hiện phép tính conv
 \end{figure}
 \FloatBarrier
 
-Hiểu đơn giản là bắt đầu từ vị trí $x_{11}$ sau đó nhảy $k$ bước theo chiều dọc và ngang cho đến hết ma trận $X$.
-
-Kích thước của ma trận $Y$ là $3*3$ đã giảm đi đáng kể so với ma trận $X$.
-Công thức tổng quát cho phép tính convolution của ma trận $X$ kích thước $m*n$ với kernel kích thước $k*k$, $stride = s$, $padding = p$ ra ma trận $Y$ kích thước $$(\frac{m-k+2p}{s}+1) * (\frac{n-k+2p}{s}+1)$$
+Bắt đầu từ vị trí $x_{11}$, sau đó cho kernel một lần nhảy $k$ bước theo chiều dọc và ngang cho đến hết ma trận $X$. Ta thấy kích thước của ma trận $Y$ là $3*3$ đã giảm đi đáng kể so với ma trận $X$.
+Công thức tổng quát cho phép tính convolution của ma trận $X$ kích thước $m*n$ với kernel kích thước $k*k$, $stride = s$, $padding = p$ ra ma trận $Y$ kích thước là $$(\frac{m-k+2p}{s}+1) * (\frac{n-k+2p}{s}+1)$$
 Stride thường dùng để giảm kích thước của ma trận sau phép tính convolution.
 Ý nghĩa của phép tính convolution:
-Mục đích của phép tính convolution trên ảnh là làm mở, làm nét ảnh; xác định các đường;… Mỗi kernel khác nhau thì sẽ phép tính convolution sẽ có ý nghĩa khác nhau. 
+Mục đích của phép tính convolution trên ảnh là làm mở, làm nét ảnh; xác định các đường;… Với mỗi kernel khác nhau ta sẽ phép tính được convolution có ý nghĩa khác nhau. 
 \end{itemize} 
 \subsection{Phép convolution trong mạng Neuron Network}
-Với ảnh màu có tới 3 channels red, green, blue nên khi biểu diễn ảnh sẽ dưới dạng tensor 3 chiều. Nên ta cũng sẽ định nghĩa kernel là 1 tensor 3 chiều kích thước $k*k*3$.
+Với ảnh màu có tới 3 channels red, green, blue nên khi biểu diễn ảnh sẽ dưới dạng tensor 3 chiều. Vì vậy kernel cũng sẽ là 1 tensor 3 chiều kích thước $k*k*3$.
 
 \FloatBarrier
 \begin{figure}[htp]
@@ -594,7 +586,7 @@ Nhận xét:
 \item Có 1 hệ số bias được cộng vào sau bước tính tổng các phần tử của phép tính element-wise.
 \end{itemize}
 
-Với mỗi kernel khác nhau ta sẽ học được những đặc trưng khác nhau của ảnh, nên trong mỗi convolutional layer ta sẽ dùng nhiều kernel để học được nhiều thuộc tính của ảnh. Vì mỗi kernel cho ra output là 1 matrix nên k kernel sẽ cho ra k output matrix. Ta kết hợp k output matrix này lại thành 1 tensor 3 chiều có chiều sâu k.
+Với mỗi kernel khác nhau ta sẽ học được những đặc trưng khác nhau của ảnh, nên trong mỗi convolutional layer ta sẽ dùng nhiều kernel để học được nhiều thuộc tính của ảnh. Vì mỗi kernel cho ra output là 1 matrix nên k kernel sẽ cho ra k output matrix. Ta kết hợp k output matrix này lại thành 1 tensor 3 chiều có chiều sâu k. Output của convolutional layer đầu tiên sẽ thành input của convolutional layer tiếp theo.
 
 \FloatBarrier
 \begin{figure}[htp]
@@ -606,15 +598,10 @@ Với mỗi kernel khác nhau ta sẽ học được những đặc trưng khác
 \end{figure}
 \FloatBarrier
 
-Output của convolutional layer đầu tiên sẽ thành input của convolutional layer tiếp theo.
-
-Convolutional layer tổng quát
-Giả sử input của 1 convolutional layer tổng quát là tensor kích thước $H * W * D$.
-
-Kernel có kích thước $F * F * D$ (kernel luôn có depth bằng depth của input và $F$ là số lẻ), stride: $S$, padding: $P$.
-
-Convolutional layer áp dụng $K$ kernel.
-=> Output của layer là tensor 3 chiều có kích thước: $ (\frac{H-F+2P}{S} + 1) * (\frac{W-F+2P}{S} + 1) * K$
+\begin{itemize}
+\item[$\blacksquare$] Convolutional layer tổng quát:
+\end{itemize}
+Giả sử input của 1 convolutional layer tổng quát là tensor kích thước $H * W * D$. Kernel có kích thước $F * F * D$ (kernel luôn có depth bằng depth của input và $F$ là số lẻ), stride: $S$, padding: $P$. Convolutional layer áp dụng $K$ kernel.Lúc này, output của layer là tensor 3 chiều có kích thước: $ (\frac{H-F+2P}{S} + 1) * (\frac{W-F+2P}{S} + 1) * K$(hình \ref{fig:conv-tongquat})
 
 \FloatBarrier
 \begin{figure}[htp]
@@ -626,12 +613,50 @@ Convolutional layer áp dụng $K$ kernel.
 \end{figure}
 \FloatBarrier
 
-Lưu ý:
+Ta nhận thấy:
 \begin{itemize}
 \item Output của convolutional layer sẽ qua hàm activation function trước khi trở thành input của convolutional layer tiếp theo.
 \item Tổng số parameter của layer: Mỗi kernel có kích thước $F*F*D$ và có 1 hệ số bias, nên tổng parameter của 1 kernel là $F*F*D + 1$. Mà convolutional layer áp dụng $K$ kernel => Tổng số parameter trong layer này là $K * (F*F*D + 1)$.
 \end{itemize}
 Mạng Convolution Neural Network, ngoài các lớp Convolution ra còn có các lớp Pooling, Dropout, Dense, và Backnomalization,... để làm cho chúng trở nên "dễ học" hơn.
+
+\subsection{Batch-Norm}
+Việc chuẩn hóa (normalize) dữ liệu đầu vào giúp cho quá trình huấn luyện nhanh hơn (hàm chi phí hội tụ nhanh hơn) so với việc không chuẩn hóa. Nhiệm vụ của lớp chuẩn hóa cũng tương tự như vậy ở các lớp ẩn (hidden layer). Ngoài ra lớp chuẩn hóa còn giúp cho thuật toán có thể học được các dữ liệu có phân phối (distribution) khác nhau giúp cho mô hình tổng quan hơn.
+
+Batch Normalization là một phương pháp hiệu quả khi training một mô hình mạng nơ ron. Mục tiêu của phương pháp này chính là việc muốn chuẩn hóa các feature (đầu ra của mỗi layer sau khi đi qua các activation) về trạng thái "zero-mean" với độ lệch chuẩn 1. Trong mạng CNN, hidden layer sử dụng phương pháp này gọi là lớp Batch-Norm. Ý tưởng của Batch Normalization là thêm một công đoạn (operation) ngay trước activation function cho mỗi layer. Operation đó có nhiệm vụ chuẩn hóa (normalizing) và zero-centering (mean subtracting) các inputs (mean của inputs sẽ là 0). Kết quả sau đó sẽ được scaling và shifting sử dụng hai parameters cho mỗi layer. Để thực hiện normalizing và zero-centering, Batch-Norm sẽ tính độ lệch chuẩn và phương sai của các inputs trên các mini-batches, sau đó sử dụng hai parameter là $\gamma$ và $ \beta$  để thực hiện việc scaling.
+
+Thuật toán chuẩn hóa cụ thể sẽ hoạt động như sau:
+
+\FloatBarrier
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[scale=0.8]{chap2/c2_figs/back_norm.png}
+\end{center}
+\caption{Phép biến đổi back normalization \cite{ioffe2015batch}}
+\label{fig:back_norm}
+\end{figure}
+\FloatBarrier
+
+\begin{itemize}
+\item[$\blacksquare$] Trong đó:
+\item $ \mu _B$ là giá trị kỳ vọng thực nghiệm được tính toán trên mini-batch B.
+\item $\sigma_B$ là độ lệch chuẩn thực nghiệm cũng được tính toán trên mini-batch B.
+\item $m$ là số lượng instances trong mini-batch B.
+\item $\hat{x}_i $ là giá trị của input thứ i trong mini-batch sau khi đã được chuẩn hóa và zero-centered.
+\item $y$ là scaling factor hay scaling parameter của layer.
+\item $\beta$ là shifting factor hay offset của layer.
+\item $\epsilon$ là smoothing factor dùng để tránh việc chia cho 0, thường có giá trị rất nhỏ.
+\item $y_i$ là đầu ra của Batch Normalization operation.
+\end{itemize}
+Mỗi Batch-Norm layer sẽ có 4 parameter cần phải học:  $y$(scale),  $\beta$(shift),  $ \mu$(mean) và $\sigma$(standard deviation).
+
+Một số lợi ích của Batch Normalization:
+\begin{itemize}
+\item Giảm thiểu đến mức tối thiểu hiện tượng Vanishing / Exploding gradients và chúng ta có thể quay lại sử dụng các activation function như sigmoid hay tanh.
+\item Giảm thiểu sự phụ thuộc vào quá trình weight initialization.
+\item Có thể sử dụng learning rate lớn hơn để tăng tốc quá trình training.
+\item Batch-Norm có thể được sử dụng như một regularize giúp giảm overfitting.
+\end{itemize}
 
 
 \subsection{Pooling layer}
@@ -657,11 +682,11 @@ Nhưng hầu hết khi dùng pooling layer thì sẽ dùng $size=(2,2)$, $stride
 \begin{center}
 \includegraphics[scale=0.5]{chap2/c2_figs/pooling.jpeg}
 \end{center}
-\caption{Kết quả sau khi qua pooling layer $2*2$.}
+\caption{Kết quả sau khi qua pooling layer $2*2$. \\(\url{http://cs231n.github.io/convolutional-networks})}
 \label{fig:pooling}
 \end{figure}
 \FloatBarrier
-\centerline{http://cs231n.github.io/convolutional-networks/}
+%\centerline{http://cs231n.github.io/convolutional-networks/}
 
 Có 2 loại pooling layer phổ biến là: max pooling và average pooling.
 \FloatBarrier
@@ -674,6 +699,28 @@ Có 2 loại pooling layer phổ biến là: max pooling và average pooling.
 \end{figure}
 \FloatBarrier
 Ngoài ra còn có thể dùng convolutional layer với stride > 1 để giảm kích thước dữ liệu thay cho pooling layer.
+
+\subsection{Drop-Out}
+\label{ss:dropout}
+Trong neural network, việc cuối cùng là tối ưu các tham số để làm cho giảm loss function, nhưng đôi khi có unit thay đổi theo cách sửa lại lỗi của các unit khác dẫn đến việc hòa trộn làm giảm tính dự đoán của model, hay còn gọi là overfitting. Dropout là cách thức mà chúng ta giả định một phần các unit bị ẩn đi trong quá trình training, qua đó làm giảm tích hòa trộn (hay nói cách khác là 1 hidden unit không thể dựa vào 1 unit khác để sửa lỗi lầm của nó, dễ cho chúng ta thấy các hidden unit không đáng tin cậy). Tại mỗi step trong quá trình training, khi thực hiện Forward Propagation (Lan truyền xuôi) đến layer sử dụng Drop-Out, thay vì tính toán tất cả unit có trên layer, tại mỗi layer ta chọn ngẫu nhiên một số unit có được tính hay không theo tỉ lệ $p$.
+
+\FloatBarrier
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[scale=0.5]{chap2/c2_figs/drop_out.png}
+\end{center}
+\caption{Minh họa phương pháp Drop-Out}
+\label{fig:dropout}
+\end{figure}
+\FloatBarrier
+
+\begin{itemize}
+\item[$\blacksquare$] Một số đặc điểm của Drop-Out:
+\item Dropout ép mạng neural phải tìm ra nhiều robust features hơn, với đặc điểm là chúng phải hữu ích hơn, tốt hơn, ngon hơn khi kết hợp với nhiều neuron khác.
+\item Dropout đòi hỏi phải gấp đôi quá trình huấn luyện để đạt được sự hội tụ. Tuy nhiên, thời gian huấn luyện cho mỗi epoch sẽ ít hơn.
+\item Với $H$ unit trong mô hình, mỗi unit đều có xác xuất bị bỏ qua hoặc được chọn, chúng ta sẽ có $2^{H}$ mô hình có thể có. Trong pha test, toàn bộ network được sử dụng và mỗi hàm activation được giảm đi với hệ số $p$.
+\item Một số nghiên cứu chỉ ra rằng, khi sử dụng Dropout và Batch Normalization cùng nhau thì kết quả rất tệ, trong cả lý thuyết và thực nghiệm \cite{li2019understanding}.
+\end{itemize}
 
 \subsection{Fully connected layer (Dense layer)}
 \label{ss:dense}
@@ -690,20 +737,30 @@ Sau khi ảnh được truyền qua nhiều convolutional layer và pooling laye
 \FloatBarrier
 Sau đó, mỗi điểm của vector sẽ được liên kết với toàn bộ output của mode giống như 1 lớp của mạng Neural Network truyền thống.Và cuối cùng của mạng sẽ có nhiệm vụ phân loại theo như yêu cầu của từng bài toán. Thường sẽ sử dụng hàm softmax để tính đầu ra cho lớp này.
 
+\subsection{Hàm Softmax}
+Sau khi mạng CNNs được học qua các lớp phía trước, ta thu được một vector đặc trưng. Việc cần làm tiếp theo là dựa vào vector đặc trưng này để phân loại vào các lớp theo yêu cầu bài toán. Chúng ta cần một mô hình xác suất sao cho với mỗi input $x$, sẽ tính được output $a_i$ thể hiện xác suất để input đó rơi vào lớp thứ $i$. Sử dụng hàm softmax ta tính được điều này. Hàm softmax nhận đầu vào là một vector và cho đầu ra là 1 vector có cùng số chiều $a(z):\mathbb{R}^n\mapsto\mathbb{R}^n$. Công thức của hàm như sau:
+$$a_i = \frac{\exp(z_i)}{\sum_{j=1}^C \exp(z_j)}, ~~ \forall i = 1, 2, \dots, C$$
 
+\begin{itemize}
+\item[$\blacksquare$] Ở đây, ta có nhận xét:
+\item Giá trị $z_i = \mathbf{w}_i^T\mathbf{x}$ càng lớn thì xác suất dữ liệu rơi vào class $i$ càng cao.
+\item Các $a_i$ lớn hơn 0 và có tổng bằng 1.
+\end{itemize}
 
+Như vậy hàm softmax đã tính tất cả các $a_i$ dựa vào tất cả các $z_i$, thõa mãn tất cả các điều kiện: dương, tổng bằng 1, giữ được thứ tự của $z_i$. Giá trị xuất ra của hàm softmax tại mỗi class thường được sử dụng làm độ tin cậy của class đó. Dưới đây là một vài ví dụ về mối quan hệ giữa đầu vào và đầu ra của hàm softmax (hình \ref{fig:softmax}). Hàng trên màu xanh nhạt thể hiện các scores $z_i$ với giả sử rằng số classes là 3. Hàng dưới màu đỏ nhạt thể hiện các giá trị đầu ra $a_i$ của hàm softmax.
 
-\subsection{Kết luận}
-Tổng hợp lại, một mô hình mạng CNN sẽ có cấu trúc chung gần giống như hình \ref{fig:tonghopCNN}
 
 \FloatBarrier
 \begin{figure}[htp]
 \begin{center}
-\includegraphics[scale=1]{chap2/c2_figs/18.png}
+\includegraphics[scale=0.16]{chap2/c2_figs/softmax.png}
 \end{center}
-\caption{Ví dụ mô hình 1 môn hình convolutional neural network}
-\label{fig:flatten}
+\caption{Một số ví dụ về đầu vào và đầu ra của hàm softmax \\ Nguồn: \url:{https://machinelearningcoban.com}}
+\label{fig:softmax}
 \end{figure}
 \FloatBarrier
-\centerline{Input image -> Convolutional layer (Conv) + Pooling layer (Pool) -> Fully connected layer (FC) -> Output}
-\centerline{Nguồn: https://www.easy-tensorflow.com/tf-tutorials/convolutional-neural-nets-cnns}
+
+Softmax đặc biệt được sử dụng nhiều làm hàm kích hoạt ở lớp output trong bài toán phân loại qua mạng CNNs. Những lớp phía trước có thể được coi như một bộ Feature Extractor, lớp cuối cùng của DNN cho bài toán classification thường là Softmax Regression.
+
+\section{Kết luận}
+Mạng CNNs cùng với các thuật toán machine learning khác đã trở nên phổ biến và đóng vai trò quan trọng trong sự phát triển của trí tuệ nhân tạo nói chung và thị giác máy tính nói riêng. Sau khi trình bày cơ bản về các lý thuyết của mạng NN trong chương này,chương tiếp theo luận văn xin trình bày về ứng dụng của mạng CNNs trong việc ước tính tọa độ hay rút trích đặc trưng khung xương mà luận văn áp dụng.

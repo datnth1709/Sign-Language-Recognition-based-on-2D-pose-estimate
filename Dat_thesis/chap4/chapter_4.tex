@@ -1,4 +1,4 @@
-\chapter{XÂY DỰNG MẠNG NHẬN DẠNG NGÔN NGỮ KÝ HIỆU TỪ TỌA ĐỘ KHUNG XƯƠNG}
+\chapter{XÂY DỰNG MẠNG NEURON NHẬN DẠNG NGÔN NGỮ KÝ HIỆU}
 \label{s:DNN}
 Trong chương 3, thuật toán ước tính tư thế khung xương đã được trình bày chi tiết về lý thuyết và phương pháp xử lý áp dụng thuật toán. Ta thấy rằng phương pháp này hỗ trợ rất tốt cho việc ước tính nh anhtư thế khung xương trong xử lý thời gian thực. Trong chương 4 này, luận văn sẽ trình bày về đề xuất mô hình mạng DNN lấy đầu vào là toạ độ khung xương được ước tính và nhận dạng cử chỉ thời gian thực. Nội dụng chương trình bày cấu trúc mạng neural network đề xuất, cách thu thập và xử lý dữ liệu cũng như sơ đồ hoạt động chương trinh.
 \section{Tổng quan}
@@ -64,9 +64,6 @@ Số thứ tự khớp xương  & Vị trí \\
 \end{center}
 \end{table}
 
-Đầu tiên người thu thập dữ liệu đứng trước camera, thực hiện hành động thể hiện từ cần huấn luyện. Chương trình thu thập dữ liệu sẽ xuất ra tọa độ khung xương sau khi xử lý qua mạng pose estimate. Sau đó lưu các tọa độ khớp xương cùng với nhãn của hành động vào file "data.csv" để sau đó đưa vào train. Hình \ref{fig:joints} thể hiện quá trình khi thu thập dữ liệu.
-
-
 \FloatBarrier
 \begin{figure}[htp]
 \begin{center}
@@ -74,6 +71,26 @@ Số thứ tự khớp xương  & Vị trí \\
 \end{center}
 \caption{Sơ đồ khớp xương xuất ra từ mạng mobilenet}
 \label{fig:joints}
+\end{figure}
+\FloatBarrier
+
+Đầu tiên người thu thập dữ liệu đứng trước camera, thực hiện hành động thể hiện từ cần huấn luyện. Chương trình thu thập dữ liệu sẽ xuất ra tọa độ khung xương sau khi xử lý qua mạng pose estimate. Sau đó lưu các tọa độ khớp xương cùng với nhãn của hành động vào file "data.csv" để sau đó đưa vào train. Hình \ref{fig:collect_data} và \ref{fig:collect_data1} thể hiện quá trình khi thu thập dữ liệu.
+
+\FloatBarrier
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[scale=0.4]{chap4/c4_figs/collect_data.png}
+\end{center}
+\caption{Giao diện thu thập dữ liệu (khi bắt đầu ghi dữ liệu)}
+\label{fig:collect_data}
+\end{figure}
+
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[scale=0.4]{chap4/c4_figs/collect_data1.png}
+\end{center}
+\caption{Giao diện thu thập dữ liệu (khi đã thu thập đủ dữ liệu)}
+\label{fig:collect_data1}
 \end{figure}
 \FloatBarrier
 
@@ -133,8 +150,147 @@ Số thứ tự khớp xương  & Vị trí \\
 Dựa vào dữ liệu thu thập được, ta có thể nhận thấy là tùy vào vị trí camera, khoảng cách từ camera đến người được quan sát sẽ làm thay đổi giá trị của các vector khung xương SJM. Hình \ref{fig:skeleton} ta có thể thấy khoảng cách các vector tọa độ khung xương của người ở xa camera sẽ gần nhau hơn so với người ở gần. Do đó cần phải sử dụng phương pháp chuẩn hóa dữ liệu các vector, đưa các vector đặc trưng SJM về cùng kích cỡ thì dữ liệu đưa vào train mới có thể có cùng những đặc trưng giống nhau.
 
 Phương pháp chuẩn hóa được áp dụng như sau:
-...
-...
+
+
+Đầu tiên, ta sử dụng các dữ liệu ban đầu - raw data cho việc gán đặc trưng. Xem xét bảng vị trí của các SJM-J trong một SJM đặc trưng từ bảng \ref{BangSJM}.
+
+\begin{table}[htbp]
+\centering
+\caption{Một SJM đặc trưng nhận được từ quá trình thí nghiệm}
+\begin{tabular}{|c|c|c|}
+\hline 
+ Điểm SJM-J & Tên SJM-J & $(x_i; y_i; z_i) $\\ 
+\hline 
+A & Đầu  & (992.574; 411.311; 2.126) \\ 
+\hline 
+B & Cột sống vai & (987.327; 519.09; 2.147) \\ 
+\hline 
+C & Cột sống gốc & (987.795; 783.878; 2.105) \\ 
+\hline 
+D & Khuỷu tay trái & (870.784; 666.671; 2.125) \\ 
+\hline 
+E & Bàn tay trái & (826.394; 825.466; 2.03) \\ 
+\hline
+F & Khuỷu tay phải & (1114.381; 662.63; 2.136) \\ 
+\hline
+G & Bàn tay phải & (1174.36; 825.96; 2.007) \\ 
+\hline 
+\end{tabular} 
+\label{BangSJM}
+\end{table}
+
+Các vector của SJM có thể được biểu diễn:
+\begin{equation}
+v_n=(x_n; y_n; z_n)
+\end{equation}
+Trong đó: $(x_n; y_n; z_n)$: tọa độ các SJM-J đang xét tới.
+
+Với các tính toán vector như trên, từ 7 SJM-J có được 6 vectors biễu diễn SJM. Vấn đề xảy ra khi sử dụng 4 vectors này để tính toán đặc trưng, 6 vectors này có tọa độ trong không gian ba chiều sẽ khiến cho việc mô hình hóa khó khăn hơn. Do đó, ta chuyển đổi 6 vectors này từ không gian ba chiều xuống không gian hai chiều. Xem xét việc trong quá trình hoạt động thể hiện hành động ta luôn đứng hướng thẳng mặt vào camera, do đó khoảng cách tối đa trên trục z (khoảng cách đến anten ) giữa các SJM-J là không lớn nên tất cả các SJM-J được chiếu lên trục z.
+
+Chiếu các vector khung xương lên trục z ta có được các vector mới:
+\begin{equation}
+v'_n = ({x_n}; {y_n})
+\end{equation}
+
+Để có thể tính toán tổng bình phương khoảng cách chuẩn hóa thì ta phải xoay và thay đổi độ dài của các vector sao cho vector khung xương được tạo ra giữa hai SJM-J cột sống trở thành vector đơn vị - unit vector:
+\begin{equation}
+v_\textit{spin-shouder} = (0;1)
+\end{equation}
+
+Ta có tọa độ vị trí các SJM-J sau khi chuẩn hóa:\*
+
+\begin{tabular}{c c c}
+A(992.574; 411.311) & $\Rightarrow$ & ... \\ 
+B(987.327; 519.09) & $\Rightarrow$ & B(0;1) \\ 
+C(987.795; 783.878) & $\Rightarrow$ & C(0;0) \\ 
+D(870.784; 666.671) & $\Rightarrow$ & ... \\ 
+E(826.394; 825.466) & $\Rightarrow$ & ... \\ 
+F(1114.381; 662.63) & $\Rightarrow$ & ... \\ 
+G(1174.36; 825.96) & $\Rightarrow$ & ... \\ 
+\end{tabular} \*
+
+Công thức để tính toán vị trí mới, chuẩn hóa của A, B, C, D, E, F, G:
+
+\begin{equation}
+{y_{A'}} = \frac{1}{2}\left( {{{\left( {\frac{{AC}}{{BC}}} \right)}^2} - {{\left( {\frac{{AB}}{{BC}}} \right)}^2} + 1} \right) = \frac{{A{C^2} - A{B^2} + B{C^2}}}{{2B{C^2}}}
+\end{equation}
+
+Một hàm tính toán được thêm vào để dễ dàng lập trình hơn:
+\begin{equation}
+{f_{BC}}(x,y) = ({y_B} - {y_C})x - ({x_B} - {x_c})y - ({y_B} - {y_C}){x_C} + ({x_B} - {x_c}){y_C}
+\end{equation}
+
+với đặc điểm:\\
+
+$\bullet \text{   }  f_\text{BC}(x_A,y_A > 0$: điểm A nằm phía trên đoạn thẳng BC\\
+
+$\bullet \text{   }  f_\text{BC}(x_A,y_A)< 0$: điểm A nằm phía dưới đoạn thẳng BC\\
+
+$\bullet \text{   } f_\text{BC}(x_A,y_A)= 0$: điểm A nằm trên đường thẳng chứa đoạn thẳng BC\\
+
+Hàm BC không có ý nghĩa hình học tuy nhiên lại có ý nghĩa về mặt đại số, dựa vào hàm kết quả vị trí tương đối giữa điểm A và BC, ta có thể tìm được giá trị của $x_\text{A'}$ :
+
+\begin{equation}
+{x_{A'}} = {\mathop{\rm sgn}} ({f_{BC}}({x_A},{y_A})\sqrt {{{\left( {\frac{{AC}}{{BC}}} \right)}^2} - {y_{A'}}^2} 
+\end{equation}
+
+Tương tự với vị trí $D_0, E_0, F_0, G_0$ với điểm gốc là B,C. Sau khi tìm được $A_0, B_0, C_0, D_0, E_0, F_0, G_0$ ta có được 6 vectors đặc trưng tương ứng với $SJM_i$ như sau:
+
+\begin{tabular}{c c}
+$\overrightarrow {{v_{i,1}}}  = \overrightarrow {C'A'}  = $&$({x_{A'}};{y_{A'}})$ \\ 
+$\overrightarrow {{v_{i,0}}}  = \overrightarrow {C'B'}  = $&$(0;1)$ \\ 
+$\overrightarrow {{v_{i,2}}}  = \overrightarrow {C'D'}  = $&$({x_{D'}};{y_{D'}})$ \\ 
+$\overrightarrow {{v_{i,3}}}  = \overrightarrow {C'E'}  = $&$({x_{E'}};{y_{E'}})$ \\ 
+$\overrightarrow {{v_{i,4}}}  = \overrightarrow {C'F'}  = $&$({x_{F'}};{y_{F'}})$ \\ 
+$\overrightarrow {{v_{i,5}}}  = \overrightarrow {C'G'}  = $&$({x_{G'}};{y_{G'}})$ \\ 
+
+
+\end{tabular} 
+
+Áp dụng cách tính toán trên vào bảng \ref{BangSJM}, ta được tọa độ 6 vector đặc trưng của các $SJM_i$ tương ứng và minh họa trên hình \ref{figure48}:
+
+\begin{table}[htbp]
+\centering
+\caption{Một SJM đặc trưng sau khi chuẩn hóa}
+\begin{tabular}{|c|c|c|}
+\hline 
+ Điểm SJM-J & Tên SJM-J & $(x_i; y_i) $\\ 
+\hline 
+A & Đầu  & (0.0205352100186477; -0.407002543626264) \\ 
+\hline 
+B & Cột sống vai & (0; 0) \\ 
+\hline 	
+C & Cột sống gốc & (0; 1) \\ 
+\hline 
+D & Khuỷu tay trái & (-0.441120735865053; 0.55657565862356) \\ 
+\hline 
+E & Bàn tay trái & (-0.60982370936332; 1.15598366430513) \\ 
+\hline
+F & Khuỷu tay phải & (0.478873301943448; 0.542940438030838) \\ 
+\hline
+G & Bàn tay phải & (0.704299437754533; 1.16017195694997) \\ 
+\hline 
+\end{tabular} 
+\label{BangSJMResult}
+\end{table}
+
+
+    \begin{figure}[htp]
+    \begin{center}
+     \includegraphics[scale=0.6]{chap4/c4_figs/joints_choose.png}
+    \end{center}
+    \caption{SJM sau chuẩn hóa} 
+    \label{figure48}
+    \end{figure}
+
+
+
+Giá trị bình phương sai lệch khoảng cách giữa hai $SJM_i$ và $SJM_j$ đã chuẩn hóa mang ý nghĩa là giá trị khác biệt giữa hai SJMs:
+
+\begin{equation}
+{\Delta _{ij}} = \sum\limits_{k = 1}^5 {\parallel \overrightarrow {{v_{i,k}}}  - \overrightarrow {{v_{j,k}}} \parallel } 
+\label{equ3.8}
+\end{equation}
 
 
 

@@ -4,10 +4,10 @@
 \usepackage{vietnam}
 \usepackage{amsfonts}
 \usepackage{latexsym, amsmath, amsxtra, amssymb, amscd, amsthm,fancyhdr} %, txfonts, pxfonts}
-\usepackage[top=2.5cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.7cm, right=2cm]{geometry}
 \usepackage{indentfirst} %thụt lề dòng đầu tiên
 \usepackage{graphicx} % chèn ảnh,
-\usepackage{algorithm} %1 chèn thuật toán 
+\usepackage{algorithm} %1 chèn thuật toán
 \usepackage{algpseudocode} %2 chèn thuật toán
 \setcounter{secnumdepth}{4} % subsubsubsection
 \usepackage{placeins} % để sử dụng \FloatBarrier cố định vị trí
@@ -35,15 +35,15 @@
 
 \pagestyle{fancy}
 \fancyhf{}
-\lhead{\fontsize{10pt}{0pt}{\selectfont{\leftmark}}}
-\lfoot{\fontsize{10pt}{0pt}{\selectfont{SVTH: Nguyễn Thành Đạt}}}
+\rhead{\fontsize{10pt}{0pt}{\selectfont{\leftmark}}}
+\rfoot{\fontsize{10pt}{0pt}{\selectfont{SVTH: Nguyễn Thành Đạt}}}
 \cfoot{\thepage}
-\rfoot{\fontsize{10pt}{0pt}{\selectfont{GVHD: PSG.TS Hà Hoàng Kha}}}
+%\rfoot{\fontsize{10pt}{0pt}{\selectfont{GVHD: PSG.TS Hà Hoàng Kha}}}
 \renewcommand{\headrulewidth}{0.5pt}
 \renewcommand{\footrulewidth}{0.5pt}
 
 \fancypagestyle{loi_cam_doan}{\fancyhf{}
-\lhead{\fontsize{10pt}{0pt}{\selectfont{Lời cam đoan}}}
+\rhead{\fontsize{10pt}{0pt}{\selectfont{Lời cam đoan}}}
 \lfoot{\fontsize{10pt}{0pt}{\selectfont{SVTH: Nguyễn Thành Đạt}}}
 \cfoot{\thepage}
 \rfoot{\fontsize{10pt}{0pt}{\selectfont{GVHD: PGS.TS Hà Hoàng Kha}}}
@@ -52,7 +52,7 @@
 }
 
 \fancypagestyle{loi_cam_on}{\fancyhf{}
-\lhead{\fontsize{10pt}{0pt}{\selectfont{Lời cảm ơn}}}
+\rhead{\fontsize{10pt}{0pt}{\selectfont{Lời cảm ơn}}}
 \lfoot{\fontsize{10pt}{0pt}{\selectfont{SVTH: Nguyễn Thành Đạt}}}
 \cfoot{\thepage}
 \rfoot{\fontsize{10pt}{0pt}{\selectfont{GVHD: PGS.TS Hà Hoàng Kha}}}
@@ -61,7 +61,7 @@
 }
 
 \fancypagestyle{tom_tat}{\fancyhf{}
-\lhead{\fontsize{10pt}{0pt}{\selectfont{Tóm tắt}}}
+\rhead{\fontsize{10pt}{0pt}{\selectfont{Tóm tắt}}}
 \lfoot{\fontsize{10pt}{0pt}{\selectfont{SVTH: Nguyễn Thành Đạt}}}
 \cfoot{\thepage}
 \rfoot{\fontsize{10pt}{0pt}{\selectfont{GVHD: PGS.TS Hà Hoàng Kha}}}
@@ -69,8 +69,8 @@
 \renewcommand{\footrulewidth}{0.5pt}
 }
 
-\fancypagestyle{abstract}{\fancyhf{}
-\lhead{\fontsize{10pt}{0pt}{\selectfont{Abstract}}}
+\fancypagestyle{abstract}{\fancyhf{} %
+\rhead{\fontsize{10pt}{0pt}{\selectfont{Abstract}}}%
 \lfoot{\fontsize{10pt}{0pt}{\selectfont{SVTH: Nguyễn Thành Đạt}}}
 \cfoot{\thepage}
 \rfoot{\fontsize{10pt}{0pt}{\selectfont{GVHD: PGS.TS Hà Hoàng Kha}}}
@@ -79,7 +79,16 @@
 }
 
 \fancypagestyle{danhmucviettat}{\fancyhf{}
-\lhead{\fontsize{10pt}{0pt}{\selectfont{Danh mục viết tắt}}}
+\rhead{\fontsize{10pt}{0pt}{\selectfont{Danh mục viết tắt}}}
+\lfoot{\fontsize{10pt}{0pt}{\selectfont{SVTH: Nguyễn Thành Đạt}}}
+\cfoot{\thepage}
+\rfoot{\fontsize{10pt}{0pt}{\selectfont{GVHD: PGS.TS Hà Hoàng Kha}}}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+}
+
+\fancypagestyle{phuluc}{\fancyhf{}
+\rhead{\fontsize{10pt}{0pt}{\selectfont{Phụ lục}}}
 \lfoot{\fontsize{10pt}{0pt}{\selectfont{SVTH: Nguyễn Thành Đạt}}}
 \cfoot{\thepage}
 \rfoot{\fontsize{10pt}{0pt}{\selectfont{GVHD: PGS.TS Hà Hoàng Kha}}}
@@ -119,92 +128,55 @@ o
 \input{chap7/chapter_7}
 
 \newpage
-\addcontentsline{toc}{chapter}{TÀI LIỆU THAM KHẢO}
-\bibliographystyle{ieeetr}
-\bibliography{references/references}{}
-
-\newpage
 \addcontentsline{toc}{chapter}{PHỤ LỤC}
+\thispagestyle{phuluc}
 \fontsize{25pt}{40pt}{\selectfont{Phụ lục}}
 
 \fontsize{18pt}{30pt}{\selectfont{\textbf{Các từ nhận dạng được}}}
 
 \begin{itemize}
+
+\item \textbf{Xin chào}
+\FloatBarrier
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[scale=0.4]{kq/xin_chao.png}
+\end{center}
+\caption{Ký hiệu "xin chào"}
+\end{figure}
+\FloatBarrier
+\pagebreak
+
 \item \textbf{Tôi}
-
 \FloatBarrier
 \begin{figure}[htp]
 \begin{center}
-\includegraphics[scale=0.8]{chap2/c2_figs/neuron.png}
+\includegraphics[scale=0.4]{kq/toi.png}
 \end{center}
-\caption{Cấu trúc một tế bào thần kinh}
-\label{fig:neuronsinhhoc}
+\caption{Ký hiệu "Tôi"}
 \end{figure}
 \FloatBarrier
 
-\item \textbf{Đi bộ}
-
-\begin{figure}[htp]
-\begin{center}
-\includegraphics[scale=0.8]{chap2/c2_figs/neuron.png}
-\end{center}
-\caption{Cấu trúc một tế bào thần kinh}
-\label{fig:neuronsinhhoc}
-\end{figure}
-
-
-\item \textbf{Đứng yên}
+\item \textbf{Thành phố}
 \FloatBarrier
 \begin{figure}[htp]
 \begin{center}
-\includegraphics[scale=0.8]{chap2/c2_figs/neuron.png}
+\includegraphics[scale=0.4]{kq/thanh_pho.png}
 \end{center}
-\caption{Cấu trúc một tế bào thần kinh}
-\label{fig:neuronsinhhoc}
+\caption{Ký hiệu "thành phố"}
 \end{figure}
 \FloatBarrier
+
+\thispagestyle{phuluc}
+\pagebreak
 
 \item \textbf{Vui vẻ}
 \FloatBarrier
 \begin{figure}[htp]
 \begin{center}
-\includegraphics[scale=0.8]{chap2/c2_figs/neuron.png}
+\includegraphics[scale=0.4]{kq/vui_ve.png}
 \end{center}
-\caption{Cấu trúc một tế bào thần kinh}
-\label{fig:neuronsinhhoc}
-\end{figure}
-\FloatBarrier
-
-\item \textbf{TP.HCM}
-\FloatBarrier
-\begin{figure}[htp]
-\begin{center}
-\includegraphics[scale=0.8]{chap2/c2_figs/neuron.png}
-\end{center}
-\caption{Cấu trúc một tế bào thần kinh}
-\label{fig:neuronsinhhoc}
-\end{figure}
-\FloatBarrier
-
-\item \textbf{Vĩnh Long}
-\FloatBarrier
-\begin{figure}[htp]
-\begin{center}
-\includegraphics[scale=0.8]{chap2/c2_figs/neuron.png}
-\end{center}
-\caption{Cấu trúc một tế bào thần kinh}
-\label{fig:neuronsinhhoc}
-\end{figure}
-\FloatBarrier
-
-\item \textbf{Mùa màng}
-\FloatBarrier
-\begin{figure}[htp]
-\begin{center}
-\includegraphics[scale=0.8]{chap2/c2_figs/neuron.png}
-\end{center}
-\caption{Cấu trúc một tế bào thần kinh}
-\label{fig:neuronsinhhoc}
+\caption{Ký hiệu "vui vẻ"}
 \end{figure}
 \FloatBarrier
 
@@ -212,48 +184,147 @@ o
 \FloatBarrier
 \begin{figure}[htp]
 \begin{center}
-\includegraphics[scale=0.8]{chap2/c2_figs/neuron.png}
+\includegraphics[scale=0.4]{kq/am_em.png}
 \end{center}
-\caption{Cấu trúc một tế bào thần kinh}
-\label{fig:neuronsinhhoc}
+\caption{Ký hiệu "Ẵm em"}
 \end{figure}
 \FloatBarrier
 
+\thispagestyle{phuluc}
+\pagebreak
+\item \textbf{Sài Gòn}
+\FloatBarrier
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[scale=0.4]{kq/sai_gon.png}
+\end{center}
+\caption{Ký hiệu "Sài Gòn"}
+\end{figure}
+\FloatBarrier
+
+\item \textbf{Đi bộ}
+\FloatBarrier
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[scale=0.4]{kq/di_bo.png}
+\end{center}
+\caption{Ký hiệu "đi bộ"}
+\end{figure}
+\FloatBarrier
+
+\thispagestyle{phuluc}
+\pagebreak
+\item \textbf{Mùa màng}
+\FloatBarrier
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[scale=0.4]{kq/mua_mang.png}
+\end{center}
+\caption{Ký hiệu "mùa màng"}
+\end{figure}
+\FloatBarrier
+
+\item \textbf{Đói bụng}
+\FloatBarrier
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[scale=0.4]{kq/doi_bung.png}
+\end{center}
+\caption{Ký hiệu "đói bụng"}
+\end{figure}
+\FloatBarrier
+
+\thispagestyle{phuluc}
+\pagebreak
 \item \textbf{Yêu}
 \FloatBarrier
 \begin{figure}[htp]
 \begin{center}
-\includegraphics[scale=0.8]{chap2/c2_figs/neuron.png}
+\includegraphics[scale=0.4]{kq/yeu.png}
 \end{center}
-\caption{Cấu trúc một tế bào thần kinh}
-\label{fig:neuronsinhhoc}
+\caption{Ký hiệu "Yêu"}
 \end{figure}
 \FloatBarrier
 
+\item \textbf{Ăn}
+\FloatBarrier
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[scale=0.4]{kq/an.png}
+\end{center}
+\caption{Ký hiệu "ăn"}
+\end{figure}
+\FloatBarrier
+
+\thispagestyle{phuluc}
+\pagebreak
+\item \textbf{Biểu quyết}
+\FloatBarrier
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[scale=0.4]{kq/am_em.png}
+\end{center}
+\caption{Ký hiệu "Ẵm em"}
+\end{figure}
+\FloatBarrier
+
+\item \textbf{Đứng yên}
+\FloatBarrier
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[scale=0.4]{kq/dung_yen.png}
+\end{center}
+\caption{Ký hiệu "đứng yên"}
+\end{figure}
+\FloatBarrier
+
+\thispagestyle{phuluc}
+\pagebreak
 \item \textbf{Hẹp}
 \FloatBarrier
 \begin{figure}[htp]
 \begin{center}
-\includegraphics[scale=0.8]{chap2/c2_figs/neuron.png}
+\includegraphics[scale=0.4]{kq/hep.png}
 \end{center}
-\caption{Cấu trúc một tế bào thần kinh}
-\label{fig:neuronsinhhoc}
+\caption{Ký hiệu "hẹp"}
 \end{figure}
 \FloatBarrier
 
-\item \textbf{Rộng}
+\item \textbf{Đứng yên}
 \FloatBarrier
 \begin{figure}[htp]
 \begin{center}
-\includegraphics[scale=0.8]{chap2/c2_figs/neuron.png}
+\includegraphics[scale=0.4]{kq/rong.png}
 \end{center}
-\caption{Cấu trúc một tế bào thần kinh}
-\label{fig:neuronsinhhoc}
+\caption{Ký hiệu "rộng"}
 \end{figure}
 \FloatBarrier
 
-\end{itemize}
+\thispagestyle{phuluc}
+\pagebreak
+\item \textbf{Vĩnh Long}
+\FloatBarrier
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[scale=0.4]{kq/vinh_long.png}
+\end{center}
+\caption{Ký hiệu "Vĩnh Long"}
+\end{figure}
+\FloatBarrier
 
+
+\end{itemize}
+\thispagestyle{phuluc}
+\newpage
+
+
+%\thispagestyle{phuluc}
+\fontsize{12pt}{12pt}{\selectfont{
+
+\addcontentsline{toc}{chapter}{TÀI LIỆU THAM KHẢO}
+\bibliographystyle{ieeetr}
+\bibliography{references/references}{}
+}}
 
 
 

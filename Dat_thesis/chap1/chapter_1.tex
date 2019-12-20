@@ -4,8 +4,10 @@ Nội dung chương đặt vấn đề tổng quan bài toán nhận dạng ngô
 
 \section{Đặt vấn đề}
 Khiếm thính là trình trạng một người có thính giác kém, không nghe được những âm thanh, tiếng nói mà một người bình thường có thể nghe được. Theo số liệu thống kê năm 2014 của Trung tâm nghiên cứu Giáo dục đặc biệt (Viện Khoa học GD Việt Nam), Việt Nam có khoảng 7 triệu người khuyết tật, trong đó có hơn 1 triệu người khiếm thính. Do khả năng nghe bị suy giảm nên việc giao tiếp bằng lời nói ở cộng đồng người khiếm thính  và với người bình thường dường như là không thể. Để thay thế cho việc giao tiếp bằng tiếng nói, “ngôn ngữ ký hiệu” được ra đời nhằm phục vụ việc giao tiếp trực tiếp mà không cần thông qua lời nói.
-Ngôn ngữ ký hiệu hay ngôn ngữ dấu hiệu, thủ ngữ là ngôn ngữ dùng những biểu hiện của bàn tay thay cho âm thanh của tiếng nói. Ngôn ngữ ký hiệu do người khiếm thính tạo ra nhằm giúp họ có thể giao tiếp với nhau trong cộng đồng của mình và tiếp thu tri thức của xã hội. Ngôn ngữ ký hiệu không như chữ viết tay hay lời nói có một cách thức và ngữ pháp cụ thể, ký hiệu rõ ràng để có thể mô hình hóa được. Để sử dụng ngôn ngữ ký hiệu, người giao tiếp cần thể hiện cử chỉ bằng cả bàn tay và cánh tay, kết hợp với điệu bộ của cơ thể để có thể diễn tả ý nghĩa mong muốn. Tuy được cộng đồng người khiếm thính sử dụng phổ biến nhưng đối với người bình thường, hầu như đa số đều không hiểu ngôn ngữ ký hiệu. Ngoài ra, ngôn ngữ ký hiệu giữa các nước trên thế giới, thậm chí giữa các vùng miền trong một nước cũng có sự khác nhau. Việc này khiến cho việc giao tiếp của người khiếm thính gặp rất nhiều khó khăn. Vì vậy một hệ thống nhận dạng ngôn ngữ ký hiệu tự động phiên dịch sang tiếng nói giúp người khiếm thính hòa nhập cộng đồng là thật sự cần thiết.
-Với những lý do đó, trong đề cương này em xin trình bày một mô hình nhận dạng ngôn ngữ ký hiệu qua phân tích hình ảnh từ camera. Hệ thống này có khả năng quan sát, phát hiện con người và nhận diện hành động mà người đứng trước camera muốn diễn đạt. 
+
+Ngôn ngữ ký hiệu hay ngôn ngữ dấu hiệu, thủ ngữ là ngôn ngữ dùng những biểu hiện của bàn tay thay cho âm thanh của tiếng nói. Ngôn ngữ ký hiệu do người khiếm thính tạo ra nhằm giúp họ có thể giao tiếp với nhau trong cộng đồng của mình và tiếp thu tri thức của xã hội. Ngôn ngữ ký hiệu không như chữ viết tay hay lời nói có một cách thức và ngữ pháp cụ thể, ký hiệu rõ ràng để có thể mô hình hóa được. Để sử dụng ngôn ngữ ký hiệu, người giao tiếp cần thể hiện cử chỉ bằng cả bàn tay và cánh tay, kết hợp với điệu bộ của cơ thể để có thể diễn tả ý nghĩa mong muốn. Tuy được cộng đồng người khiếm thính sử dụng phổ biến nhưng đối với người bình thường, hầu như đa số đều không hiểu ngôn ngữ ký hiệu. Ngoài ra, ngôn ngữ ký hiệu giữa các nước trên thế giới, thậm chí giữa các vùng miền ở Việt Nam cũng có sự khác nhau. Việc này khiến cho việc giao tiếp của người khiếm thính gặp rất nhiều khó khăn. Vì vậy một hệ thống nhận dạng ngôn ngữ ký hiệu tự động phiên dịch sang tiếng nói giúp người khiếm thính hòa nhập cộng đồng là thật sự cần thiết.
+
+Với những lý do đó, trong đề cương này xin trình bày một mô hình nhận dạng ngôn ngữ ký hiệu qua phân tích hình ảnh từ camera RGB. Hệ thống này có khả năng quan sát, phát hiện con người và nhận diện từ ngữ ký hiệu mà người khiếm thính đứng trước camera muốn diễn đạt. 
 
 \section{Những nghiên cứu liên quan}
 \label{ss:nghien_cuu_lien_quan}
@@ -17,12 +19,13 @@ Trên thế giới, đã có nhiều nghiên cứu phát triển các dịch v�
 
 Ngoài ra, lĩnh vực nhận diện cử chỉ của con người được quan tâm và nghiên cứu trong rất nhiều năm từ năm 1992 \cite{Yamato} với giải thuật HMM của Junji YAMATO cho đến những năm gần đây, sử dụng phương pháp SVM cục bộ của Christian Schudlt vào năm 2004 \cite{Schuldt:2004:RHA:1018429.1020906}, và các phương pháp khác như: giải thuật khung xương \cite{Chen:2006:HAR:1178782.1178808}, \cite{Forsyth}, \cite{With}. Các bài khảo sát chi tiết có thể được tìm thấy ở \cite{Cristani201386} khảo sát cách thức nhận diện hành động con người và đưa ra chi tiết nhiều bài báo có thể tham khảo.
 
-Như đã đề cập ở các phần trên, phương pháp SVM chỉ hoạt động tốt với các ảnh tĩnh, nên các nhận diện chính xác của SVM phải nói chính xác là các cử chỉ của con người tại thời điểm tức thời đó đã được nhận diện chính xác, không phải là một hành động gồm nhiều cử chỉ. Luận văn này bên cạnh SVM thì cũng tập trung nhiều vào HMM nên các bài báo liên quan đến SVM và HMM đều được xem xét kỹ, trong đó có một số phương pháp rất hay và có thể được xem xét:
+Ngoài ra còn tham khảo một số luận văn của các sinh viên khóa trước như đề tài "Nhận dạng ngôn ngữ ký hiệu cho người câm" - Bùi Văn Phúc, Huỳnh Châu Thịnh. Đề tài sử dụng cảm biến Kinect để xác định hình dáng khung xương và giải thuật HMM để dự đoán từ ngữ.
 
+Qua các nghiên cứu được tìm hiểu, có thể xem xét một số phương pháp rất hay có khả năng áp dụng cao:
 \begin{itemize}
 \item Xây dựng mô hình 3D dựa vào nhiều camera ở các vị trí khác nhau \cite{HLUT1}
 \item Nhận diện hành động con người dựa trên mô tả các đặc trưng góc 3D \cite{6693448}
-\item Sử dụng nhiều thiết bị được gắn trên người \cite{4650859}
+\item Sử dụng nhiều thiết bị cảm biến chuyển động được gắn trên người \cite{4650859}
 \end{itemize}
 
 Mặc dù đã được nghiên cứu trong thời gian dài, tuy nhiên do đặc điểm của việc nhận dạng hành động con người rất phức tạp và không có một cấu trúc rõ ràng dẫn đến việc rất khó áp dụng cho thực tế hoặc một lĩnh vực rộng rãi.
@@ -43,7 +46,16 @@ Phương án 3: Trích xuất hình dáng khung xương từ từng frame ảnh 
 Ứng dụng hướng tới hỗ trợ cộng đồng người người khiếm thính trong giao tiếp thường ngày nên việc đầu tiên cần hướng đến là tính tiện lợi và dễ sử dụng. Vì vậy thiết bị giúp hỗ trợ người khiếm thính cần có thể dễ dàng mang đi gọn nhẹ. Do đó mục tiêu luận văn hướng đến là thực hiện phần mềm để có thể hoạt động trên điện thoại thông minh. 
 
 \section{Nội dụng luận văn}
-Nội dụng luận văn sẽ hướng đến xây dựng phần mềm nhận diện một số từ ngữ trong bộ ngôn ngữ ký hiệu của người khiếm thính ở TP.HCM. Các nội dụng này sẽ sắp xếp xoay quanh theo thứ tự hoạt động của mô hình nhận diện ngôn ngữ ký hiệu được xây dựng trong luận văn. Tổng quan, phần mềm nhận diện sẽ hoạt động theo các bước trong sơ đồ hình \ref{fig:diagram}.
+Nội dụng luận văn sẽ hướng đến xây dựng phần mềm nhận diện một số từ ngữ trong bộ ngôn ngữ ký hiệu của người khiếm thính ở TP.HCM. Các nội dụng này sẽ sắp xếp xoay quanh theo thứ tự hoạt động của mô hình nhận diện ngôn ngữ ký hiệu được xây dựng trong luận văn. Mô hình hoạt động theo các bước như sau:
+\begin{itemize}
+\item Ban đầu từ camera RGB, ảnh được xử lý quá mạng ước tính tư thế khung xương để xác định các vector đặc trưng khung xương của từng người (SJM). 
+\item Sau đó các SJM được xử lý qua các bước loại bỏ khớp xương không cần thiết, chuẩn hóa tọa độ khớp xương. 
+\item Tiếp theo các SJM sau xử lý được đưa qua mạng NN để phân loại ra tư thế đó thuộc lớp nào.
+\item Cuối cùng sử dụng giải thuật Deep Sort để theo dõi từng từ ngữ diễn đạt của mỗi người.
+\item Ứng dụng tương tác với người sử dụng qua giao diện được viết bằng thư viện PyQt5. 
+\end{itemize}
+
+Tổng quan, phần mềm nhận diện sẽ hoạt động theo các bước trong sơ đồ hình \ref{fig:diagram}.
 
 \FloatBarrier
 \begin{figure}[htp]
@@ -61,35 +73,16 @@ Nội dụng luận văn sẽ hướng đến xây dựng phần mềm nhận di
 
 Toàn bộ nội dung của luận văn sẽ đi theo bố cục chặt chẽ theo thứ tự các bước mà luận văn đã nghiên cứu và thực hiện. Các nội dung chính của luận văn sẽ được chia thành các chương cụ thể để có thể dễ dàng xem xét, và nắm bắt vấn đề. Tại mỗi chương sẽ trình bày cụ thể từ lý thuyết của chương đó cho đến cụ thể các bước thực hiện cũng như kết luận từng chương.
 
-Bố cục của luận văn sẽ được trình bày theo trình tự và những nội dung được khái quát trong bảng \ref{table:bo_cuc_luan_van}.
+Bố cục của luận văn sẽ được trình bày theo trình tự và những nội dung được khái quát như sau:
 
-\FloatBarrier
-\begin{table}[h]
-\caption{Tổng quan các chương của luận văn}
-\label{table:bo_cuc_luan_van}
-\centering
-\begin{center}
-\begin{tabular}{|c|p{13cm}|} 
- \hline
-Chương  & Nội dung \\
- \hline
- Chương 1 & Giới thiệu chung về ngôn ngữ ký hiệu; Các nghiên cứu về nhận dạng ngôn ngữ ký hiệu; sơ lược mục tiêu, tổng quan và cấu trúc các phần của luận văn.\\
- \hline 
- Chương 2 & Trình bày lý thuyết về học sâu, các thuật toán huấn luyện mạng và mạng mobile net.\\
- \hline 
- Chương 3 & Giới thiệu các nghiên cứu về ước lượng đặc trưng khung xương; Cách thức hoạt động của mạng ước tính đặc trưng khung xương mà luận văn sử dụng .\\
- \hline
- Chương 4 & Trình bày về mạng neural network được luận văn xây dựng để phân loại các từ trong ngôn ngữ ký hiệu; Cách xử lý dữ liệu đầu vào của mạng và cách huấn luyện mạng. \\
- \hline 
- Chương 5 & Trình bày giải thuật Deep Sort dùng để theo dõi từng người trong khung hình.\\
- \hline
- Chương 6 & Xây dựng ứng dụng nhận diện dựa trên mô hình đã huấn luyện. Các thử nghiệm, kết quả và đánh giá mô hình. \\
- \hline
- Chương 7 & Trình bày kết luận và các hướng phát triển đề hoàn thiện đề tài.\\
- \hline
- 
-\end{tabular}
-\end{center}
-\end{table}
-\FloatBarrier
+\begin{itemize}
+\item \textbf{Chương 1:}  Giới thiệu chung về ngôn ngữ ký hiệu; Các nghiên cứu về nhận dạng ngôn ngữ ký hiệu; sơ lược mục tiêu, tổng quan và cấu trúc các phần của luận văn.
+\item \textbf{Chương 2:} Trình bày lý thuyết về học sâu, các thuật toán huấn luyện mạng và mạng mobile net.
+\item \textbf{Chương 3:} Giới thiệu các nghiên cứu về ước lượng đặc trưng khung xương; Cách thức hoạt động của mạng ước tính đặc trưng khung xương mà luận văn sử dụng .
+\item \textbf{Chương 4:} Trình bày về mạng neural network được luận văn xây dựng để phân loại các từ trong ngôn ngữ ký hiệu; Cách xử lý dữ liệu đầu vào của mạng và cách huấn luyện mạng.
+\item \textbf{Chương 5:} Trình bày giải thuật Deep Sort dùng để theo dõi từng người trong khung hình.
 
+\item \textbf{Chương 6:} Xây dựng ứng dụng nhận diện dựa trên mô hình đã huấn luyện. Các thử nghiệm, kết quả và đánh giá mô hình.
+
+\item \textbf{Chương 7:} Trình bày kết luận và các hướng phát triển đề hoàn thiện đề tài.
+\end{itemize}

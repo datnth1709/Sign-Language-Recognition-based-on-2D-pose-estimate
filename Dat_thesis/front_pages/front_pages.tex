@@ -66,7 +66,7 @@ TP. HỒ CHÍ MINH, THÁNG 12 NĂM 2019
 {\fontsize{18pt}{30pt}{\selectfont{\textbf{Lời cam đoan}}}}
 \end{center}
 
-\noindent Em xin cam đoan rằng, luận văn tốt nghiệp "Nhận dạng ngôn ngữ ký hiệu cho người khiếm thính sử dụng kỹ thuật học sâu: tách và phân tích đặc trưng khung xương trên video RGB" là công trình nghiên cứu của em dưới sự hướng dẫn của PGS.TS Hà Hoàng Kha. Đề tài xuất phát từ nhu cầu thực tiễn và nguyện vọng muốn thực hiện của em. Ngoại trừ những nội dung được biên soạn lại từ các công trình khác đã ghi rõ, các nội dung, kết quả kiểm tra đánh giá thực nghiệm trình bày trong luận văn này là kết quả nghiên cứu do chính em thực hiện, hoàn toàn không phải sao chép từ bất kỳ một tài liệu hoặc công trình nghiên cứu nào khác.
+\noindent Tôi tên: Nguyễn Thành Đạt là sinh viên chuyên ngành Điện tử - Viễn thông khóa 2015. Tôi xin cam đoan rằng, luận văn tốt nghiệp "Nhận dạng ngôn ngữ ký hiệu cho người khiếm thính sử dụng kỹ thuật học sâu: tách và phân tích đặc trưng khung xương trên video RGB" là công trình nghiên cứu của em dưới sự hướng dẫn của PGS.TS Hà Hoàng Kha. Đề tài xuất phát từ nhu cầu thực tiễn và nguyện vọng muốn thực hiện của em. Ngoại trừ những nội dung được biên soạn lại từ các công trình khác đã ghi rõ, các nội dung, kết quả kiểm tra đánh giá thực nghiệm trình bày trong luận văn này là kết quả nghiên cứu do chính em thực hiện, hoàn toàn không phải sao chép từ bất kỳ một tài liệu hoặc công trình nghiên cứu nào khác.
 
 Nếu không thực hiện đúng các cam kết trên, em xin hoàn toàn chịu trách nhiệm trước kỷ luật của nhà trường cũng như pháp luật Nhà nước.
 
@@ -97,10 +97,14 @@ Các kết quả thực nghiệm thu được từ hệ thống cho thấy tỷ 
 \begin{center}
 {\fontsize{18pt}{30pt}{\selectfont{\textbf{ABSTRACT}}}}
 \end{center}
+%\textbf{Key words:} 
+In this thesis, I made writing realtime application that identifies some common words in sign language of deaf people when communicating. The application was built with the purpose of helping the hearing impaired to communicate more easily with ordinary people when they are not fond of the sign language of the hearing impaired.
 
+Because of recent developments in machine learning and deep learning, it has helped people solve real-world problems that previously seemed impossible to computers. In this application, I used one of the machine learning methods to solve the sign language recognition problem for Vietnamese deaf people. The identification method that the subject uses is divided into 2 steps. First from the RGB image contains the image of the hearing impaired expressing a word transmitted by the camera. The application uses a CNN network, the mobilenet network, to extract the skeletal characteristic that is the coordinates of the joints in the 2D image (a total of 18 initial joints). These articular coordinates are then fed into a DNN network from which to categorize the words that the network has learned. Finally, the application outputs the words that the person in front of the camera wants to describe and outputs it to the screen.
 
+The identification method based on skeletal feature extraction is a rather interesting and strange method compared to previous related studies. The beauty of this method is that the extraction of the skeleton has generalized almost the entire posture and action that the blind person wants to describe. This also reduces the number of data dimensions compared to what an RGB image is inserted to sort out. The rest just needs to classify the action based on the feature extracted by a small structured DNN network. This increases the speed of the application to meet realtime processing.
 
-\textbf{Key words:} 
+The experimental results obtained from the system show that the recognition rate is high and the response speed is fast enough for real time mode operation.
 
 %------------------------------------------------------------------
 \newpage
@@ -124,26 +128,44 @@ Các kết quả thực nghiệm thu được từ hệ thống cho thấy tỷ 
 %------------------------------------------------------------------
 \newpage
 \thispagestyle{danhmucviettat}
-\addcontentsline{toc}{chapter}{DANH MỤC VIẾT TẮT}
-{\fontsize{18pt}{30pt}{\selectfont{\textbf{Danh mục viết tắt}}}}
+\addcontentsline{toc}{chapter}{DANH MỤC TỪ VIẾT TẮT}
+{\fontsize{18pt}{30pt}{\selectfont{\textbf{Danh mục từ viết tắt}}}}
+
+
+%CFMs & : Confidence Maps
 
 \FloatBarrier
 \begin{table}[h]
+%\caption{Tổng quan các chương của luận văn}
+\label{table:bo_cuc_luan_van}
 \centering
-\captionsetup{list=no}
 \begin{center}
-\begin{tabularx}{\columnwidth}{XX}
-NN & : Neural Network \\
-CNNs & : Convolutional Neural Networks\\
-DNN & : Deep Neural Network \\
-DL & : Deep Learning \\
-MLP & : Multi Layer Perceptron \\
-SGD & : Stochastic Gradient Descent \\
-SJM & : Skeleton Joints Mapping \\
-PAFs & : Part Affinity Fields  \\
-CFMs & : Confidence Maps
-
-\end{tabularx}
+\begin{tabular}{|c|l|p{7cm}|} 
+\hline 
+NN & Neural Network & Mạng thần kinh\\ 
+\hline
+CNN & Convolutional Neural Networks & Mạng neuron tích chập\\
+\hline 
+DNN & Deep Neural Network & Mạng thần kinh sâu\\
+\hline
+HMM & Hidden Markov Model & Mô hình Markov ẩn \\
+\hline 
+DL & Deep Learning & Học sâu\\
+\hline
+MLP & Multilayer Perceptron & Perceptron đa tầng\\
+\hline
+GD & Gradient Descent & Giảm theo gradient\\
+\hline
+SGD & Stochastic Gradient Descent & Giảm theo gradient ngẫu nhiên\\
+\hline
+SJM & Skeleton Joints Mapping & Vector đặc trưng mang hình dáng của khung xương con người\\
+\hline
+PAFs & Part Affinity Fields &  Trường ái lực một phần (tạm dịch)\\
+\hline
+CFMs & Confidence Maps & Bản đồ tự tin(tạm dịch)\\
+\hline
+\end{tabular}
 \end{center}
 \end{table}
 \FloatBarrier
+ 

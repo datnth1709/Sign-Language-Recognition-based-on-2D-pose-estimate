@@ -3,46 +3,44 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: main.aux
 The style file: ieeetr.bst
 Database file #1: references/references.bib
-Warning--I didn't find a database entry for "li2019understanding"
-You've used 17 entries,
+You've used 20 entries,
             1876 wiz_defined-function locations,
-            597 strings with 7225 characters,
-and the built_in function-call counts, 5559 in all, are:
-= -- 550
-> -- 178
+            610 strings with 7692 characters,
+and the built_in function-call counts, 6802 in all, are:
+= -- 673
+> -- 223
 < -- 0
-+ -- 66
-- -- 49
-* -- 384
-:= -- 727
-add.period$ -- 18
-call.type$ -- 17
-change.case$ -- 17
++ -- 82
+- -- 62
+* -- 467
+:= -- 880
+add.period$ -- 21
+call.type$ -- 20
+change.case$ -- 20
 chr.to.int$ -- 0
-cite$ -- 17
-duplicate$ -- 313
-empty$ -- 556
-format.name$ -- 49
-if$ -- 1388
+cite$ -- 20
+duplicate$ -- 382
+empty$ -- 676
+format.name$ -- 62
+if$ -- 1696
 int.to.chr$ -- 0
-int.to.str$ -- 17
-missing$ -- 17
-newline$ -- 55
-num.names$ -- 17
-pop$ -- 77
+int.to.str$ -- 20
+missing$ -- 20
+newline$ -- 64
+num.names$ -- 20
+pop$ -- 98
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 226
+skip$ -- 280
 stack$ -- 0
-substring$ -- 444
-swap$ -- 135
+substring$ -- 564
+swap$ -- 168
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 52
-width$ -- 19
-write$ -- 170
-(There was 1 warning)
+while$ -- 64
+width$ -- 22
+write$ -- 197

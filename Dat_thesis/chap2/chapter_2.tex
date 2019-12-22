@@ -1,32 +1,24 @@
 \chapter{CƠ SỞ LÝ THUYẾT}
-\label{c:co_so_ly_thuyet}
-
 \section{MẠNG NEURAL NETWOK}
-%Nguồn tham khao: https://dominhhai.github.io/vi/2018/04/nn-intro/
-
-%				https://ujjwalkarn.me/2016/08/09/quick-intro-neural-networks/
-				
-%				https://towardsdatascience.com/machine-learning-for-beginners-an-introduction-to-neural-networks-d49f22d238f9
-				
-%				http://cs231n.github.io/neural-networks-1/
-
 Mạng noron nhân tạo (Neural Network - NN) là một mô hình tính toán được lấy cảm hứng từ các mạng neuron sinh học trong não người để xử lý thông tin. Kết hợp với các kĩ thuật học sâu khác (Deep Learning - DL), NN  trở thành một công cụ hiệu quả và có nhiều kết quả đột phá cho nhiều bài toán khó như nhận dạng ảnh, nhận dạng giọng nói trong lĩnh vực thị giác máy tính và xử lý ngôn ngữ tự nhiên. Trong chương này, luận văn sẽ trình bày các lý thuyết cơ bản của mạng NN từ các thành phần cơ bản, kiến trúc mạng đến các kỹ thuật huấn luyện (training) một mạng NN.
 
 \subsection{Hoạt động của các neuron sinh học}
+
+
+
+Neuron là đơn vị cơ bản cấu tạo hệ thống thần kinh và là một phần quan trọng nhất của não. Não chúng ta gồm khoảng 10 triệu neuron và mỗi neuron liên kết với khoangr 10.000 neuron khác.
+
+Ở mỗi neuron có phần thân (soma) chứa nhân, các tín hiệu đầu vào qua sợi nhánh (dendrites) và các tín hiệu đầu ra qua sợi trục (axon) kết nối với các neuron khác. Hiểu đơn giản mỗi neuron nhận dữ liệu đầu vào qua sợi nhánh và truyền dữ liệu đầu ra qua sợi trục, đến các sợi nhánh của các neuron khác.
 
 \FloatBarrier
 \begin{figure}[htp]
 \begin{center}
 \includegraphics[scale=0.8]{chap2/c2_figs/neuron.png}
 \end{center}
-\caption{Cấu trúc một tế bào thần kinh \\ (Nguồn: \url{https://askabiologist.asu.edu/neuron-anatomy)}}
+\caption{Cấu trúc một tế bào thần kinh \\ (Nguồn: \url{https://askabiologist.asu.edu)}}
 \label{fig:neuronsinhhoc}
 \end{figure}
 \FloatBarrier
-
-Neuron là đơn vị cơ bản cấu tạo hệ thống thần kinh và là một phần quan trọng nhất của não. Não chúng ta gồm khoảng 10 triệu neuron và mỗi neuron liên kết với khoangr 10.000 neuron khác.
-
-Ở mỗi neuron có phần thân (soma) chứa nhân, các tín hiệu đầu vào qua sợi nhánh (dendrites) và các tín hiệu đầu ra qua sợi trục (axon) kết nối với các neuron khác. Hiểu đơn giản mỗi neuron nhận dữ liệu đầu vào qua sợi nhánh và truyền dữ liệu đầu ra qua sợi trục, đến các sợi nhánh của các neuron khác.
 
 Mỗi neuron nhận xung điện từ các neuron khác qua sợi nhánh. Nếu các xung điện này đủ lớn để kích hoạt neuron, thì tín hiệu này đi qua sợi trục đến các sợi nhánh của các neuron khác. Mạng neuron cần quyết định có kích hoạt neuron đấy hay không.
 
@@ -36,7 +28,7 @@ Mỗi neuron nhận xung điện từ các neuron khác qua sợi nhánh. Nếu 
 
 \begin{figure}[htp]
 \begin{center}
-\includegraphics[scale=0.6]{chap2/c2_figs/perceptron.PNG}
+\includegraphics[scale=0.8]{chap2/c2_figs/perceptron.PNG}
 \end{center}
 \caption{Perceptron}
 \label{fig:perceptron}
@@ -95,7 +87,7 @@ Một mạng NN được xây dựng gồm nhiều lớp (layer). Mỗi lớp đ
 \FloatBarrier
 \begin{figure}[htp]
 \begin{center}
-\includegraphics[scale=0.8]{chap2/c2_figs/structure_NN.PNG}
+\includegraphics[scale=0.7]{chap2/c2_figs/structure_NN.PNG}
 \end{center}
 \caption{Mạng Neural Network cơ bản}
 \label{fig:structure_NN}
@@ -130,29 +122,30 @@ Mỗi node trong hidden layer và output layer sẽ thực hiện các công vi�
 \begin{center}
 \includegraphics[scale=1]{chap2/c2_figs/nn_full-2.png}
 \end{center}
-\caption{Mô hình neural network trên gồm 3 layer. Input layer có 2 node $(l^{(0)} = 2$, hidden layer 1 có 3 node, hidden layer 2 có 3 node và output layer có 1 node.}
+\caption{Mô hình neural network}
 \label{fig:NN}
 \end{figure}
 \FloatBarrier
+Mô hình neural network trên gồm 3 layer. Input layer có 2 node $(l^{(0)} = 2$, hidden layer 1 có 3 node, hidden layer 2 có 3 node và output layer có 1 node.
 
 \textbf{Ký hiệu:}
 \begin{itemize}
 \item Số node trong hidden layer thứ $i$ là $l^{(i)}l(i)$.
 
-\item Ma trận $W^{(k)}$ kích thước $l^{(k-1)}*l^{(k)}$ là ma trận hệ số giữa layer $(k-1)$ và layer $k$, trong đó $w_{ij}^{(k)}$ là hệ số kết nối từ node thứ $i$ của layer $k-1$ đến node thứ $j$ của layer $k$.
+\item Ma trận $W^{(k)}$ kích thước $l^{(k-1)}$ x $ l^{(k)}$ là ma trận hệ số giữa layer $k-1$ và layer $k$, trong đó $w_{ij}^{(k)}$ là hệ số kết nối từ node thứ $i$ của layer $k-1$ đến node thứ $j$ của layer $k$.
 
-\item Vector $b^{(k)}$ kích thước $l^{k} * 1$ là hệ số bias của các node trong layer $k$, trong đó $b_i^{(k)}$ là bias của node thứ $i$ trong layer $k$. 
+\item Vector $b^{(k)}$ kích thước $l^{k}$ x $1$ là hệ số bias của các node trong layer $k$, trong đó $b_i^{(k)}$ là bias của node thứ $i$ trong layer $k$. 
 \end{itemize}
 
 Với node thứ $i$ trong layer $l$ có bias $b_i^{(l)}$ thực hiện 2 bước:
 \begin{itemize}
-\item Tính tổng linear: $z_i^{(l)} = \sum_{j=1}^{l^{(l-1)}} a_j^{(l-1)} * w_{ji}^{(l)} + b_i^{(l)}$ là tổng tất cả các node trong layer trước nhân với hệ số w tương ứng, rồi cộng với bias b.
+\item Tính tổng linear: $z_i^{(l)} = \sum_{j=1}^{l^{(l-1)}} a_j^{(l-1)} w_{ji}^{(l)} + b_i^{(l)}$ là tổng tất cả các node trong layer trước nhân với hệ số w tương ứng, rồi cộng với bias b.
 \item Áp dụng activation function: $a_i^{(l)} = \sigma(z_i^{(l)})$
 \end{itemize}
 
-Vector $z^{(k)}$ kích thước $l^{(k)} * 1$ là giá trị các node trong layer $k$ sau bước tính tổng linear.
+Vector $z^{(k)}$ kích thước $l^{(k)}$ x $1$ là giá trị các node trong layer $k$ sau bước tính tổng linear.
 
-Vector $a^{(k)}$ kích thước $l^{(k)} * 1$ là giá trị của các node trong layer $k$ sau khi áp dụng hàm activation function.
+Vector $a^{(k)}$ kích thước $l^{(k)} $ x $ 1$ là giá trị của các node trong layer $k$ sau khi áp dụng hàm activation function.
 
 
 
@@ -161,13 +154,13 @@ Do mỗi node trong hidden layer và output layer đều có bias nên trong inp
 Tại node thứ 2 ở layer 1, ta có:
 
 \begin{itemize}
-\item $z_2^{(1)} =  x_1 * w_{12}^{(1)} +  x_2 * w_{22}^{(1)} + b_2^{(1)}$
+\item $z_2^{(1)} =  x_1  w_{12}^{(1)} +  x_2  w_{22}^{(1)} + b_2^{(1)}$
 \item $a_2^{(1)} = \sigma(z_2^{(1)})$
 \end{itemize} 
 
 Hay ở node thứ 3 layer 2, ta có:
 \begin{itemize}
-\item $z_3^{(2)} =  a_1^{(1)} * w_{13}^{(2)} + a_2^{(1)} * w_{23}^{(2)}  + a_3^{(1)} * w_{33}^{(2)} + b_3^{(2)}$
+\item $z_3^{(2)} =  a_1^{(1)} w_{13}^{(2)} + a_2^{(1)} w_{23}^{(2)}  + a_3^{(1)} w_{33}^{(2)} + b_3^{(2)}$
 \item $a_2^{(1)} = \sigma(z_2^{(1)})$
 \end{itemize} 
 
@@ -179,17 +172,19 @@ Quá trình huấn luyện một mạng NN được thể hiện qua sự lặp 
 \item \textbf{Backpropagation:} Lan truyền ngược và cập nhật trọng số.
 \end{itemize}
 \textbf{Bước 1: Lan truyền tiến}
-Để nhất quán về mặt ký hiệu, gọi input layer là $a^{(0)} (=x)$ kích thước $2*1$.
+Để nhất quán về mặt ký hiệu, gọi input layer là $a^{(0)} (=x)$ kích thước $2$ x $1$.
 
 
-$$z^{(1)} =  \begin{bmatrix}z_{1}^{(1)}\\z_{2}^{(1)}\\z_{3}^{(1)}\end{bmatrix} 
-=  \begin{bmatrix}a_{1}^{(0)}*w_{11}^{(1)}+a_{2}^{(0)}*w_{21}^{(1)}+a_{3}^{(0)}*w_{31}^{(1)}+b_{1}^{(1)}\\a_{1}^{(0)}*w_{12}^{(1)}+a_{2}^{(0)}*w_{22}^{(1)}+a_{3}^{(0)}*w_{32}^{(1)}+b_{2}^{(1)}\\a_{1}^{(0)}*w_{13}^{(1)}+a_{2}^{(0)}*w_{23}^{(1)}+a_{3}^{(0)}*w_{33}^{(1)}+b_{3}^{(1)}\end{bmatrix} 
-= (W^{(1)})^{T}*a^{(0)} + b(1)$$
+\begin{align}
+z^{(1)} =  \begin{bmatrix}z_{1}^{(1)}\\z_{2}^{(1)}\\z_{3}^{(1)}\end{bmatrix} 
+=  \begin{bmatrix}a_{1}^{(0)}w_{11}^{(1)}+a_{2}^{(0)}w_{21}^{(1)}+a_{3}^{(0)}w_{31}^{(1)}+b_{1}^{(1)}\\a_{1}^{(0)}w_{12}^{(1)}+a_{2}^{(0)}w_{22}^{(1)}+a_{3}^{(0)}w_{32}^{(1)}+b_{2}^{(1)}\\a_{1}^{(0)}w_{13}^{(1)}+a_{2}^{(0)}w_{23}^{(1)}+a_{3}^{(0)}w_{33}^{(1)}+b_{3}^{(1)}\end{bmatrix} 
+= (W^{(1)})^{T}a^{(0)} + b(1)
+\end{align}
 
 $a^{(1)} =  \sigma (z^{(1)})$
 
 Tương tự ta có:
-$\newline z^{(2)} = (W^{(2)})^T * a^{(1)} + b^{(2)}\newline  a^{(2)} = \sigma(z^{(2)}) \newline z^{(3)} = (W^{(3)})^T * a^{(2)} + b^{(3)}\newline  \hat{y} = a^{(3)} = \sigma(z^{(3)})$
+$\newline z^{(2)} = (W^{(2)})^T  a^{(1)} + b^{(2)}\newline  a^{(2)} = \sigma(z^{(2)}) \newline z^{(3)} = (W^{(3)})^T  a^{(2)} + b^{(3)}\newline  \hat{y} = a^{(3)} = \sigma(z^{(3)})$
 
 \FloatBarrier
 \begin{figure}[htp]
@@ -204,33 +199,43 @@ $\newline z^{(2)} = (W^{(2)})^T * a^{(1)} + b^{(2)}\newline  a^{(2)} = \sigma(z^
 \begin{itemize}
 \item[$\square$] \textbf{Biểu diễn dưới dạng ma trận:}
 \end{itemize}
-Tuy nhiên khi làm việc với dữ liệu ta cần tính dự đoán cho nhiều dữ liệu một lúc, nên gọi $X$ là ma trận $n*d$, trong đó $n$ là số dữ liệu và $d$ là số trường trong mỗi dữ liệu, trong đó $x_j^{[i]}$ là giá trị trường dữ liệu thứ $j$ của dữ liệu thứ $i$.
+Tuy nhiên khi làm việc với dữ liệu ta cần tính dự đoán cho nhiều dữ liệu một lúc, nên gọi $X$ là ma trận $n$ x $d$, trong đó $n$ là số dữ liệu và $d$ là số trường trong mỗi dữ liệu, trong đó $x_j^{[i]}$ là giá trị trường dữ liệu thứ $j$ của dữ liệu thứ $i$.
 Biểu diễn dạng ma trận của vector dữ liệu đầu vào như sau:
 
-$$X = \begin{bmatrix}x_{1}^{[1]}&x_{2}^{[1]}&...&x_{d}^{[1]}\\x_{1}^{[2]}&x_{2}^{[2]}&...&x_{d}^{[2]}\\...&...&...&...\\x_{1}^{[n]}&x_{2}^{[n]}&...&x_{d}^{[n]}\end{bmatrix} =  \begin{bmatrix}-(x^{[1]})^{T}-\\-(x^{[2]})^{T}-\\...\\-(x^{[n]})^{T}-\end{bmatrix} $$
+\begin{align}
+X = \begin{bmatrix}x_{1}^{[1]}&x_{2}^{[1]}&...&x_{d}^{[1]}\\x_{1}^{[2]}&x_{2}^{[2]}&...&x_{d}^{[2]}\\...&...&...&...\\x_{1}^{[n]}&x_{2}^{[n]}&...&x_{d}^{[n]}\end{bmatrix} =  \begin{bmatrix}-(x^{[1]})^{T}-\\-(x^{[2]})^{T}-\\...\\-(x^{[n]})^{T}-\end{bmatrix} 
+\end{align}
 
-Do $x^{[1]}$ là vector kích thước $d*1$ tuy nhiên ở $X$ mỗi dữ liệu được viết theo hàng nên cần transpose $x^{[1]}$ thành kích thước $1*d$, kí hiệu: $(x^{[1]})^T$
-Gọi ma trận $Z^{(i)}$ kích thước$ N*l^{(i)}$ trong đó $z_{j}^{(i)[k]}$ là giá trị thứ $j$ trong layer $i$ sau bước tính tổng linear của dữ liệu thứ $k$ trong dataset.
+Do $x^{[1]}$ là vector kích thước $d$ x $1$ tuy nhiên ở $X$ mỗi dữ liệu được viết theo hàng nên cần transpose $x^{[1]}$ thành kích thước $1$ x $d$, kí hiệu: $(x^{[1]})^T$
+Gọi ma trận $Z^{(i)}$ kích thước$ N$ x $l^{(i)}$ trong đó $z_{j}^{(i)[k]}$ là giá trị thứ $j$ trong layer $i$ sau bước tính tổng linear của dữ liệu thứ $k$ trong dataset.
 
-*** Kí hiệu $(i)$ là layer thứ $i$ và kí hiệu $[k]$ là dữ liệu thứ $k$ trong dataset.
+Kí hiệu $(i)$ là layer thứ $i$ và kí hiệu $[k]$ là dữ liệu thứ $k$ trong dataset.
 
-Tương tự, gọi ma trận $A^{(i)}$ kích thước $N*l^{(i)}$ trong đó $a_{j}^{(i)[k]}$ là giá trị thứ $j$ trong layer $i$ sau khi áp dụng activation function của dữ liệu thứ $k$ trong dataset.
+Tương tự, gọi ma trận $A^{(i)}$ kích thước $N$ x $l^{(i)}$ trong đó $a_{j}^{(i)[k]}$ là giá trị thứ $j$ trong layer $i$ sau khi áp dụng activation function của dữ liệu thứ $k$ trong dataset.
 
-$$ X = \begin{bmatrix}z_{1}^{(i)[1]}&z_{2}^{(i)[1]}&...&z_{l^{(i)}}^{(i)[1]}\\z_{1}^{(i)[2]}&z_{2}^{(i)[2]}&...&z_{l^{(i)}}^{(i)[2]}\\...&...&...&...\\z_{1}^{(i)[n]}&z_{2}^{(i)[n]}&...&z_{l^{(i)}}^{(i)[n]}\end{bmatrix} =  \begin{bmatrix}-(z^{(i)[1]})^{T}-\\-(z^{(i)[2]})^{T}-\\...\\-(z^{(i)[n]})^{T}-\end{bmatrix} $$
+\begin{align}
+ X = \begin{bmatrix}z_{1}^{(i)[1]}&z_{2}^{(i)[1]}&...&z_{l^{(i)}}^{(i)[1]}\\z_{1}^{(i)[2]}&z_{2}^{(i)[2]}&...&z_{l^{(i)}}^{(i)[2]}\\...&...&...&...\\z_{1}^{(i)[n]}&z_{2}^{(i)[n]}&...&z_{l^{(i)}}^{(i)[n]}\end{bmatrix} =  \begin{bmatrix}-(z^{(i)[1]})^{T}-\\-(z^{(i)[2]})^{T}-\\...\\-(z^{(i)[n]})^{T}-\end{bmatrix}
+\end{align}
 
 Do đó:
+\begin{align}
+Z^{(1)} = \begin{bmatrix}(z^{(1)[1]})^{T}\\(z^{(1)[2]})^{T}\\...\\(x^{(1)[n]})^{T}\end{bmatrix} 
+= \begin{bmatrix}(x^{[1]})^{T}w^{[1]}+(b^{(1)})^{T}\\(x^{[2]})^{T}w^{(1)}+(b^{(1)})^{T}\\...\\(x^{[n]})^{T}w^{(1)}+(b^{(1)})^{T}\end{bmatrix}
+= XW^{(1)}+\begin{bmatrix}(b^{(1)})^{T}\\(b^{(1)})^{T}\\...\\(b^{(1)})^{T}\end{bmatrix}
+= XW^{(1)}+b^{(1)}
+\end{align}
 
-$$Z^{(1)} = \begin{bmatrix}(z^{(1)[1]})^{T}\\(z^{(1)[2]})^{T}\\...\\(x^{(1)[n]})^{T}\end{bmatrix} 
-= \begin{bmatrix}(x^{[1]})^{T}*w^{[1]}+(b^{(1)})^{T}\\(x^{[2]})^{T}*w^{(1)}+(b^{(1)})^{T}\\...\\(x^{[n]})^{T}*w^{(1)}+(b^{(1)})^{T}\end{bmatrix}
-= X*W^{(1)}+\begin{bmatrix}(b^{(1)})^{T}\\(b^{(1)})^{T}\\...\\(b^{(1)})^{T}\end{bmatrix}
-= X*W^{(1)}+b^{(1)}$$
 Như vậy:
 
-$$A^{(1)} =  \sigma (Z^{(1)})$$
-$$Z^{(2)} = A^{(1)}*W^{(2)} + b^{(2)}$$
-$$A^{(2)} =  \sigma (Z^{(2)})$$
-$$Z^{(3)} = A^{(2)}*W^{(3)} + b^{(3)}$$
-$$\hat{Y} = A^{(3)} =  \sigma (Z^{(3)})$$
+\begin{align}
+\begin{split}
+A^{(1)} =  \sigma (Z^{(1)}) \\
+Z^{(2)} = A^{(1)}W^{(2)} + b^{(2)} \\
+A^{(2)} =  \sigma (Z^{(2)}) \\
+Z^{(3)} = A^{(2)}W^{(3)} + b^{(3)} \\
+\hat{Y} = A^{(3)} =  \sigma (Z^{(3)})
+\end{split}
+\end{align}
 
 Vậy là có thể tính được giá trị dự đoán của nhiều dữ liệu 1 lúc dưới dạng ma trận.
 
@@ -239,31 +244,45 @@ Giờ từ input $X$ ta có thể tính được giá trị dự đoán $\hat{Y}
 \textbf{Bước 2: Backpropagation - Lan truyền ngược và cập nhật trọng số}
 Giờ ta cần đi tìm hệ số $W$ và $b$. Có thể nghĩ ngay tới thuật toán gradient descent và việc quan trọng nhất trong thuật toán gradient descent là đi tìm đạo hàm của các hệ số đối với loss function. Bước này sẽ tính đạo hàm của các hệ số trong neural network với thuật toán backpropagation.
 
-Quá trình học vẫn là tìm lấy một hàm lỗi để đánh giá và tìm cách tối ưu hàm lỗi đó để được kết quả hợp lý nhất có thể. Với mỗi điểm $(x^{[i]}, y_i)$ ta có hàm loss function được tính theo công thức: $$L = -(y_i * log(\hat{y_i}) + (1 - y_i) * log(1 - \hat{y_i}))$$
+Quá trình học vẫn là tìm lấy một hàm lỗi để đánh giá và tìm cách tối ưu hàm lỗi đó để được kết quả hợp lý nhất có thể. Với mỗi điểm $(x^{[i]}, y_i)$ ta có hàm loss function được tính theo công thức: 
+\begin{align}
+L = -(y_i  log(\hat{y_i}) + (1 - y_i)  log(1 - \hat{y_i}))
+\end{align}
 
 Hàm loss function trên toàn bộ dữ liệu:
-$$J = - \sum_{i=1}^{N}(y_i * log(\hat{y_i}) + (1 - y_i) * log(1 - \hat{y_i}))$$
+\begin{align}
+J = - \sum_{i=1}^{N}(y_i  log(\hat{y_i}) + (1 - y_i)  log(1 - \hat{y_i}))
+\end{align}
 
 \begin{itemize}
-\item[$\blacksquare$] \textbf{Gradient Descent}
+\item[$\square$] \textbf{Gradient Descent}
 \end{itemize}
 Để áp dụng gradient descent ta cần tính được đạo hàm của các hệ số W và bias b với hàm loss function.
-*** Kí hiệu chuẩn về đạo hàm
+Kí hiệu chuẩn về đạo hàm:
 \begin{itemize}
-\item Khi hàm f(x) là hàm 1 biến x, ví dụ: $ f(x) = 2*x + 1$. Đạo hàm của $f$ đối với biến $x$ kí hiệu là $\frac{df}{dx}\newline $
+\item Khi hàm f(x) là hàm 1 biến x, ví dụ: $ f(x) = 2x + 1$. Đạo hàm của $f$ đối với biến $x$ kí hiệu là $\frac{df}{dx}\newline $
 \item Khi hàm $f(x, y)$ là hàm nhiều biến, ví dụ $ f(x, y) = x^2 + y^2$. Đạo hàm $f$ với biến $x$ kí hiệu là $ \frac{\partial f}{\partial x}$
 \end{itemize}
 
 Với mỗi điểm $(x^{([i]}, y_i)$, hàm loss function sẽ là:
 
-$$L = -(y_i * log(\hat{y_i}) + (1 - y_i) * log(1 - \hat{y_i}))$$
+\begin{align}
+L = -(y_i  log(\hat{y_i}) + (1 - y_i)  log(1 - \hat{y_i}))
+\end{align}
 
 
-trong đó: $\hat{y_i} = a_1^{(2)} = \sigma(a_1^{(1)} * w_{11}^{(2)} + a_2^{(1)} * w_{21}^{(2)} + b_1^{(2)})$
+trong đó: $\hat{y_i} = a_1^{(2)} = \sigma(a_1^{(1)}  w_{11}^{(2)} + a_2^{(1)}  w_{21}^{(2)} + b_1^{(2)})$
  là giá trị mà model dự đoán, còn $y_i$ là giá trị thật của dữ liệu.
-$$\frac{\partial L}{\partial\hat{y_i}} = - \frac{\partial(y_i * log(\hat{y_i}) + (1 - y_i) * log(1 - \hat{y_i}))}{\partial\hat{y_i}}= - (\frac{y_i}{\hat{y_i}} - \frac{1-y_i}{(1-\hat{y})})\newline$$
+\begin{align}
+\frac{\partial L}{\partial\hat{y_i}} = - \frac{\partial(y_i  log(\hat{y_i}) + (1 - y_i)  log(1 - \hat{y_i}))}{\partial\hat{y_i}}= - (\frac{y_i}{\hat{y_i}} - \frac{1-y_i}{(1-\hat{y})})\newline
+\end{align}
+
 Tính đạo hàm L với $W^{(2)}$, $b^{(2)}$\\
-Áp dụng chain rule ta có: $$ \frac{\partial L}{\partial b_1^{(2)}} = \frac{dL}{d\hat{y_i}} * \frac{\partial\hat{y_i}}{\partial b_1^{(2)} } $$
+Áp dụng chain rule ta có: 
+
+\begin{align}
+ \frac{\partial L}{\partial b_1^{(2)}} = \frac{dL}{d\hat{y_i}}  \frac{\partial\hat{y_i}}{\partial b_1^{(2)} }
+\end{align}
 
 \FloatBarrier
 \begin{figure}[htp]
@@ -276,87 +295,110 @@ Tính đạo hàm L với $W^{(2)}$, $b^{(2)}$\\
 
 Từ đồ thị ta thấy:
 
-$$\frac{\partial\hat{y_i}}{\partial b_1^{(2)}} = \hat{y_i} * (1-\hat{y_i})\newline$$
+\begin{align}
+	\begin{split}
+		\frac{\partial\hat{y_i}}{\partial b_1^{(2)}} = \hat{y_i}  (1-\hat{y_i}) \\
+		\frac{\partial\hat{y_i}}{\partial w_{11}^{(2)}} = a_1^{(1)} \hat{y_i} (1-\hat{y_i}) \\
+		\frac{\partial\hat{y_i}}{\partial w_{21}^{(2)}} = a_2^{(1)} \hat{y_i}  (1-\hat{y_i}) \\
+		\frac{\partial\hat{y_i}}{\partial a_1^{(1)} }=w_{11} ^{(2)} \hat{y_i} (1-\hat{y_i}) \\
+		\frac{\partial\hat{y_i}}{\partial a_2^{(1)} }=w_{21} ^{(2)} \hat{y_i} (1-\hat{y_i}) 
+	\end{split}
+\end{align}
 
-$$\frac{\partial\hat{y_i}}{\partial w_{11}^{(2)}} = a_1^{(1)}*\hat{y_i} * (1-\hat{y_i})\newline$$
-
-$$\frac{\partial\hat{y_i}}{\partial w_{21}^{(2)}} = a_2^{(1)}*\hat{y_i} * (1-\hat{y_i})\newline$$
-
-$$\frac{\partial\hat{y_i}}{\partial a_1^{(1)} }=w_{11} ^{(2)}*\hat{y_i} * (1-\hat{y_i})\newline$$
-
-$$\frac{\partial\hat{y_i}}{\partial a_2^{(1)} }=w_{21} ^{(2)}*\hat{y_i} * (1-\hat{y_i})\newline$$
 Do đó:
-$$\frac{\partial L}{\partial b_1^{(2)}} = \frac{\partial L}{\partial\hat{y_i}} * \frac {\partial\hat{y_i}}{\partial b_1^{(2)}} = - (\frac{y_i}{\hat{y_i}} - \frac{1-y_i}{(1-\hat{y_i})}) * \hat{y_i} * (1-\hat{y_i}) = -(y_i * (1-\hat{y_i}) - (1-y_i) * \hat{y_i})) = \hat{y_i}-y_i$$
+\begin{align}
+\frac{\partial L}{\partial b_1^{(2)}} = \frac{\partial L}{\partial\hat{y_i}} \frac {\partial\hat{y_i}}{\partial b_1^{(2)}} = - (\frac{y_i}{\hat{y_i}} - \frac{1-y_i}{(1-\hat{y_i})})  \hat{y_i}  (1-\hat{y_i}) = -(y_i  (1-\hat{y_i}) - (1-y_i)  \hat{y_i})) = \hat{y_i}-y_i
+\end{align}
 
 Tương tự:
-$$\frac{\partial L}{\partial w_{11} ^ {(2)}} = a_1 ^ {(1)} *     (\hat{y_i}-y_i)\newline \newline$$
-
-$$\frac{\partial L}{\partial w_{21} ^ {(2)}} = a_2 ^ {(1)} *     (\hat{y_i}-y_i) \newline \newline$$
-
-$$\frac{\partial L}{\partial a_1 ^ {(1)}} =  w_{11} ^ {(2)}  *     (\hat{y_i}-y_i) \newline \newline$$
-
-$$\frac{\partial L}{\partial a_2 ^ {(1)}} =  w_{21} ^ {(2)}  *     (\hat{y_i}-y_i) \newline \newline $$
-
+\begin{align}
+\begin{split}
+\frac{\partial L}{\partial w_{11} ^ {(2)}} = a_1 ^ {(1)} (\hat{y_i}-y_i) \\
+\frac{\partial L}{\partial w_{21} ^ {(2)}} = a_2 ^ {(1)} (\hat{y_i}-y_i) \\
+\frac{\partial L}{\partial a_1 ^ {(1)}} =  w_{11} ^ {(2)}  (\hat{y_i}-y_i) \\
+\frac{\partial L}{\partial a_2 ^ {(1)}} =  w_{21} ^ {(2)} (\hat{y_i}-y_i) \\
+\end{split}
+\end{align}
 
 \begin{itemize}
-\item[$\blacksquare$] \textbf{Biểu diễn dưới dạng ma trận:}
+\item[$\square$] \textbf{Biểu diễn dưới dạng ma trận:}
 \end{itemize} 
-\textbf{*** Lưu ý:} đạo hàm của L đối với ma trận W kích thước m*n cũng là một ma trận cùng kích thước $m*n$.
+Đạo hàm của $L$ đối với ma trận $W$ kích thước $m$ x $n$ cũng là một ma trận cùng kích thước $m$ x $n$.
 
-$$ \frac{\partial L}{\partial W} =  \begin{bmatrix}\frac{\partial L}{\partial w_{11}}&...&\frac{\partial L}{\partial w_{1n}}\\
+\begin{align}
+\frac{\partial L}{\partial W} =  \begin{bmatrix}\frac{\partial L}{\partial w_{11}}&...&\frac{\partial L}{\partial w_{1n}}\\
  \frac{\partial L}{\partial w_{21}}&...&\frac{\partial L}{\partial w_{2n}}\\
- ...&...&...\\\frac{\partial L}{\partial w_{m1}}&...&\frac{\partial L}{\partial w_{mn}}\end{bmatrix} $$
+ ...&...&...\\\frac{\partial L}{\partial w_{m1}}&...&\frac{\partial L}{\partial w_{mn}}\end{bmatrix}
+\end{align}
 
 Do đó:
-$$\frac{\partial J}{\partial W^{(2)}} = (A^{(1)})^T * (\hat{Y} - Y), \frac{\partial J}{\partial b^{(2)}} = (sum(\hat{Y} - Y))^T,  \frac{\partial J}{\partial A^{(1)}} = (\hat{Y} - Y) * (W^{(2)})^T$$ 
+$
+\frac{\partial J}{\partial W^{(2)}} = (A^{(1)})^T  (\hat{Y} - Y), \frac{\partial J}{\partial b^{(2)}} = (sum(\hat{Y} - Y))^T,  \frac{\partial J}{\partial A^{(1)}} = (\hat{Y} - Y)  (W^{(2)})^T
+$
 là phép tính sum tính tổng các cột của ma trận.
 
-\FloatBarrier
-\begin{figure}[htp]
-\begin{center}
-\includegraphics[scale=0.8]{chap2/c2_figs/6.jpg}
-\end{center}
-\label{fig:feed_forward}
-\end{figure}
-\FloatBarrier
+\begin{align}
+W =   \begin{bmatrix}w_{11}&w_{12}\\w_{21}&w_{22}\\w_{31}&w_{32}\end{bmatrix}  \Longrightarrow sum(W) = (w_{11} + w_{21} + w_{31}, w_{12} + w_{22} + w_{32} \\
+(sum(W))^T =  \begin{bmatrix}w_{11} + w_{21} + w_{31}\\w_{12} + w_{22} + w_{32}\end{bmatrix} 
+\end{align}
+
 
 Vậy là đã tính xong đạo hàm của $L$ với hệ số $W^{(2)}, b^{(2)}$. Giờ sẽ đi tính đạo hàm của $L$ với hệ số $W^{(1)}, b^{(1)}$ để khi tính đạo hàm của hệ số và bias trong layer trước đấy sẽ cần dùng đến.
 
 Tính đạo hàm L với $W^{(1)}, b^{(1)}$
-Do $ a_1^{(1)} = \sigma(b_1^{(1)} + x_1*w_{11}^{(1)} + x_2*w_{21}^{(1)})$ 
+Do $ a_1^{(1)} = \sigma(b_1^{(1)} + x_1 w_{11}^{(1)} + x_2 w_{21}^{(1)})$ 
 
-Áp dụng chain rule ta có: $$ \frac{\partial L}{\partial b_1^{(1)}} = \frac{\partial L}{\partial a_1^{(1)}} * \frac{\partial a_1^{(1)}}{\partial b_1^{(1)} }$$
+Áp dụng chain rule ta có: 
+\begin{align}
+\frac{\partial L}{\partial b_1^{(1)}} = \frac{\partial L}{\partial a_1^{(1)}}  \frac{\partial a_1^{(1)}}{\partial b_1^{(1)} }
+\end{align}
 Ta có:
-$$\frac{\partial a_1^{(1)}}{\partial b_1^{(1)}} = \frac{\partial a_1^{(1)}}{z_1^{(1)}} * \frac{z_1^{(1)}}{\partial b_1^{(1)}} = a_1^{(1)} * (1 - a_1^{(1)})$$
+\begin{align}
+\frac{\partial a_1^{(1)}}{\partial b_1^{(1)}} = \frac{\partial a_1^{(1)}}{z_1^{(1)}}  \frac{z_1^{(1)}}{\partial b_1^{(1)}} = a_1^{(1)}  (1 - a_1^{(1)})
+\end{align}
 Do đó:
-$$\frac{\partial L}{\partial b_1^{(1)}} = a_1 ^ {(1)} * (1 - a_1^{(1)}) * w_{11}^{(2)} * (\hat{y_i} - y_i)$$
+\begin{align}
+\frac{\partial L}{\partial b_1^{(1)}} = a_1 ^ {(1)}  (1 - a_1^{(1)})  w_{11}^{(2)}  (\hat{y_i} - y_i)
+\end{align}
 
 Tương tự:
-$$\frac{\partial L}{\partial w_{11}^{(1)}} = x_1 * a_1 ^ {(1)} * (1 - a_1^{(1)}) * w_{11}^{(2)} *  (\hat{y_i} - y_i)  \newline$$
+\begin{align}
+\begin{split}
+\frac{\partial L}{\partial w_{11}^{(1)}} = x_1  a_1 ^ {(1)}  (1 - a_1^{(1)})  w_{11}^{(2)}   (\hat{y_i} - y_i)  \\
+\frac{\partial L}{\partial w_{12}^{(1)}} = x_1  a_2 ^ {(1)}  (1 - a_2^{(1)})  w_{11}^{(2)}   (\hat{y_i} - y_i)  \\
+\frac{\partial L}{\partial w_{21}^{(1)}} = x_2  a_1 ^ {(1)}  (1 - a_1^{(1)})  w_{21}^{(2)}   (\hat{y_i} - y_i)  \\
+\frac{\partial L}{\partial w_{22}^{(1)}} = x_2  a_2^ {(1)}  (1 - a_2^{(1)})  w_{21}^{(2)}   (\hat{y_i} - y_i)
+\end{split}
+\end{align}
 
-$$\frac{\partial L}{\partial w_{12}^{(1)}} = x_1 * a_2 ^ {(1)} * (1 - a_2^{(1)}) * w_{11}^{(2)} *  (\hat{y_i} - y_i)  \newline$$
+Có thể tạm viết dưới dạng chain rule là: 
+\begin{align}
+\frac{\partial J}{\partial W^{(1)}} = \frac{\partial J}{\partial A^{(1)}}  \frac{\partial A^{(1)}}{\partial Z^{(1)}} \frac{\partial Z^{(1)}}{\partial W^{(1)}} (1) 
+\end{align}
 
-$$\frac{\partial L}{\partial w_{21}^{(1)}} = x_2 * a_1 ^ {(1)} * (1 - a_1^{(1)}) * w_{21}^{(2)} *  (\hat{y_i} - y_i)  \newline $$
+Từ trên đã tính được: 
+\begin{align}
+\frac{\partial J}{\partial A^{(1)}} = (\hat{Y} - Y)  (W^{(2)})^T
+\end{align}
 
-$$\frac{\partial L}{\partial w_{22}^{(1)}} = x_2 * a_2^ {(1)} * (1 - a_2^{(1)}) * w_{21}^{(2)} *  (\hat{y_i} - y_i)  \newline$$
+Đạo hàm của hàm sigmoid: $\frac{d\sigma(x)}{dx} = \sigma(x)  (1 - \sigma(x))$ và $A^{(1)} = \sigma(Z^{(1)})$ , nên trong (1) có thể hiểu là $\frac{\partial A^{(1)}}{\partial Z^{(1)}} = A^{(1)} (1 - A^{(1)})$
 
-Có thể tạm viết dưới dạng chain rule là: $$\frac{\partial J}{\partial W^{(1)}} = \frac{\partial J}{\partial A^{(1)}} * \frac{\partial A^{(1)}}{\partial Z^{(1)}}* \frac{\partial Z^{(1)}}{\partial W^{(1)}} (1) $$
-
-Từ trên đã tính được: $$\frac{\partial J}{\partial A^{(1)}} = (\hat{Y} - Y) * (W^{(2)})^T$$
-
-Đạo hàm của hàm sigmoid: $\frac{d\sigma(x)}{dx} = \sigma(x) * (1 - \sigma(x))$ và $A^{(1)} = \sigma(Z^{(1)})$ , nên trong (1) có thể hiểu là $\frac{\partial A^{(1)}}{\partial Z^{(1)}} = A^{(1)}* (1 - A^{(1)})$
-
-Cuối cùng, $Z^{(1)} = X * W^{(1)} + b^{(1)}$ nên có thể tạm hiểu $\frac{\partial Z^{(1)}}{\partial W^{(1)}} = X$ , nó giống như $f(x)= a*x +b$ $ => \frac{df}{dx} = a$ .
+Cuối cùng, $Z^{(1)} = X  W^{(1)} + b^{(1)}$ nên có thể tạm hiểu $\frac{\partial Z^{(1)}}{\partial W^{(1)}} = X$ , nó giống như $f(x)= ax +b$ $ \rightarrow \frac{df}{dx} = a$ .
 
 Kết hợp tất cả lại ta được:
-$$\frac{\partial J}{\partial W^{(1)}} = X^T * (((\hat{Y} - Y) * (W^{(2)})^T)\otimes A^{(1)}\otimes (1-A^{(1)}) ) $$
+\begin{align}
+\frac{\partial J}{\partial W^{(1)}} = X^T  (((\hat{Y} - Y)  (W^{(2)})^T)\otimes A^{(1)}\otimes (1-A^{(1)}) ) 
+\end{align}
 
-Vậy khi nào cần dùng element-wise $(\otimes)$, khi nào dùng nhân ma trận $(*)$?
+Vậy khi nào chúng ta cần dùng element-wise $(\otimes)$, khi nào dùng nhân ma trận $(*)$.
 \begin{itemize}
 \item Khi tính đạo hàm ngược lại qua bước activation thì dùng $(\otimes)$.
-\item Khi có phép tính nhân ma trận thì dùng $(*)$, nhưng đặc biệt chú ý đến \textbf{kích thước ma trận} và dùng \textbf{transpose} nếu cần thiết. Ví dụ: ma trận $X$ kích thước $N*3$, W kích thước $3*4$, $Z = X * W$ sẽ có kích thước $N*4$ thì $\frac{\partial J}{\partial W} = X^T * (\frac{\partial J}{\partial Z})$ và $\frac{\partial J}{\partial X} = (\frac{\partial J}{\partial Z}) * W^T$.
+\item Khi có phép tính nhân ma trận thì dùng $(*)$, nhưng đặc biệt chú ý đến \textbf{kích thước ma trận} và dùng \textbf{transpose} nếu cần thiết. Ví dụ: ma trận $X$ kích thước $N$ x $3$, W kích thước $3$ x $4$, $Z = X$ x $W$ sẽ có kích thước $N$ x $4$ thì $\frac{\partial J}{\partial W} = X^T (\frac{\partial J}{\partial Z})$ và $\frac{\partial J}{\partial X} = (\frac{\partial J}{\partial Z})W^T$.
 \end{itemize}
-Tương tự: $$\frac{\partial L}{\partial b^{(1)}} = sum(((\hat{Y} - Y) * (W^{(2)})^T)\otimes A^{(1)})^T$$
+Tương tự: 
+\begin{align}
+\frac{\partial L}{\partial b^{(1)}} = sum(((\hat{Y} - Y) (W^{(2)})^T)\otimes A^{(1)})^T
+\end{align}
 
 Vậy là đã tính xong hết đạo hàm của loss function với các hệ số $W$ và bias $b$, giờ có thể áp dụng gradient descent để giải bài toán.
 
@@ -372,7 +414,7 @@ Giờ thử tính $ \frac{\partial L}{\partial x_1}$, ở bài này thì không 
 \end{figure}
 \FloatBarrier
 
-Ta thấy $w_{11}^{(1)}$ chỉ tác động đến $a_1^{(1)}$, cụ thể là $ a_1^{(1)} = \sigma(b_1^{(1)} + x_1*w_{11}^{(1)} + x_2*w_{21}^{(1)})$ 
+Ta thấy $w_{11}^{(1)}$ chỉ tác động đến $a_1^{(1)}$, cụ thể là $ a_1^{(1)} = \sigma(b_1^{(1)} + x_1w_{11}^{(1)} + x_2w_{21}^{(1)})$ 
 
 Tuy nhiên $x_1$ không những tác động đến $a_1^{(1)}$ mà còn tác động đến $a_2^{(1)}$, nên khi áp dụng chain rule tính đạo hàm của $L$ với $x_1$ cần tính tổng đạo hàm qua cả $a_1^{(1)}$ và $a_2^{(1)}$.
 
@@ -387,25 +429,29 @@ Tuy nhiên $x_1$ không những tác động đến $a_1^{(1)}$ mà còn tác đ
 \FloatBarrier
 
 Do đó:
-$$\frac{\partial L}{\partial x_1} = \frac{\partial L}{\partial a_1^{(1)}} * \frac{\partial a_1^{(1)}}{\partial x_1} + \frac{\partial L}{\partial a_2^{(1)}} * \frac{\partial a_2^{(1)}}{\partial x_1} =  w_{11}^{(1)}* a_1 ^ {(1)} * (1 - a_1^{(1)}) * w_{11}^{(2)} * (y_i - \hat{y_i}) + w_{12}^{(1)}* a_2 ^ {(1)} * (1 - a_2^{(1)}) * w_{21}^{(2)} * (y_i - \hat{y_i})  \newline$$
+\begin{align}
+\frac{\partial L}{\partial x_1} = \frac{\partial L}{\partial a_1^{(1)}}  \frac{\partial a_1^{(1)}}{\partial x_1} + \frac{\partial L}{\partial a_2^{(1)}}  \frac{\partial a_2^{(1)}}{\partial x_1} =  w_{11}^{(1)}a_1 ^ {(1)}  (1 - a_1^{(1)})  w_{11}^{(2)} (y_i - \hat{y_i}) + w_{12}^{(1)} a_2 ^ {(1)} (1 - a_2^{(1)})  w_{21}^{(2)}  (y_i - \hat{y_i})  
+\end{align}
 
 Sau tất cả, mô hình tổng quát sẽ bao gồm các bước như sau:
 
-\FloatBarrier
-\begin{figure}[htp]
-\begin{center}
-\includegraphics[scale=0.75]{chap2/c2_figs/3.png}
-\end{center}
-\caption{Mô hình neural network}
-\label{fig:feed_forward}
-\end{figure}
-\FloatBarrier
-
 \begin{itemize}
 \item \textbf{Bước 1:} Tính $\frac{\partial J}{\partial \hat{Y}}$, trong đó $\hat{Y} = A^{(3)}$
-\item \textbf{Bước 2:} Tính $$\frac{\partial J}{\partial \hat{W^{(3)}}}= (A^{(2)})^T * (\frac{\partial J}{\partial \hat{Y}} \otimes \frac{\partial A^{(3)}}{\partial Z^{(3)}}),  \frac{\partial J}{\partial \hat{b^{(3)}}}= (sum( \frac{\partial J}{\partial \hat{Y}} \otimes \frac{\partial A^{(3)}}{\partial Z^{(3)}}))^T$$
-\item \textbf{Bước 3:} Tính $$\frac{\partial J}{\partial \hat{W^{(2)}}}= (A^{(1)})^T * (\frac{\partial J}{\partial A^{(2)}} \otimes \frac{\partial A^{(2)}}{\partial Z^{(2)}}),  \frac{\partial J}{\partial \hat{b^{(2)}}}= (sum (\frac{\partial J}{\partial A^{(2)}} \otimes \frac{\partial A^{(2)}}{\partial Z^{(2)}}))^T$$ và tính $$\frac{\partial J}{\partial \hat{A^{(1)}}}= ( \frac {\partial J}{\partial A^{(2)}} \otimes \frac{\partial A^{(2)}}{\partial Z^{(2)}}) * (W^{(2)})^T$$ 
-\item \textbf{Bước 4:} Tính $$\frac{\partial J}{\partial \hat{W^{(1)}}}= (A^{(0)})^T  * (\frac{\partial J}{\partial A^{(1)}} \otimes \frac{\partial A^{(1)}}{\partial Z^{(1)}}),  \frac{\partial J}{\partial \hat{b^{(1)}}}= (sum (\frac{\partial J}{\partial A^{(1)}} \otimes \frac{\partial A^{(1)}}{\partial Z^{(1)}}))^T$$ , trong đó $A^{(0)} = X$
+\item \textbf{Bước 2:} Tính 
+\begin{align}
+\frac{\partial J}{\partial \hat{W^{(3)}}}= (A^{(2)})^T  (\frac{\partial J}{\partial \hat{Y}} \otimes \frac{\partial A^{(3)}}{\partial Z^{(3)}}),  \frac{\partial J}{\partial \hat{b^{(3)}}}= (sum( \frac{\partial J}{\partial \hat{Y}} \otimes \frac{\partial A^{(3)}}{\partial Z^{(3)}}))^T
+\end{align}
+\item \textbf{Bước 3:} Tính 
+\begin{align}
+\frac{\partial J}{\partial \hat{W^{(2)}}}= (A^{(1)})^T  (\frac{\partial J}{\partial A^{(2)}} \otimes \frac{\partial A^{(2)}}{\partial Z^{(2)}}),  \frac{\partial J}{\partial \hat{b^{(2)}}}= (sum (\frac{\partial J}{\partial A^{(2)}} \otimes \frac{\partial A^{(2)}}{\partial Z^{(2)}}))^T
+\end{align}
+\begin{align}
+\frac{\partial J}{\partial \hat{A^{(1)}}}= ( \frac {\partial J}{\partial A^{(2)}} \otimes \frac{\partial A^{(2)}}{\partial Z^{(2)}})  (W^{(2)})^T
+\end{align} 
+\item \textbf{Bước 4:} Tính
+\begin{align}
+\frac{\partial J}{\partial \hat{W^{(1)}}}= (A^{(0)})^T   (\frac{\partial J}{\partial A^{(1)}} \otimes \frac{\partial A^{(1)}}{\partial Z^{(1)}}),  \frac{\partial J}{\partial \hat{b^{(1)}}}= (sum (\frac{\partial J}{\partial A^{(1)}} \otimes \frac{\partial A^{(1)}}{\partial Z^{(1)}}))^T
+\end{align} , trong đó $A^{(0)} = X$
 \end{itemize}
 
 Nếu network có nhiều layer hơn thì cứ tiếp tục cho đến khi tính được đạo hàm của loss function $J$ với tất cả các hệ số $W$ và bias $b$.
@@ -438,7 +484,7 @@ Tổng kết lại, 2 quá trình Feedfoward và Backpropagation sẽ diễn ra 
 Convolutional Neural Network (CNNs – Mạng nơ-ron tích chập) là một trong những mô hình Deep Learning tiên tiến giúp cho chúng ta xây dựng được những hệ thống thông minh với độ chính xác cao như hiện nay. Trong luận văn này, sẽ trình bày về Convolution (tích chập) đi từ những khái niệm cơ bản nhất đến ứng dụng của nó cũng như ý tưởng của mô hình CNNs trong phát hiện và trích xuất đặc trưng khung xương từ ảnh RGB.
 
 Mạng Neural Network truyền thống tuy đã giải quyết  được một số vấn đề lớn lúc bấy giờ nhưng lại gặp một số khó khăn khi giải quyết bài toán xử lý, phân loại hình ảnh.
-Đối với mạng Neural Network truyền thống khi xử lý ảnh màu 64*64 được biểu diễn dưới dạng 1 tensor 64*64*3. Việc để biểu thị hết nội dung của bức ảnh thì cần truyền vào input layer tất cả các pixel (64*64*3 = 12288). Nghĩa là input layer giờ có 12288 nodes. Giả sử số lượng node trong hidden layer 1 là 1000. Số lượng weight $W$ giữa input layer và hidden layer 1 là 12288*1000 = 12288000, số lượng bias là 1000 $=>$ tổng số parameter là: 12289000. Đây mới chỉ là số parameter giữa input layer và hidden layer 1, trong model còn nhiều layer nữa, và nếu kích thướcây ảnh tăng, ví dụ 512*512 thì số lượng parameter tăng cực kì nhanh. Điều này khiến cho việc tính toán của máy tính cần rất nhiều công sức nhưng lại không mang lại hiệu quả cao. Do vậy ta cần có giải pháp tốt hơn.
+Đối với mạng Neural Network truyền thống khi xử lý ảnh màu 64x64 được biểu diễn dưới dạng 1 tensor 64x64x3. Việc để biểu thị hết nội dung của bức ảnh thì cần truyền vào input layer tất cả các pixel (64x64x3 = 12288). Nghĩa là input layer giờ có 12288 nodes. Giả sử số lượng node trong hidden layer 1 là 1000. Số lượng weight $W$ giữa input layer và hidden layer 1 là 12288x1000 = 12288000, số lượng bias là 1000 $\rightarrow$ tổng số parameter là: 12289000. Đây mới chỉ là số parameter giữa input layer và hidden layer 1, trong model còn nhiều layer nữa, và nếu kích thướcây ảnh tăng, ví dụ 512x512 thì số lượng parameter tăng cực kì nhanh. Điều này khiến cho việc tính toán của máy tính cần rất nhiều công sức nhưng lại không mang lại hiệu quả cao. Do vậy ta cần có giải pháp tốt hơn.
 
 Nhận xét:
 \begin{itemize}
@@ -462,8 +508,8 @@ Do vậy ý tưởng sử dụng mạng CNNs ra đời. Áp dụng phép tính c
 
 \subsection{Phép Tính Convolution}
 \label{ss: convolution}
-Lấy ví dụ trên ảnh xám, ảnh được biểu diễn dưới dạng ma trận $A$ kích thước $m*n$.
-Ta định nghĩa kernel là một ma trận vuông kích thước $k*k$ trong đó $k$ là số lẻ. $k$ có thể bằng $1, 3, 5, 7, 9,…$ Ví dụ kernel kích thước $3*3$.
+Lấy ví dụ trên ảnh xám, ảnh được biểu diễn dưới dạng ma trận $A$ kích thước $m$ x $n$.
+Ta định nghĩa kernel là một ma trận vuông kích thước $k$ x $k$ trong đó $k$ là số lẻ. $k$ có thể bằng $1, 3, 5, 7, 9,…$ Ví dụ kernel kích thước $3$ x $3$.
 
 Kí hiệu phép tính convolution là $(\otimes)$, kí hiệu $Y = X \otimes W$.
 
@@ -479,9 +525,9 @@ Với mỗi phần tử $x_{ij}$ trong ma trận $X$ lấy ra một ma trận c�
 \end{figure}
 \FloatBarrier
 
-Ví dụ khi tính tại $x_{22}$ (ô khoanh đỏ trong hình \ref{fig:convolution}), ma trận $A$ cùng kích thước với $W$, có $x_{22}$ làm trung tâm có màu nền da cam như trong hình. Sau đó tính $y_{11} = sum(A \otimes W) = x_{11}*w_{11} + x_{12}*w_{12} + x_{13}*w_{13} + x_{21}*w_{21} + x_{22}*w_{22} + x_{23}*w_{23} + x_{31}*w_{31} + x_{32}*w_{32} + x_{33}*w_{33} = 4$. Và làm tương tự với các phần tử còn lại trong ma trận.
+Ví dụ khi tính tại $x_{22}$ (ô khoanh đỏ trong hình \ref{fig:convolution}), ma trận $A$ cùng kích thước với $W$, có $x_{22}$ làm trung tâm có màu nền da cam như trong hình. Sau đó tính $y_{11} = sum(A \otimes W) = x_{11}w_{11} + x_{12}w_{12} + x_{13}w_{13} + x_{21}w_{21} + x_{22}w_{22} + x_{23}w_{23} + x_{31}w_{31} + x_{32}w_{32} + x_{33}w_{33} = 4$. Và làm tương tự với các phần tử còn lại trong ma trận.
 
-Vì tâm của kernel $W$ không thể lướt hết ma trận $X$ nên $Y$ sẽ có kích thước nhỏ hơn ma trận $X$. Kích thước của ma trận Y là (m-k+1) * (n-k+1).
+Vì tâm của kernel $W$ không thể lướt hết ma trận $X$ nên $Y$ sẽ có kích thước nhỏ hơn ma trận $X$. Kích thước của ma trận Y là $(m-k+1)$ x $(n-k+1)$.
 
 \FloatBarrier
 \begin{figure}[htp]
@@ -494,7 +540,7 @@ Vì tâm của kernel $W$ không thể lướt hết ma trận $X$ nên $Y$ sẽ
 \FloatBarrier
 
 \begin{itemize}
-\item[$\blacksquare$] \textbf{Padding}
+\item[$\square$] \textbf{Padding}
 Mỗi lần thực hiện phép tính convolution xong thì kích thước ma trận Y đều nhỏ hơn X. Tuy nhiên nếu ta muốn ma trận Y thu được có kích thước bằng ma trận X ta cần tìm cách giải quyết cho các phần tử ở viền bằng cách thêm giá trị 0 ở viền ngoài ma trận X.
 
 \FloatBarrier
@@ -511,7 +557,7 @@ Vậy ta đã giải quyết được vấn đề tìm A cho phần tử $x_{11}
 
 Phép tính này gọi là convolution với $padding=1$. $Padding=k$ nghĩa là thêm $k$ vector $0$ vào mỗi phía của ma trận.
 
-\item[$\blacksquare$] \textbf{Stride}
+\item[$\square$] \textbf{Stride}
 Như ở trên ta thực hiện tuần tự các phần tử trong ma trận $X$, thu được ma trận $Y$ cùng kích thước ma trận $X$, ta gọi là $stride=1$.
 
 \FloatBarrier
@@ -537,13 +583,14 @@ Tuy nhiên nếu $stride=k (k > 1)$ thì ta chỉ thực hiện phép tính conv
 \FloatBarrier
 
 Bắt đầu từ vị trí $x_{11}$, sau đó cho kernel một lần nhảy $k$ bước theo chiều dọc và ngang cho đến hết ma trận $X$. Ta thấy kích thước của ma trận $Y$ là $3*3$ đã giảm đi đáng kể so với ma trận $X$.
-Công thức tổng quát cho phép tính convolution của ma trận $X$ kích thước $m*n$ với kernel kích thước $k*k$, $stride = s$, $padding = p$ ra ma trận $Y$ kích thước là $$(\frac{m-k+2p}{s}+1) * (\frac{n-k+2p}{s}+1)$$
+Công thức tổng quát cho phép tính convolution của ma trận $X$ kích thước $m*n$ với kernel kích thước $k$ x $k$, $stride = s$, $padding = p$ ra ma trận $Y$ kích thước là $$(\frac{m-k+2p}{s}+1) * (\frac{n-k+2p}{s}+1)$$
 Stride thường dùng để giảm kích thước của ma trận sau phép tính convolution.
 Ý nghĩa của phép tính convolution:
 Mục đích của phép tính convolution trên ảnh là làm mở, làm nét ảnh; xác định các đường;… Với mỗi kernel khác nhau ta sẽ phép tính được convolution có ý nghĩa khác nhau. 
+%\\ [2cm]
 \end{itemize} 
 \subsection{Phép convolution trong mạng Neuron Network}
-Với ảnh màu có tới 3 channels red, green, blue nên khi biểu diễn ảnh sẽ dưới dạng tensor 3 chiều. Vì vậy kernel cũng sẽ là 1 tensor 3 chiều kích thước $k*k*3$.
+Với ảnh màu có tới 3 channels red, green, blue nên khi biểu diễn ảnh sẽ dưới dạng tensor 3 chiều. Vì vậy kernel cũng sẽ là 1 tensor 3 chiều kích thước $k$ x $k$ x $3$.
 
 \FloatBarrier
 \begin{figure}[htp]
@@ -556,7 +603,7 @@ Với ảnh màu có tới 3 channels red, green, blue nên khi biểu diễn �
 \FloatBarrier
 
 Ta định nghĩa kernel có cùng độ sâu (depth) với biểu diễn ảnh, rồi sau đó thực hiện di chuyển khối kernel tương tự như khi thực hiện trên ảnh xám.
-
+\newpage
 \FloatBarrier
 \begin{figure}[htp]
 \begin{center}
@@ -568,7 +615,7 @@ Ta định nghĩa kernel có cùng độ sâu (depth) với biểu diễn ảnh,
 \FloatBarrier
 
 Khi biểu diễn ma trận ta cần 2 chỉ số hàng và cột: $i$ và $j$, thì khi biểu diễn ở dạng tensor 3 chiều cần thêm chỉ số độ sâu $k$. Nên chỉ số mỗi phần tử trong tensor là $x_{ijk}$.
-$$y_{11} = b + (x_{111}*w_{111} +  x_{121}*w_{121} + x_{131}*w_{131} +  x_{211}*w_{211} +  x_{221}*w_{221} +  x_{231}*w_{231} +  x_{311}*w_{311} + $$ $$ x_{321}*w_{321} +  x_{331}*w_{331}) + (x_{112}*w_{112} +  x_{122}*w_{122} + x_{132}*w_{132} +  x_{212}*w_{212} +  x_{222}*w_{222} + $$ $$x_{232}*w_{232} +  x_{312}*w_{312} +  x_{322}*w_{322} +  x_{332}*w_{332}) +  (x_{113}*w_{113} +  x_{123}*w_{123} + x_{133}*w_{133} +  x_{213}*w_{213} + $$ $$ x_{223}*w_{223} +  x_{233}*w_{233} +  x_{313}*w_{313} +  x_{323}*w_{323} +  x_{333}*w_{333}) = -25$$
+$$y_{11} = b + (x_{111}w_{111} +  x_{121}w_{121} + x_{131}w_{131} +  x_{211}w_{211} +  x_{221}w_{221} +  x_{231}w_{231} +  x_{311}w_{311} + $$ $$ x_{321}w_{321} +  x_{331}w_{331}) + (x_{112}w_{112} +  x_{122}w_{122} + x_{132}w_{132} +  x_{212}w_{212} +  x_{222}w_{222} + $$ $$x_{232}w_{232} +  x_{312}w_{312} +  x_{322}w_{322} +  x_{332}w_{332}) +  (x_{113}w_{113} +  x_{123}w_{123} + x_{133}w_{133} +  x_{213}w_{213} + $$ $$ x_{223}w_{223} +  x_{233}w_{233} +  x_{313}w_{313} +  x_{323}w_{323} +  x_{333}w_{333}) = -25$$
 
 \FloatBarrier
 \begin{figure}[htp]
@@ -599,9 +646,9 @@ Với mỗi kernel khác nhau ta sẽ học được những đặc trưng khác
 \FloatBarrier
 
 \begin{itemize}
-\item[$\blacksquare$] Convolutional layer tổng quát:
+\item[$\square$] Convolutional layer tổng quát:
 \end{itemize}
-Giả sử input của 1 convolutional layer tổng quát là tensor kích thước $H * W * D$. Kernel có kích thước $F * F * D$ (kernel luôn có depth bằng depth của input và $F$ là số lẻ), stride: $S$, padding: $P$. Convolutional layer áp dụng $K$ kernel.Lúc này, output của layer là tensor 3 chiều có kích thước: $ (\frac{H-F+2P}{S} + 1) * (\frac{W-F+2P}{S} + 1) * K$(hình \ref{fig:conv-tongquat})
+Giả sử input của 1 convolutional layer tổng quát là tensor kích thước $H$ x $W$ x $D$. Kernel có kích thước $F$ x $F$ x $D$ (kernel luôn có depth bằng depth của input và $F$ là số lẻ), stride: $S$, padding: $P$. Convolutional layer áp dụng $K$ kernel.Lúc này, output của layer là tensor 3 chiều có kích thước: $ (\frac{H-F+2P}{S} + 1)$ x $(\frac{W-F+2P}{S} + 1)$ x $K$(hình \ref{fig:conv-tongquat})
 
 \FloatBarrier
 \begin{figure}[htp]
@@ -616,7 +663,7 @@ Giả sử input của 1 convolutional layer tổng quát là tensor kích thư�
 Ta nhận thấy:
 \begin{itemize}
 \item Output của convolutional layer sẽ qua hàm activation function trước khi trở thành input của convolutional layer tiếp theo.
-\item Tổng số parameter của layer: Mỗi kernel có kích thước $F*F*D$ và có 1 hệ số bias, nên tổng parameter của 1 kernel là $F*F*D + 1$. Mà convolutional layer áp dụng $K$ kernel => Tổng số parameter trong layer này là $K * (F*F*D + 1)$.
+\item Tổng số parameter của layer: Mỗi kernel có kích thước $F$ x $F$ x $D$ và có 1 hệ số bias, nên tổng parameter của 1 kernel là $F$ x $F$ x $D + 1$. Mà convolutional layer áp dụng $K$ kernel $\rightarrow$ Tổng số parameter trong layer này là $K$ x $(F$ x $F$ x $D + 1)$.
 \end{itemize}
 Mạng Convolution Neural Network, ngoài các lớp Convolution ra còn có các lớp Pooling, Dropout, Dense, và Backnomalization,... để làm cho chúng trở nên "dễ học" hơn.
 
@@ -638,7 +685,7 @@ Thuật toán chuẩn hóa cụ thể sẽ hoạt động như sau:
 \FloatBarrier
 
 \begin{itemize}
-\item[$\blacksquare$] Trong đó:
+\item[$\square$] Trong đó:
 \item $ \mu _B$ là giá trị kỳ vọng thực nghiệm được tính toán trên mini-batch B.
 \item $\sigma_B$ là độ lệch chuẩn thực nghiệm cũng được tính toán trên mini-batch B.
 \item $m$ là số lượng instances trong mini-batch B.
@@ -663,7 +710,7 @@ Một số lợi ích của Batch Normalization:
 \label{ss:Pooling}
 Pooling layer thường được dùng giữa các convolutional layer, để giảm kích thước dữ liệu nhưng vẫn giữ được các thuộc tính quan trọng. Kích thước dữ liệu giảm giúp giảm việc tính toán trong model.
 
-Gọi pooling size kích thước $K*K$. Input của pooling layer có kích thước $H*W*D$, ta tách ra làm $D$ ma trận kích thước $H*W$. Với mỗi ma trận, trên vùng kích thước $K*K$ trên ma trận ta tìm maximum hoặc average của dữ liệu rồi viết vào ma trận kết quả. Quy tắc về stride và padding áp dụng như phép tính convolution trên ảnh.
+Gọi pooling size kích thước $K$ x $K$. Input của pooling layer có kích thước HxWxD, ta tách ra làm $D$ ma trận kích thước HxW. Với mỗi ma trận, trên vùng kích thước $K*K$ trên ma trận ta tìm maximum hoặc average của dữ liệu rồi viết vào ma trận kết quả. Quy tắc về stride và padding áp dụng như phép tính convolution trên ảnh.
 
 \FloatBarrier
 \begin{figure}[htp]
@@ -682,11 +729,11 @@ Nhưng hầu hết khi dùng pooling layer thì sẽ dùng $size=(2,2)$, $stride
 \begin{center}
 \includegraphics[scale=0.5]{chap2/c2_figs/pooling.jpeg}
 \end{center}
-\caption{Kết quả sau khi qua pooling layer $2*2$. \\(\url{http://cs231n.github.io/convolutional-networks})}
+\caption{Kết quả sau khi qua pooling layer 2x2}
 \label{fig:pooling}
 \end{figure}
 \FloatBarrier
-%\centerline{http://cs231n.github.io/convolutional-networks/}
+\centerline{(\url{http://cs231n.github.io/convolutional-networks})}
 
 Có 2 loại pooling layer phổ biến là: max pooling và average pooling.
 \FloatBarrier
@@ -715,7 +762,7 @@ Trong neural network, việc cuối cùng là tối ưu các tham số để là
 \FloatBarrier
 
 \begin{itemize}
-\item[$\blacksquare$] Một số đặc điểm của Drop-Out:
+\item[$\square$] Một số đặc điểm của Drop-Out:
 \item Dropout ép mạng neural phải tìm ra nhiều robust features hơn, với đặc điểm là chúng phải hữu ích hơn, tốt hơn, ngon hơn khi kết hợp với nhiều neuron khác.
 \item Dropout đòi hỏi phải gấp đôi quá trình huấn luyện để đạt được sự hội tụ. Tuy nhiên, thời gian huấn luyện cho mỗi epoch sẽ ít hơn.
 \item Với $H$ unit trong mô hình, mỗi unit đều có xác xuất bị bỏ qua hoặc được chọn, chúng ta sẽ có $2^{H}$ mô hình có thể có. Trong pha test, toàn bộ network được sử dụng và mỗi hàm activation được giảm đi với hệ số $p$.
@@ -724,7 +771,7 @@ Trong neural network, việc cuối cùng là tối ưu các tham số để là
 
 \subsection{Fully connected layer (Dense layer)}
 \label{ss:dense}
-Sau khi ảnh được truyền qua nhiều convolutional layer và pooling layer thì model đã học được tương đối các đặc điểm của ảnh (ví dụ mắt, mũi, khung mặt,…) thì tensor của output của layer cuối cùng, kích thước $H*W*D$, sẽ được chuyển về 1 vector kích thước $(H*W*D)$.
+Sau khi ảnh được truyền qua nhiều convolutional layer và pooling layer thì model đã học được tương đối các đặc điểm của ảnh (ví dụ mắt, mũi, khung mặt,…) thì tensor của output của layer cuối cùng, kích thước $H$ x $W$ x $D$, sẽ được chuyển về 1 vector kích thước $(H$ x $W$ x $D)$.
 
 \FloatBarrier
 \begin{figure}[htp]
@@ -742,7 +789,7 @@ Sau khi mạng CNNs được học qua các lớp phía trước, ta thu đượ
 $$a_i = \frac{\exp(z_i)}{\sum_{j=1}^C \exp(z_j)}, ~~ \forall i = 1, 2, \dots, C$$
 
 \begin{itemize}
-\item[$\blacksquare$] Ở đây, ta có nhận xét:
+\item[$\square$] Ở đây, ta có nhận xét:
 \item Giá trị $z_i = \mathbf{w}_i^T\mathbf{x}$ càng lớn thì xác suất dữ liệu rơi vào class $i$ càng cao.
 \item Các $a_i$ lớn hơn 0 và có tổng bằng 1.
 \end{itemize}
@@ -753,12 +800,13 @@ Như vậy hàm softmax đã tính tất cả các $a_i$ dựa vào tất cả c
 \FloatBarrier
 \begin{figure}[htp]
 \begin{center}
-\includegraphics[scale=0.16]{chap2/c2_figs/softmax.png}
+\includegraphics[scale=0.15]{chap2/c2_figs/softmax.png}
 \end{center}
-\caption{Một số ví dụ về đầu vào và đầu ra của hàm softmax \\ Nguồn: \url:{https://machinelearningcoban.com}}
+\caption{Một số ví dụ về đầu vào và đầu ra của hàm softmax}
 \label{fig:softmax}
 \end{figure}
 \FloatBarrier
+\centerline{(Nguồn: \url:{https://machinelearningcoban.com})}
 
 Softmax đặc biệt được sử dụng nhiều làm hàm kích hoạt ở lớp output trong bài toán phân loại qua mạng CNNs. Những lớp phía trước có thể được coi như một bộ Feature Extractor, lớp cuối cùng của DNN cho bài toán classification thường là Softmax Regression.
 

@@ -1,8 +1,8 @@
-\chapter{ƯỚC TÍNH TỌA ĐỘ KHUNG XƯƠNG TỪ ẢNH RGB}
+\chapter{ƯỚC TÍNH ĐẶC TRƯNG KHUNG XƯƠNG TỪ ẢNH RGB}
 \label{s:pose estimate}
-Trong nội dung này, em sẽ trình bày hai phương pháp đề xuất để trích xuất đặc trưng khung xương. Đó là trích xuất đặc trưng từ thiết bị Kinect và trích xuất đặc trưng từ mạng neuron network. Phương pháp trích xuất đặc trưng khung xương từ ảnh RGB qua mạng NN dựa trên mạng mobilenet v2 được áp dụng trong đề tài vì tính khả thi, có thể ứng dụng được trong đời sống cao hơn so với phương pháp sử dụng camera Kinect.
+Trong nội dung này, luận văn sẽ trình bày hai phương pháp đề xuất để trích xuất đặc trưng khung xương hay còn gọi là ước tính tư thế con người (pose estimate). Đó là trích xuất đặc trưng từ thiết bị Kinect và trích xuất đặc trưng từ mạng neural network. Phương pháp trích xuất đặc trưng khung xương từ ảnh RGB qua mạng NN dựa trên mạng mobilenet\_v2 được áp dụng trong đề tài vì tính khả thi, có thể ứng dụng được trong đời sống cao hơn so với phương pháp sử dụng camera Kinect.
 
-\section{ƯỚC TÍNH DỰA TRÊN CAMERA ĐỘ SÂU KINECT}
+\section{ƯỚC TÍNH DỰA TRÊN CẢM BIẾN KINECT}
 \label{ss:kinect}
 \subsection{Giới thiệu camera cảm biến độ sâu Kinect của Microsoft}
 Kinect là một thiết bị đầu vào,là cảm biến chuyển động do hãng Microsoft sản xuất dành cho Xbox 360 và máy tính Windows. Dựa trên một webcam kiểu add-on ngoại vi cho Xbox 360, nó cho phép người dùng điều khiển và tương tác với Xbox 360 mà không cần phải dùng đến một bộ điều khiển tay cầm, thông qua một giao diện người dùng tự nhiên bằng cử chỉ và lệnh nói. Thiết bị được giới thiệu vào tháng 11 năm 2010 như một phụ kiện của Xbox 360. Cảm biến chiều sâu (depth sensor) được sử dụng trong Kinect được lấy từ việc trích xuất camera hồng ngoại. 
@@ -51,10 +51,11 @@ Cơ chế hoạt động: Ban đầu, bộ phần phát tia hồng ngoại sẽ 
 \begin{center}
 \includegraphics[scale=0.15]{chap3/c3_figs/TrichKhungXuong.png}
 \end{center}
-\caption{Sơ đồ khối thuật toán trích xuất SJM của thiết bị Kinect \\(Nguồn : "Nhận dạng ngôn ngữ ký hiệu cho người câm" - B.V Phúc, H.C Thịnh)}
+\caption{Sơ đồ khối thuật toán trích xuất SJM của thiết bị Kinect}
 \label{fig:TrichKhungXuong}
 \end{figure}
 \FloatBarrier
+\centerline{(Nguồn : "Nhận dạng ngôn ngữ ký hiệu cho người câm" - B.V Phúc, H.C Thịnh)}
 
 \underline{\textbf{Dữ liệu ngõ vào}}
 
@@ -76,20 +77,20 @@ Sau khi ước tính tọa độ khung xương bằng Kinect, ta thu được t�
 \begin{center}
 \includegraphics[scale=0.4]{chap3/c3_figs/kinectskeleton.png}
 \end{center}
-\caption{Khung xương được trích xuất từ Kinect \\(Nguồn : \url{https://www.zonetrigger.com/)}}
+\caption{Khung xương được trích xuất từ Kinect}
 \label{fig:skeleton_kinect}
 \end{figure}
 \FloatBarrier
-
-Việc ước tính tọa độ khung xương dựa trên camera Kinect mang nhiều ưu điểm như tốc độ ước tính nhanh do phần cứng đã tối ưu việc xử lý khớp xương. Kết quả ước tính trên không gian 3 chiều mang độ chính xác cao giúp cho các ứng dụng dựa trên ước tính tọa độ khung xương thực hiện tốt. Tuy nhiên luận văn áp dụng mô hình ước tính tọa độ khung xương dựa vào mạng NN giúp áp dụng vào các thiết bị camera RGB bình thường dễ dàng hơn. Phần tiếp theo luận văn xin trình bày về mạng Neural network này.
+\centerline{(Nguồn : \url{https://www.zonetrigger.com/)}}
+Việc ước tính tọa độ khung xương dựa trên camera Kinect mang nhiều ưu điểm như tốc độ ước tính nhanh do phần cứng đã tối ưu việc xử lý khớp xương. Kết quả ước tính trên không gian 3 chiều mang độ chính xác cao giúp cho các ứng dụng dựa trên ước tính tọa độ khung xương thực hiện tốt. Tuy nhiên luận văn áp dụng mô hình ước tính tọa độ khung xương dựa vào mạng NN giúp áp dụng trên các thiết bị camera RGB bình thường dễ dàng hơn. Phần tiếp theo luận văn xin trình bày về mạng Neural network này.
 
 \section{ƯỚC TÍNH TỪ ẢNH 2D DỰA TRÊN MẠNG NEURAL NETWORK}
 \label{ss:2Dpose}
 \subsection{Tổng quan phương pháp}
 \label{sss:tong_quan_2D_pose}
-Phương pháp trích xuất hình dáng khung xương được áp dụng từ bài báo "Realtime Multi-Person 2D Pose Estimation using Part Affinity Fields" \cite{cao2017realtime} sử dụng phương pháp bottom-up ước tính tọa độ khung xương từ ảnh sang không gian 2D. Tuy có rất nhiều mạng pose estimate cả 2D lẫn 3D và cả dense pose(ước tính toàn bộ hình dáng cơ thể người) nhưng phương pháp ước tính 2D được chọn vì tốc độ xử lý có thể đáp ứng realtime và hoạt động trên các thiết bị cấu hình thấp. Ngoài ra phương pháp này có thể ước tính tọa độ khung xương nhiều người cùng một lúc 
+Phương pháp trích xuất hình dáng khung xương được áp dụng từ bài báo "Realtime Multi-Person 2D Pose Estimation using Part Affinity Fields" \cite{cao2017realtime}. Nghiên cứu sử dụng phương pháp bottom-up ("từ dưới lên"-tạm dịch) ước tính khung xương từ ảnh RGB sang tạo độ trong không gian 2D. Tuy có rất nhiều mạng ước tính tư thế con người trong không gian 2D, 3D và cả dense pose(ước tính toàn bộ hình dáng cơ thể người) nhưng phương pháp ước tính 2D được chọn vì tốc độ xử lý cao có thể đáp ứng realtime (xử lý thời gian thực) và hoạt động trên các thiết bị cấu hình thấp. Ngoài ra phương pháp này có thể ước tính tọa độ khung xương nhiều người cùng một lúc.
 
-Mạng sử dụng  detect tư thế 2D song song của nhiều người trong một ảnh. Phương pháp sử dụng một đại diện không có thông số "trường ái lực một phần" (PAFs) được tham khảo để học cách liên kết các bộ phần cơ thể với mỗi cá nhân trong ảnh. Mô hình mã hóa toàn bộ bối cảnh, cho phép một bước phân tích từ dưới lên trên (bước này có độ chính xác cao, realtime và thực hiện song song nhiều người). Mô hình được thiết kế để kết hợp tìm vị trí các phần và liên kết giữa chúng thông qua 2 nhánh của quá trình dự đoán chuỗi giống nhau. Phương pháp này đã đạt giải nhất tại cuộc thi COCO 2016 keypoints challenge và vượt trội hơn so với kết quả trước đó trong MPII Multi-Person benchmark về performance và sự hiệu quả.
+Mạng NN được sử dụng dự đoán tư thế 2D song song của nhiều người trong một ảnh. Phương pháp sử dụng một đại diện không có thông số gọi là Part Affinity Fields (PAFs -tạm dịch là "trường tương đồng một phần") được tham khảo để học cách liên kết các bộ phận cơ thể của mỗi cá nhân trong ảnh. Mô hình mã hóa toàn bộ bối cảnh, cho phép một bước phân tích bottom-up, bước này có độ chính xác cao, có thể xử lý thời gian thực và thực hiện song song nhiều người. Mô hình được thiết kế để kết hợp tìm vị trí các bộ phận và liên kết giữa chúng thông qua 2 nhánh của quá trình dự đoán chuỗi giống nhau.
 
 %\subsection{Kiến trúc mạng}
 %\label{sss:method}
@@ -99,12 +100,12 @@ Mạng sử dụng  detect tư thế 2D song song của nhiều người trong m
 \begin{center}
 \includegraphics[scale=0.3]{chap3/c3_figs/pipeline.png}
 \end{center}
-\caption{Tổng thể kiến trúc}
+\caption{Tổng quan phương pháp}
 \label{fig:pipeline}
 \end{figure}
 \FloatBarrier
 
-Hình \ref{fig:pipeline} mình họa toàn bộ nội dung phương pháp. Hệ thống lấy đầu vào, một ảnh màu có kích thước $w*h$ (hình \ref{fig:pipeline}a) và tạo ra ngõ ra, tọa độ của những keyponts cho mỗi cá nhân trong ảnh (hình \ref{fig:pipeline}e). Đầu tiên, một mạng CNN đồng thời dự đoán một loạt những confidence maps (cfm) S của những vị trí bộ phận cơ thể (hình \ref{fig:pipeline}b) và một loạt những miền vector 2D (vf) L của part affinities, cái mà mã hóa độ liên kết giữa các phần cơ thể (hình \ref{fig:pipeline}c). Tập hợp  có J cfm, một map cho mỗi bộ phận, trong đó . Tập hợp  có C vf, một cho mỗi chi, trong đó , mỗi vị trí ảnh trong Lc mã hóa một vector 2D (được show trong hình 1). Cuối cùng, cfm và affinity fields được phân tích bởi suy luận tham lam (hình \ref{fig:pipeline}d) để tạo ra các keypoints 2D cho tất cả người trong ảnh.
+Hình \ref{fig:pipeline} mình họa toàn bộ nội dung phương pháp. Hệ thống lấy đầu vào là một ảnh màu có kích thước $w$ x $h$ (hình \ref{fig:pipeline}a) và tạo ra ngõ ra, tọa độ của những keypoints (điểm khớp xương) cho mỗi cá nhân trong ảnh (hình \ref{fig:pipeline}e). Đầu tiên, một mạng CNN đồng thời dự đoán một loạt những confidence maps (cfm) S của những vị trí bộ phận cơ thể (hình \ref{fig:pipeline}b) và một loạt những miền vector 2D (vf) L của part affinities, cái mà mã hóa độ liên kết giữa các phần cơ thể (hình \ref{fig:pipeline}c). Tập hợp  có J cfm, một map cho mỗi bộ phận, trong đó . Tập hợp  có C vf, một cho mỗi chi, trong đó , mỗi vị trí ảnh trong $L_c$ mã hóa một vector 2D (được show trong hình 1). Cuối cùng, cfm và affinity fields được phân tích bởi suy luận tham lam (greedy inference) (hình \ref{fig:pipeline}d) để tạo ra các keypoints 2D cho tất cả người trong ảnh.
 
 Phương pháp này đưa toàn bộ ảnh đầu vào qua một mạng CNN 2 nhánh để đồng thời dự đoán những confidence map cho sự detect phần cơ thể, thể hiện trong hình \ref{fig:pipeline}b, và part affinity fields cho sự liên kết các phần, thể hiện trong hình \ref{fig:pipeline}c. Bước phân tích thể hiện một loạt những liên kết giữa hai điểm (liên kết lưỡng cực) để liên kết những phần cơ thể (\ref{fig:pipeline}d). Cuối cùng, chúng được lắp ráp chúng lại với nhau tạo thành những tư thế cơ thể hoàn chỉnh cho tất cả những người trong ảnh (\ref{fig:pipeline}e).
 
@@ -123,7 +124,7 @@ Phương pháp này đưa toàn bộ ảnh đầu vào qua một mạng CNN 2 nh
 
 
 \begin{itemize} % chấm đầu dòng
-\item Cuối cùng, \textbf{Confidence Maps} và \textbf{Part Affinity Fields} được xử lý bằng thuật toán tham lam để có được tư thế cho mỗi người trong ảnh.
+\item Cuối cùng, \textbf{Confidence Maps} và \textbf{Part Affinity Fields} được xử lý bằng thuật toán tham lam (greedy algorithm) để có được tư thế cho mỗi người trong ảnh.
 \end{itemize}
 
 \subsection{Giải thích các phần}
@@ -154,39 +155,121 @@ Nếu một pixel nằm trên một chi (phần cơ thể), giá trị trong $L_
 \end{figure}
 \FloatBarrier
 
+Trạng thái đầu tiên của những bước dự đoán các \textbf{PAFs} $\mathbf{L^{1}}$ trong khi đó tập cuối cùng dự đoán confidence maps $\mathbf{S^t}$. Những dự đoán của mỗi bước và những đặc trưng của ảnh tương ứng được ghép cho bước tiếp theo. Tích chập với kernel 7 từ phương pháp gốc được thay thế với 3 lớp tích chập kernel 3, cái mà được ghép nối cuối cùng.
+
 \textbf{CNN nhiều giai đoạn gồm các bước như sau:}
 \begin{itemize}
 \item Tính toán các \textbf{part affinity fields (PAFs)}, $ L^{1}$ từ feature maps của mạng cơ sở $F$. Cho $\phi^1$ là mạng CNN mạng CNN tại bước 1. 
-$$L^1 = \phi^1(F) $$
-
+\begin{align}
+L^1 = \phi^1(F)
+\end{align}
 \item Giai đoạn $t$ đến giai đoạn $T_P$: Tinh chỉnh dự đoán của \textbf{PAF} từ giai đoạn trước bằng cách sử dụng bản đồ tính năng $F$ và các \textbf{PAF} trước đó $(L^{t-1})$.Với $\phi^t$ là CNN ở giai đoạn t.
-$$L^t = \phi^t(F, L^{t-1}), \forall 2 \leq t \leq T_P$$
+\begin{align}
+L^t = \phi^t(F, L^{t-1}), \forall 2 \leq t \leq T_P
+\end{align}
 \item Sau khi $T_P$ lặp đi lặp lại, quá trình được lặp lại việc phát hiện \textbf{confidence maps} , bắt đầu trong dự đoán PAF cập nhật mới nhất . $\rho^t$ là CNN ở giai đoạn $t$. Quá trình được lặp lại cho $T_C$.
-$$S^{T_P} = \rho^t(F, L^{T_P}), \forall t = T_P$$
-$$S^t = \rho^t(F, L^{T_P}, S^{t-1}), \forall T_P \leq t \leq T_P + T_C$$
+\begin{align}
+S^{T_P} = \rho^t(F, L^{T_P}), \forall t = T_P
+S^t = \rho^t(F, L^{T_P}, S^{t-1}), \forall T_P \leq t \leq T_P + T_C
+\end{align}
 
 \item Ma trận $S$ và $L$ cuối cùng là \textbf{Confidence Maps} và \textbf{part affinity fields (PAFs)} sẽ được xử lý thêm bằng thuật toán tham lam.
 
 \end{itemize}
 \end{itemize}
 \textbf{Chú thích:}
-CNN nhiều giai đoạn này là từ phiên bản tạp chí 2018. Trong phiên bản CVPR 2017 gốc, họ đã tinh chỉnh cả bản đồ độ tin cậy và các trường mối quan hệ một phần (PAF) ở mỗi giai đoạn. Do đó, họ đòi hỏi nhiều tính toán và thời gian hơn ở mỗi giai đoạn. Trong cách tiếp cận mới, tác giả nhận thấy rằng cách tiếp cận mới làm tăng cả tốc độ và độ chính xác tương ứng 200\% và 7\%.
+CNN nhiều giai đoạn này là từ phiên bản tạp chí 2018. Trong phiên bản CVPR 2017 gốc, họ đã tinh chỉnh cả bản đồ độ tin cậy và các trường tương đồng một phần (PAF) ở mỗi giai đoạn. Do đó, họ đòi hỏi nhiều tính toán và thời gian hơn ở mỗi giai đoạn. Trong cách tiếp cận mới, tác giả nhận thấy rằng cách tiếp cận mới làm tăng cả tốc độ và độ chính xác tương ứng 200\% và 7\%.
 
-\subsection{Kiến trúc mạng}
-\label{sss:structure}
+\subsection{Cách thức hoạt động}
+\label{sss:work}
 \subsubsection{Phát hiện và liên kết đồng thời}
 
-Kiến trúc của mạng, được show trong hình \ref{fig:structure}, dự đoán đồng thời những cfm và affinity fields \textbf{(af)} cái mà mã hóa liên kết giữa các phần. Mạng được tách thành 2 nhánh: Nhánh trên, màu hường da, dự đoán những \textbf{cfm}, và nhánh dưới, màu xanh, dự đoán những \textbf{af}. Mỗi nhánh là một kiến trúc dự đoán lặp lại, theo như \ref{wei2016convolutional}, nó tinh chỉnh những dự đoán qua các giai đoạn liên tiếp $t \in {{1 \ldots T}}$,  với giám sát trung gian ở từng giai đoạn.
+Kiến trúc của mạng, được show trong hình \ref{fig:structure}, dự đoán đồng thời những cfm và affinity fields \textbf{(AF)} cái mà mã hóa liên kết giữa các phần. Mạng được tách thành 2 nhánh: Nhánh trên, màu hường da, dự đoán những \textbf{CFM}, và nhánh dưới, màu xanh, dự đoán những \textbf{AF}. Mỗi nhánh là một kiến trúc dự đoán lặp lại, theo như \cite{wei2016convolutional}, nó tinh chỉnh những dự đoán qua các giai đoạn liên tiếp $t \in {{1 \ldots T}}$,  với giám sát trung gian ở từng giai đoạn liên tiếp.
 
 \FloatBarrier
 \begin{figure}[htp]
 \begin{center}
 \includegraphics[scale=0.45]{chap3/c3_figs/structure.png}
 \end{center}
-\caption{Kiến trúc của mạng CNN nhiều bước 2 nhánh. Mỗi bước trong nhánh đầu tiên dự đoán những $CFM S^{t}$, và mỗi bước trong nhánh thứ 2 dự đoán $PAFs L^{t}$. Sau mỗi bước, những dự đoán từ 2 nhánh, cùng với những đặc trưng ảnh, được nối lại cho bước tiếp theo.}
+\caption{Kiến trúc của mạng CNN nhiều bước 2 nhánh}
 \label{fig:structure}
 \end{figure}
 \FloatBarrier
+
+Trong cấu trúc này, mỗi bước trong nhánh đầu tiên dự đoán những cfm $\mathbf{S^{t}}$, và mỗi bước trong nhánh thứ 2 dự đoán $PAFs$ $\mathbf{L^{t}}$. Sau mỗi bước, những dự đoán từ 2 nhánh, cùng với những đặc trưng ảnh, được nối lại cho bước tiếp theo.
+
+Đầu tiên, ảnh được phân tích bởi một mạng tích chập (Khởi tạo bởi 10 lớp đầu tiên của Mobilenet\_v2 \cite{sandler2018mobilenetv2} và hoàn thiện), việc tạo một tập hợp những feature map $F$ là ngõ vào đến bước đầu tiên của mỗi nhánh. Tại bước đầu tiên, mạng tạo ra một tập những cfm $S^1 =  \rho ^{1}(F)$ và một tập những PAFs $L^1 =   \phi  ^{1}(F)$ , trong đó $\rho ^{1}$ và $\phi  ^{1}$ là những mạng CNN cho suy luận tại bước 1. Trong mỗi bước tiếp theo, những dự đoán từ cả những nhánh ở bước trước, cùng với những đặc trưng ảnh gốc $F$, được nối và sử dụng để tạo ra các dự đoán được tinh chỉnh.
+\begin{align}
+S^t =  \rho ^{1}(F, S^{t-1},L^{t-1}),  \forall t  \geq 2
+L^t =  \phi ^{1}(F, S^{t-1},L^{t-1}),  \forall t  \geq 2
+\end{align}
+Trong đó $\rho^t$ và $\phi^t$ là những mạng CNN cho suy luận ở bước t.
+
+\FloatBarrier
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[scale=0.6]{chap3/c3_figs/1.png}
+\end{center}
+\caption{Những cfm của cổ tay phải(hàng trên) và những PAF (hàng dưới) của cánh tay phải qua các bước.}
+\label{fig:1}
+\end{figure}
+\FloatBarrier
+
+Hình \ref{fig:1} mô tả sự tinh chỉnh của những cfm và những af khi trải qua các bước. Để hướng dẫn mạng dự đoán lặp lại những cfm của các phần cơ thể trong nhánh đầu tiên và PAFs trong nhánh thứ 2, phương pháp áp dụng 2 hàm loss ở cuối mỗi bước, một ở mỗi nhánh tương ứng. Sử dụng một loss $L_2$ giữa những dự đoán được ước tính và những bản đồ thực địa và các miền. Ở đây, cân nhắc những hàm loss không gian để giải quyết những vấn đề thực tế, cái mà một vài tập dataset không hoàn toàn gắn nhãn tất cả những người. Cụ thể, hàm los trong cả 2 nhánh ở bước t 
+:
+
+\begin{align}
+	f^{S}_t =   \sum\nolimits_{j=1}^{J} W(p).||S^{t}_j(p) - S^*_j(p) ||^2_2 \\
+	f^{L}_t =   \sum\nolimits_{c=1}^{C} W(p).||L^{t}_c(p) - L^*_c(p) ||^2_2
+\end{align}
+
+Trong đó, $S^*_j$ là là cfm một phần groundtruth(kết quả chính xác), $L^*_c$ là miền vector liên kết một phần groundtruth, W là một mặt nạ nhị phân với W(p) = 0 khi chú thích đang biến mất tại một địa phương ảnh p. Mặt nạ được sử dụng để tránh bắt lỗi những dự đoán vị trí chính xác trong quá trình training. Sự giám sát trung gian tại mỗi bước giải quyết vấn đề gradient biến mất bằng cách thay thế gradient định kỳ. Mục tiêu cuối cùng là:
+\begin{align}
+f =  \sum_{t=1}^{T}  (f^t_S + f^t_L)
+\end{align}
+\subsubsection{Những cfm cho phát hiện bộ phận cơ thể}
+
+Để đánh giá $f_S$ trong công thức trên trong quá trình training, chúng tối tạo những cfm groundtruth $S^*$ từ những keypoints 2D được chú thích. Mỗi cfm là một đại diện 2D của độ tin cậy cái mà một bộ phận cơ thể cụ thể xảy ra tại mỗi vị trí pixel. Một các lý tưởng, nếu chỉ có một người trong ảnh, một đỉnh đơn sẽ có sẵng trong mỗi cfm nếu bộ phận tương ứng có thể nhìn thấy được; nếu nhiều người có trong ảnh thì sẽ có một đỉnh tương ứng với mỗi bộ phận nhìn thấy j cho mỗi người k.
+
+Đầu tiên, phương pháp tạo những cfm $S^*_{j,k}$ cho mỗi người k. Gọi $x_{j,k}  \in  \mathbb{R}^2$ là vị trí groundtruth của phần cơ thể j cho mỗi người k trong ảnh. Giá trị tại tọa độ $p \in \mathbb{R}^2$ trong $S^*_{j,k}$ được định nghĩa là:
+\begin{align}
+S^*_{j,k}(p) = exp(- \frac{||p-x_{j,k}||^2_2 }{ \sigma^2} )
+\end{align}
+
+Trong đó $\sigma$ điều khiển độ rộng của đỉnh. cfm groundtruth (được dự đoán bởi mạng) là một tổng hợp của những cfm cá nhân thông qua một hàm max:
+
+\begin{align}
+S^*_j(p) =   \max_{k} S^*_{j,k}(p)
+\end{align}
+
+Phương pháp lấy giá trị max của những cfm thay vì giá trị trung bình, vì vậy độ chính xác gần với những đỉnh nhưng vẫn giữ sự khác biệt, như được minh họa trong hình \ref{fig:2}:
+
+\FloatBarrier
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[scale=0.3]{chap3/c3_figs/2.png}
+\end{center}
+\caption{Phương pháp lấy giá trị max những cfm}
+\label{fig:2}
+\end{figure}
+\FloatBarrier
+
+Trong thời gian test, phương pháp dự đoán những cfm (được show trong hàng đầu tiên của hình \ref{fig:1}), và có được những candidates bộ phận cơ thể bằng cách thực hiện triệt tiêu không tối đa.
+
+\subsubsection{PAFs cho liên kết bộ phận}
+Cho một tập những bộ phận cơ thể được detect (show bằng màu đỏ và xanh trong hình \ref{fig:3}a), làm cách nào để có thể lắp ráp chúng để phù hợp với những tư thế của một số lượng người chưa xác định được? phương pháp cần một số đo tin cậy của sự liên kết cho mỗi cặp phương pháp phát hiện bộ phận cơ thể, nói cách khác là chúng thuộc cùng một người. Một cách khả thi để đo sự luên kết là để detect một trung điểm mới giữa mỗi cặp bộ phận trên một chi, và kiểm tra góc tới giữa các sự detect bộ phận ứng viên, được show trong hình \ref{fig:3}b. Tuy nhiên, khi nhiều người tụ tập cùng nhau – điều này rất dễ xảy ra – những trung điểm này thì giống như những sự liên kết sai được hỗ trợ (mô tả bởi những đường màu xanh trong hình \ref{fig:3}b). Khá nhiều liên kết sai phát sinh bởi vì hai sự giới hạn trong đại diện: (1) nó chỉ mã hóa những vị trí và không mã hóa hướng của mỗi chi; (2) nó giảm khu vực hỗ trợ của một chi thành một điểm đơn.
+
+\FloatBarrier
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[scale=0.3]{chap3/c3_figs/3.png}
+\end{center}
+\caption{Những chiến lược liên kết bộ phận}
+\label{fig:3}
+\end{figure}
+\FloatBarrier
+
+Để chỉ ra những hạn chế, phương pháp trình bày một đại diện đặc trưng mới được gọi là part affinity fields (PAFs), nó bao hàm cả thông tin về vị trí cũng như hướng trông qua khu vực hỗ trợ của chi (được thể hiện trong hình \ref{fig:3}c). Part affinity là một miền vector 2D của mỗi chi: cho mỗi pixel trong khu vực thuộc một chi cụ thể, một vector 2D mã hóa co hướng (có gốc từ một phần của chi này đến chi khác). Mỗi loại chi có một affinity field tương ứng nối hai bộ phận cơ thể được liên kết.
 
 \subsection{Phân tích nhiều người sử dụng PAFs}
 \label{ss:Multi-Person Parsing using PAFs}
@@ -289,8 +372,8 @@ Quá trình phân tích được tóm tắt thành 3 bước sau:
 	\end{itemize}
 \end{itemize}
 
-\subsection{Kết quả}
-Ảnh RGB đầu vào chứa nhiều người sau khi xử lý qua mạng ta nhận được tọa độ 18 khớp xương của từng người được vẽ ra trên ảnh đầu ra. Kết quả ước lượng có thể đáp ứng được xử lý thời gian thực (realtime) trên máy tính cấu hình thấp với FPS đạt được khoảng 2.5 -> 4(FPS). Tốc độ nhận dạng tùy thuộc vào số người trong khung hình, tốc độ xử lý sẽ càng nhanh khi số lượng người trong khung hình càng ít và ngược lại.
+\subsection{Kết quả áp dụng}
+Ảnh RGB đầu vào chứa nhiều người sau khi xử lý qua mạng ta nhận được tọa độ 18 khớp xương của từng người được vẽ ra trên ảnh đầu ra. Kết quả ước lượng có thể đáp ứng được xử lý thời gian thực (realtime) trên máy tính cấu hình thấp với FPS đạt được khoảng 2.5 -> 6(FPS). Tốc độ nhận dạng tùy thuộc vào số người trong khung hình, tốc độ xử lý sẽ càng nhanh khi số lượng người trong khung hình càng ít và ngược lại.
 
 \FloatBarrier
 \begin{figure}[htp]
@@ -303,4 +386,19 @@ Quá trình phân tích được tóm tắt thành 3 bước sau:
 \FloatBarrier
 
 \section{Kết luận}
-Ước lượng khung xương hay ước tính tư thế con người là một hướng nghiên cứu quan trọng và đầy thách thức của thị giác máy tính. Phương pháp này được khá nhiều nghiên cứu áp dụng để giải quyết nhiều bài toán khó như nhận dạng dáng đi, tư thế con người, nhận dạng hành động hay giúp robot học theo chuyển động của con người...Chương tiếp theo, luận văn sẽ trình bày về ứng dụng của ước lượng tọa độ khung xương trong nhận dạng ngôn ngữ ký hiệu, là phần nghiên cứu chính của luận văn.
+Ước lượng khung xương hay ước tính tư thế con người là một hướng nghiên cứu quan trọng và đầy thách thức của thị giác máy tính. Phương pháp này được khá nhiều nghiên cứu áp dụng để giải quyết nhiều bài toán khó như nhận dạng dáng đi, tư thế con người, nhận dạng hành động hay giúp robot học theo chuyển động của con người...Dựa vào kết quả nhận diện, phương pháp nêu trên có mốt số ưu, nhược điểm như sau:
+\begin{itemize}
+\item Ưu điểm:
+	\begin{itemize}
+	\item Phương pháp nhận diện tốt khi hình ảnh rõ nét.
+	\item Có thể xử lý nhận dạng đối với nhiều người cùng một lúc.
+	\item Tốc độ xử lý cao và có thể xử lý realtime đối với những máy tính cấu hình thấp.
+	\end{itemize}
+\item Nhược điểm:
+	\begin{itemize}
+	\item Xử lý chưa tốt khi chất lượng hình ảnh thấp.
+	\item Chỉ mới ước lượng được tư thế trên không gian 2D. Do vậy khả năng áp dụng được vào các bài toán nhận dạng khác còn hạn chế.
+	\item Mô hình cũng chưa xử lý ước lượng được tư thế bàn tay.
+	\end{itemize}
+\end{itemize}
+Chương tiếp theo, luận văn sẽ trình bày về ứng dụng của ước lượng tọa độ khung xương trong nhận dạng ngôn ngữ ký hiệu, là phần nghiên cứu chính của luận văn.

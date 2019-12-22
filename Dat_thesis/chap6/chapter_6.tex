@@ -60,8 +60,20 @@ Chương trình thực nghiệm đã nhận dạng được khá chính xác cá
 \label{fig:gui3}
 \end{figure}
 \FloatBarrier
+ 
+Kết quả khi xử lý với nhiều người trong khung hình:
+
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[scale=0.5]{chap6/c6_figs/kq.png}
+\end{center}
+\caption{Kết quả nhận dạng đối với nhiều người}
+\label{fig:kq}
+\end{figure}
+\FloatBarrier
 
 \section{Đánh giá}
+\subsection{Đánh giá mô hình nhận dạng ngôn ngữ ký hiệu}
 Khi xây dựng một mô hình Machine Learning, chúng ta cần một phép đánh giá để xem mô hình sử dụng có hiệu quả không và để so sánh khả năng của các mô hình. Trong phần này, luận văn sẽ trình bày các mô hình classification.
 
 Hiệu năng của một mô hình thường được đánh giá dựa trên tập dữ liệu kiểm thử (test data). Cụ thể, giả sử đầu ra của mô hình khi đầu vào là tập kiểm thử được mô tả bởi vector y\_pred - là vector dự đoán đầu ra với mỗi phần tử là class được dự đoán của một điểm dữ liệu trong tập kiểm thử. Ta cần so sánh giữa vector dự đoán y\_pred này với vector class thật của dữ liệu, được mô tả bởi vector y\_true. Đối với bài toán phân loại của luận văn, có 16 lớp dữ liệu được gán nhãn là tên các từ được huấn luyện.
@@ -69,21 +81,21 @@ Hiệu năng của một mô hình thường được đánh giá dựa trên t�
 
 Có rất nhiều cách đánh giá một mô hình phân lớp. Tuỳ vào những bài toán khác nhau mà chúng ta sử dụng các phương pháp khác nhau. Các phương pháp thường được sử dụng là: accuracy score, confusion matrix, ROC curve, Area Under the Curve, Precision and Recall, F1 score, Top R error, ...
 
-Trong phần này, luận văn sẽ trình bày về phương pháp đánh giá sử dụng accuracy và confusion matrix. Sau đó đánh giá mô hình của luận văn trên tập dữ liệu test data gồm gần 150 SJM đối với mỗi từ.
+Trong phần này, luận văn sẽ trình bày về phương pháp đánh giá sử dụng accuracy và confusion matrix. Sau đó đánh giá mô hình của luận văn trên tập dữ liệu test data gồm gần 400 SJM đối với mỗi từ.
 
-\subsection{Accuracy}
+\subsubsection{Accuracy}
 Cách đơn giản và hay được sử dụng nhất là accuracy (độ chính xác). Cách đánh giá này đơn giản tính tỉ lệ giữa số điểm được dự đoán đúng và tổng số điểm trong tập dữ liệu kiểm thử.
 
-Với bộ validation data, model đạt được accuracy = 0.9961
-\subsection{Confusion Matrix}
+Với bộ test data, model đạt được accuracy = 0.9961, cho thấy mô hình đã không bị overfiting và có khả năng áp dụng vào thực tế.
+\subsubsection{Confusion Matrix}
 Việc sử dụng accuracy như trên chỉ cho chúng ta biết được bao nhiêu phần trăm lượng dữ liệu được phân loại đúng mà không chỉ ra được cụ thể mỗi loại được phân loại như thế nào, lớp nào được phân loại đúng nhiều nhất, và dữ liệu thuộc lớp nào thường bị phân loại nhầm vào lớp khác. Ngoài ra đối với các bài toán thực tế nếu số lượng dữ liệu bị mất cân bằng giữa các lớp thì đại lượng accuracy chưa đủ ý nghĩa. Để có thể đánh giá được các giá trị này, chúng ta sử dụng một ma trận được gọi là confusion matrix.
 
 Về cơ bản, confusion matrix thể hiện bao nhiêu điểm thực sự thuộc vào một class, và được dự đoán là rơi vào một class. Confusion matrix là một ma trận vuông với kích thước mỗi chiều bằng số lượng các lớp dữ liệu. Giá trị tại hàng thứ $i$, cột thứ $j$ là số lượng điểm lẽ ra thuộc class $i$ nhưng được dự đoán vào class $j$. Tổng các phần tử trong toàn ma trận chính là số điểm trong tập kiểm thử. Các phần tử trên đường chéo của ma trận là số điểm được phân loại đúng của mỗi lớp dữ liệu. Từ đây có thể suy ra accuracy chính bằng tổng các phần tử trên đường chéo chia cho tổng các phần tử của toàn ma trận. Đối với bài toán trong luận văn, confusion matrix được áp dụng trên tập dữ liệu test ta được kết quả như hình \ref{fig:confusion_matrix}.
-
+\newpage
 \FloatBarrier
 \begin{figure}[htp]
 \begin{center}
-\includegraphics[scale=1]{chap6/c6_figs/confusion_matrix.png}
+\includegraphics[scale=0.25]{chap6/c6_figs/confusion_matrix1.png}
 \end{center}
 \caption{Confusion matrix của 16 lớp phân loại}
 \label{fig:confusion_matrix}
@@ -91,3 +103,42 @@ Về cơ bản, confusion matrix thể hiện bao nhiêu điểm thực sự thu
 \FloatBarrier
 
 Ta thấy rằng, confusion matrix mang nhiều thông tin hơn, giúp chúng ta xác định cụ thể model nhận diện kết quả với từng lớp như thế nào. Dựa vào confusion matrix \ref{fig:confusion_matrix} ta thấy mô hình đã nhận diện chính xác cao đối với từng lớp. Kết quả mô hình đã đạt được mục tiêu ban đầu của luận văn.
+\\[1cm]
+\subsection{Đánh giá khả năng hoạt động của ứng dụng}
+Ứng dụng sau khi được xây dựng hoàn thiện, các thử nghiệm được tiến hành để đánh giá độ chính xác, khả năng nhận diện trong các điều kiền khác nhau của mô hình. Ứng dụng đánh giá được chạy trên máy tính có cấu hình phần cứng như sau:
+
+\FloatBarrier
+\begin{table}[h]
+\centering
+\captionsetup{list=no}
+\begin{center}
+\begin{tabularx}{\columnwidth}{XX}
+Tên máy & : ROG-Strix-G531  \\
+Chip & : $Intel^{\circledR } Core^{TM} i7-9750 CPU 2.60GHz$ x 12 \\
+Card đồ họa & : NVIDIA GeForce GTX1650 \\
+Hệ điều hành & : Ubuntu 18.04 64-bit \\
+Camera & : Logitech C270 (720p/30fps)
+\end{tabularx}
+\end{center}
+\end{table}
+\FloatBarrier
+
+Sau các thử nghiệm của ứng dụng trên nhiều điều kiện khác nhau, luận văn có một số điểm rút ra như sau:
+
+\begin{itemize}
+\item[$\square$] Đối với thử nghiệm về khoảng cách, khoảng cách giữa người dùng với camera được thay đổi từ 0.5(m) $\rightarrow$ 10(m). Thử nghiệm này cho thấy:
+	\begin{itemize}
+	\item Ứng dụng nhận dạng hoạt động tốt nhất khi khoảng cách người tới camera là từ 2 $\rightarrow$ 4(m).
+	\item Khi khoảng cách quá gần (< 1m), các khớp xương cần thiết để nhận diện từ ngữ ký hiệu hoàn toàn bị khuất ra khỏi khung hình do vậy sẽ không thể nhận diện được.
+	\item Khi khoảng cách quá xa (> 10m), hình ảnh con người sẽ nhỏ do vậy mô hình dự đoán sẽ không thể xác định được hết các khớp hoặc dự đoán sai lệch đi. Các ký hiệu khó dự đoán chính xác nhất khi khoảng cách xa là : "Sài Gòn", "Vĩnh Long" và "ăn".
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+\item[$\square$] Đối với thử nghiệm về số lượng người trong khung hình, số lượng người thử nghiệm được thay đổi trong khung hình từ 0 $\rightarrow$ 3(người):
+	\begin{itemize}
+	\item Khi không có người trong hình, FPS của ứng dụng đạt ~ 30 fps(gần bằng fps của camera).
+	\item Khi có một người trong hình, FPS ứng dụng đạt 4 ~ 8(fps).
+	\item Khi có nhiều hơn 3 người trong hình, fps đạt dưới 3.
+	\end{itemize}
+\end{itemize}

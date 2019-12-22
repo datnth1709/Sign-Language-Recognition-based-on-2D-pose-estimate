@@ -2,17 +2,23 @@
 \label{s:DNN}
 Trong chương 3, thuật toán ước tính tư thế khung xương đã được trình bày chi tiết về lý thuyết và phương pháp xử lý áp dụng thuật toán. Ta thấy rằng phương pháp này hỗ trợ rất tốt cho việc ước tính nh anhtư thế khung xương trong xử lý thời gian thực. Trong chương 4 này, luận văn sẽ trình bày về đề xuất mô hình mạng DNN lấy đầu vào là toạ độ khung xương được ước tính và nhận dạng cử chỉ thời gian thực. Nội dụng chương trình bày cấu trúc mạng neural network đề xuất, cách thu thập và xử lý dữ liệu cũng như sơ đồ hoạt động chương trinh.
 \section{Tổng quan}
-Một hành động của con người được đánh giá, xem xét bằng một loạt các cử chỉ theo thời gian. Tuy nhiên, khi xem xét các hành động của con người nhằm tìm ra một cấu trúc nhất quán và có thể tạo thành mô hình thì gặp các vấn đề phức tạp sau:
+Một từ ngữ trong bộ ngôn ngữ ký hiệu của người khiếm thính sẽ được thể hiện bằng một loạt các cử chỉ theo thời gian. Tuy nhiên, khi xem xét các hành động của con người nhằm tìm ra một cấu trúc nhất quán và có thể tạo thành mô hình thì gặp các vấn đề phức tạp sau:
 
-$\bullet$ Nếu chỉ xem xét đường bao của con người, các phần cơ thể của con người quá gần nhau để có thể xác định được chính xác phần cơ thể cần thiết.
+$\bullet$ Các từ ngữ ký hiệu không có một cấu trúc hay quy luật nào như chữ viết và tiếng nói. Đối với chữ viết và tiếng nói các dựa trên các chữ cái, dấu câu và âm tiết. Do vậy chỉ cần nhận diện các thành phần đơn vị của nó. Đối với ngôn ngữ ký hiệu, mỗi một từ ngữ sẽ có một cử chỉ khác nhau và các cử chỉ đó không liên quan đến nhau. Do vậy để nhận diện được ngôn ngữ ký hiệu, cần phải nhận diện từng từ riêng biệt.
 
-$\bullet$ Hình dạng của cử chỉ (đường bao con người, màu sắc các phần cơ thể), vị trí, loại và kiểu của cử chỉ rất phức tạp. Việc xem xét một mô hình có thể biểu diễn toàn bộ các hành động ngôn ngữ ký hiệu hầu như không thể xem xét nên trong phạm vi luận văn này chỉ xem xét đến việc một mô hình có thể biểu diễn 16 cử chỉ cần sự phối hợp cả hai tay và các cử chỉ tương đối khác nhau (\textbf{Xin chào, Tôi, thành phố, vui vẻ, ẵm em, Sài Gòn, Vĩnh Long, đi bộ, mùa màng, đói bụng, yêu, ăn, biểu quyết, đứng yên, hẹp, rộng}).
+$\bullet$ Để diễn đạt ngôn ngữ của người khiếm thính. Số lượng từ ngữ trong bộ ngôn ngữ ký hiệu sẽ rất nhiều, lên đến hàng trăm ngàn từ. Do vậy không thể xem xét nhận diện tất cả các từ ngữ đó được.
 
-$\bullet$ Các hành động của con người có thể giống nhau, tuy nhiên nếu việc quan sát hoặc camera quan sát nằm ở vị trí khác nhau, hướng, độ cao,... đều ảnh hưởng đến khả năng nhận diện hành động của con người. Luận văn đã nêu được phương pháp để có thể phát triển cho việc xác định hành động của con người khi vị trí của camera thay đổi. Tuy nhiên việc kiểm chứng khả năng hoạt động ở các vị trí camera khác nhau sẽ được xem xét ở tương lai.
+$\bullet$ Với việc ước tính tọa độ khung xương trong không gian 2D. Các hành động của con người có thể giống nhau, tuy nhiên nếu việc quan sát hoặc camera quan sát nằm ở vị trí khác nhau, hướng, độ cao,... đều ảnh hưởng đến khả năng nhận diện hành động của con người.
+
+
+$\bullet$ Ngôn ngữ ký hiệu của người khiếm thính, để diễn đạt được không những cần phải thể hiện qua tư thế mà còn cần phải thể hiện qua cử động bàn tay và nét mặt. Đối với phạm vi luận văn này chỉ hướng đến phân tích về tư thế con người.
 
 $\bullet$ Nếu một phần cơ thể bị che khuất bởi các vật thể thì việc xác định hành động của con người sẽ gặp khó khăn hơn rất nhiều so với trường hợp không bị che khuất, phạm vi luận văn không xem xét đến vấn đề này. Tuy nhiên đây là một điểm cần xem xét đến để có thể hoàn thiện hệ thống nhận diện cử chỉ trong tương lai.
+
+Đố với những vấn đề trên, mô hình nhận dạng được xây dựng có đặc điểm như sau. Trong các từ ngữ ký hiệu, nhận thấy có những từ ngữ phải thể hiện qua nhiều tư thế, cử chỉ tay liên tiếp nhau. Nhưng có những từ chỉ cần đưa về một tư thế hoặc một tư thế đó nhưng có sự dao động của một số bộ phận. Trong phạm vi luận văn này tập trung nhận dạng những từ ngữ với tư thế cố định đó. Mô hình xây dựng sẽ nhận dạng 16 cử chỉ với tư thế cố định và các cử chỉ tương đối khác nhau: (\textbf{Xin chào, Tôi, thành phố, vui vẻ, ẵm em, Sài Gòn, Vĩnh Long, đi bộ, mùa màng, đói bụng, yêu, ăn, biểu quyết, đứng yên, hẹp, rộng}).
+
 \section{Thu thập dữ liệu}
-Dữ liệu đầu vào là tọa độ của 18 khớp xương được detect từ mạng mobilenet. Các khớp xương được xuất ra từ mạng được đánh số thứ tự từ 0 tới 17. Các khớp xương cụ thể được thể hiện trong bảng \ref{table:joints} và trong hình \ref{fig:joints}.
+Dữ liệu đầu vào là tọa độ của 18 khớp xương được dự đoán từ mạng ước tính tư thế khung xương từ chương 3. Các khớp xương được xuất ra từ mạng được đánh số thứ tự từ 0 tới 17. Các khớp xương cụ thể được thể hiện trong bảng \ref{table:joints} và trong hình \ref{fig:joints}.
 
 
 \begin{table}[h]
@@ -20,45 +26,27 @@ Dữ liệu đầu vào là tọa độ của 18 khớp xương được detect 
 \label{table:joints}
 \centering
 \begin{center}
-\begin{tabular}{|c|p{9cm}|} 
+\begin{tabular}{|c|c||c|c|} 
  \hline
-Số thứ tự khớp xương  & Vị trí \\
+Số thứ tự khớp xương  & Vị trí & Số thứ tự khớp xương & Vị trí\\
  \hline
- 0 & Mũi\\
+ 0 & Mũi & 9 & Đầu gối phải\\
  \hline 
- 1 & Cổ\\
+ 1 & Cổ & 10 & Cổ chân phải\\
  \hline 
- 2 & Vai phải\\
+ 2 & Vai phải & 11 & Hông trái\\
  \hline
- 3 & Khủy tay phải \\
+ 3 & Khủy tay phải & 12 & Đầu gối trái \\
  \hline 
- 4 & Cổ tay phải\\
+ 4 & Cổ tay phải & 13 & Cổ chân trái \\
  \hline
- 5 & Vai trái\\
+ 5 & Vai trái & 14 & Mắt phải \\
  \hline
- 6 & Khủy trái\\
+ 6 & Khủy trái & 15 & Mắt trái \\
  \hline
- 7 & Cổ tay trái\\
+ 7 & Cổ tay trái & 16 & Tai phải \\
  \hline
- 8 & Hông phải\\
- \hline
- 9 & Đầu gối phải\\
- \hline
- 10 & Cổ chân phải\\
- \hline
- 11 & Hông trái\\
- \hline
- 12 & Đầu gối trái\\
- \hline
- 13 & Cổ chân trái\\
- \hline
- 14 & Mắt phải\\
- \hline
- 15 & Mắt trái\\
- \hline
- 16 & Tai phải\\
- \hline
- 17 & Tai trái\\
+ 8 & Hông phải & 17 & Tai trái\\
  \hline
 \end{tabular}
 \end{center}
@@ -69,30 +57,36 @@ Số thứ tự khớp xương  & Vị trí \\
 \begin{center}
 \includegraphics[scale=0.6]{chap4/c4_figs/joints_order.png}
 \end{center}
-\caption{Sơ đồ khớp xương xuất ra từ mạng mobilenet}
+\caption{Sơ đồ khớp xương xuất ra từ mạng ước tính tư thế}
 \label{fig:joints}
 \end{figure}
 \FloatBarrier
 
-Đầu tiên người thu thập dữ liệu đứng trước camera, thực hiện hành động thể hiện từ cần huấn luyện. Chương trình thu thập dữ liệu sẽ xuất ra tọa độ khung xương sau khi xử lý qua mạng pose estimate. Sau đó lưu các tọa độ khớp xương cùng với nhãn của hành động vào file "data.csv" để sau đó đưa vào train. Hình \ref{fig:collect_data} và \ref{fig:collect_data1} thể hiện quá trình khi thu thập dữ liệu.
+Đầu tiên người thu thập dữ liệu đứng trước camera, thực hiện hành động thể hiện từ cần huấn luyện. Chương trình thu thập dữ liệu sẽ xuất ra tọa độ khung xương sau khi xử lý qua mạng pose estimate. Sau đó lưu các tọa độ khớp xương cùng với nhãn của hành động vào file "data.csv" để sau đó đưa vào huấn luyện. Hình \ref{fig:collect_data} thể hiện quá trình khi thu thập dữ liệu.
+
+Để đảm bảo tính đa dạng của dữ liệu, các SJM được thu thập từ 5 người cao thấp khác nhau. Mỗi ký từ ngữ ký hiệu sẽ thu thập 800 SJM  để huấn luyện và 400 SJM để đánh giá mô hình.
 
 \FloatBarrier
 \begin{figure}[htp]
 \begin{center}
 \includegraphics[scale=0.4]{chap4/c4_figs/collect_data.png}
 \end{center}
-\caption{Giao diện thu thập dữ liệu (khi bắt đầu ghi dữ liệu)}
+\caption{Giao diện thu thập dữ liệu(khi bắt đầu ghi dữ liệu)}
 \label{fig:collect_data}
 \end{figure}
-
-\begin{figure}[htp]
-\begin{center}
-\includegraphics[scale=0.4]{chap4/c4_figs/collect_data1.png}
-\end{center}
-\caption{Giao diện thu thập dữ liệu (khi đã thu thập đủ dữ liệu)}
-\label{fig:collect_data1}
-\end{figure}
 \FloatBarrier
+
+\newpage
+
+%\FloatBarrier
+%\begin{figure}[htp]
+%\begin{center}
+%\includegraphics[scale=0.35]{chap4/c4_figs/collect_data1.png}
+%\end{center}
+%\caption{Giao diện thu thập dữ liệu (khi đã thu thập đủ dữ liệu)}
+%\label{fig:collect_data1}
+%\end{figure}
+%\FloatBarrier
 
 \section{Xử lý dữ liệu đầu vào}
 Dữ liệu sau khi thu thập ban đầu bao gồm tất cả tọa độ các khớp xương ứng các hành động cần nhận dạng. Tuy nhiên khi huấn luyện bộ nhận diện ngôn ngữ ký hiệu ta cần phải xử lý lại dữ liệu khớp xương đã thu thập được. Quá trình xử lý trải qua 2 phần: Loại bỏ các phần khớp xương dư thừa, sau đó chuẩn hóa lại các vector SJM.
@@ -101,22 +95,12 @@ Dữ liệu sau khi thu thập ban đầu bao gồm tất cả tọa độ các 
 Ngôn ngữ ký hiệu với đặc trưng là sự phối hợp phần trên cơ thể với hai tay để diễn đạt từ ngữ mong muốn. Do đó việc xem xét đến các khớp xương phần dưới cơ thể là không cần thiết. Phần xử lý này, đề tài đã loại bỏ các tọa độ SJM dư thừa, chỉ giữ lại 10 điểm khớp xương cần thiết cho việc nhận diện: \textbf{Mũi, Cổ, Vai trái, khuỷu tay trái, Cổ tay trái, Vai phải, Khủy tay phải, Cổ tay phải, hông phải và hông trái} như thể hiện trong hình \ref{fig:joints} và bảng \ref{table:joints_choose}
 
 \FloatBarrier
-\begin{figure}[htp]
-\begin{center}
-\includegraphics[scale=1]{chap4/c4_figs/joints_choose.png}
-\end{center}
-\caption{Sơ đồ khớp xương sau khi loại bỏ các phần không cần thiết}
-\label{fig:joints}
-\end{figure}
-\FloatBarrier
-
-\FloatBarrier
 \begin{table}[h]
 \caption{Các khớp xương được giữ lại}
 \label{table:joints_choose}
 \centering
 \begin{center}
-\begin{tabular}{|c|p{9cm}|} 
+\begin{tabular}{|c|c||c|c|} 
  \hline
 Số thứ tự khớp xương  & Vị trí \\
  \hline
@@ -143,163 +127,141 @@ Số thứ tự khớp xương  & Vị trí \\
 \end{tabular}
 \end{center}
 \end{table}
+
+
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[scale=0.11]{chap4/c4_figs/joints_choose_1.png}
+\end{center}
+\caption{Sơ đồ một SJM sau khi loại bỏ các phần không cần thiết}
+\label{fig:joints}
+\end{figure}
 \FloatBarrier
+
+\newpage
 
 \subsection{Chuẩn hóa SJM để phân loại đặc trưng}
 
-Dựa vào dữ liệu thu thập được, ta có thể nhận thấy là tùy vào vị trí camera, khoảng cách từ camera đến người được quan sát sẽ làm thay đổi giá trị của các vector khung xương SJM. Hình \ref{fig:kq_skeleton} từ kết quả chương 3 có thể thấy khoảng cách các SJM của người ở xa camera sẽ gần nhau hơn so với người ở gần. Do đó cần phải sử dụng phương pháp chuẩn hóa dữ liệu các vector, đưa các vector đặc trưng SJM về cùng kích cỡ thì dữ liệu đưa vào train mới có thể có cùng những đặc trưng giống nhau.
+Dựa vào dữ liệu thu thập được, ta có thể nhận thấy hai điều sau:
+\begin{itemize}
+\item tùy vào vị trí camera, khoảng cách từ camera đến người được quan sát sẽ làm thay đổi giá trị của các vector khung xương SJM. Hình \ref{fig:kq_skeleton} từ kết quả chương 3 có thể thấy kích thước các SJM của người ở xa camera sẽ nhỏ hơn so với người ở gần.
+\item Nếu góc để camera không được đặt thẳng đứng theo chiều dọc khiến cho hình ảnh người đưa vào không thẳng đứng. Các SJM ước tính ra cũng sẽ khác với khi đặt camera thẳng.
+\end{itemize}
 
-Phương pháp chuẩn hóa được áp dụng như sau:
+Nếu đưa dữ liệu các SJM này vào huấn luyện thì phải cần rất nhiều dữ liệu cho các trường hợp nêu trên. Do đó ta cần phải sử dụng phương pháp chuẩn hóa dữ liệu các SJm, đưa các vector đặc trưng SJM về theo chiều thẳng đứng và cùng kích cỡ thì dữ liệu đưa vào huấn luyện sẽ có thể giảm bớt đi và từng cử chỉ mới có cùng những đặc trưng giống nhau.
 
+\begin{itemize}
+\item[$\square$] Phương pháp chuẩn hóa trong đề tài được áp dụng như sau:
+\end{itemize}
+\begin{itemize}
+\item Đầu tiên, ta sử dụng các dữ liệu ban đầu - raw data cho việc gán đặc trưng. Để dễ hình dung, ta đặt tên các SJM-J trong SJM cần xét là các điểm từ A $\Rightarrow$ J. Xem xét bảng vị trí của các SJM-J của SJM đặc trưng từ bảng \ref{BangSJM}.
+\end{itemize}
 
-Đầu tiên, ta sử dụng các dữ liệu ban đầu - raw data cho việc gán đặc trưng. Xem xét bảng vị trí của các SJM-J trong một SJM đặc trưng từ bảng \ref{BangSJM}.
-
-\begin{table}[htbp]
+\begin{table}[htp]
 \centering
-\caption{Một SJM đặc trưng nhận được từ quá trình thí nghiệm}
+\caption{SJM đặc trưng nhận được từ quá trình ước tính khung xương}
 \begin{tabular}{|c|c|c|}
 \hline 
  Điểm SJM-J & Tên SJM-J & $(x_i; y_i) $\\ 
 \hline 
-A & Mũi  & (992.574; 411.311) \\
+A & Mũi  & $(x_A; y_A)$ \\
 \hline 
-B & Vai trái & (987.327; 519.09) \\ 
+B & Cổ & $(x_B; y_B)$ \\ 
 \hline 
-C & Vai phải  & (987.795; 783.878) \\ 
+C & Vai phải  & $(x_C; y_C)$ \\ 
 \hline 
-D & Cổ tay trái & (870.784; 666.671) \\ 
+D & Khủy tay phải & $(x_D; y_D)$ \\ 
 \hline 
-E & Cổ tay phải & (826.394; 825.466) \\ 
+E & Cổ tay phải & $(x_E; y_E)$ \\ 
 \hline
-F & Khuỷu tay trái & (1114.381; 662.63) \\ 
+F & Vai trái & $(x_F; y_F)$ \\ 
 \hline
-G & Khuỷu tay phải & (1174.36; 825.96) \\ 
-\hline 
+G & Khuỷu tay trái & $(x_G; y_G)$ \\ 
+\hline
+H & Cổ tay trái & $(x_H; y_H)$ \\ 
+\hline
+I &  Hông phải & $(x_I; y_H)$ \\
+\hline
+J & Hông trái & $(x_J; y_J)$ \\ 
+\hline
+\textbf{K} & \textbf{Cột sống gốc} & $\mathbf{(x_K; y_K)}$ \\ 
+\hline
 \end{tabular} 
 \label{BangSJM}
 \end{table}
 
-Các vector của SJM có thể được biểu diễn:
-\begin{equation}
-v_n=(x_n; y_n; z_n)
-\end{equation}
-Trong đó: $(x_n; y_n; z_n)$: tọa độ các SJM-J đang xét tới.
+Mục tiêu đặt ra là đưa các SJM đều xoay theo chiều thẳng đứng với kích thước các SJM sẽ đưa về kích cỡ chuẩn hóa. Để làm được điều này, ta ước lượng thêm một điểm SJM-J nữa gọi là cột sống gốc (root spine) đánh dấu là điểm K. SJM-J này được tính bằng cách lấy trung bình cộng của 2 SJM-J "hông phải" và "hông trái":
 
-Với các tính toán vector như trên, từ 7 SJM-J có được 6 vectors biễu diễn SJM. Vấn đề xảy ra khi sử dụng 4 vectors này để tính toán đặc trưng, 6 vectors này có tọa độ trong không gian ba chiều sẽ khiến cho việc mô hình hóa khó khăn hơn. Do đó, ta chuyển đổi 6 vectors này từ không gian ba chiều xuống không gian hai chiều. Xem xét việc trong quá trình hoạt động thể hiện hành động ta luôn đứng hướng thẳng mặt vào camera, do đó khoảng cách tối đa trên trục z (khoảng cách đến anten ) giữa các SJM-J là không lớn nên tất cả các SJM-J được chiếu lên trục z.
-
-Chiếu các vector khung xương lên trục z ta có được các vector mới:
 \begin{equation}
-v'_n = ({x_n}; {y_n})
+K = (x_K; y_K) = (\frac{x_I+x_J}{2};\frac{y_I+y_J}{2})
 \end{equation}
 
-Để có thể tính toán tổng bình phương khoảng cách chuẩn hóa thì ta phải xoay và thay đổi độ dài của các vector sao cho vector khung xương được tạo ra giữa hai SJM-J cột sống trở thành vector đơn vị - unit vector:
+\begin{itemize}
+\item Sau đó đưa vector nối 2 điểm cổ và cột sống gốc trở thành vector đơn vị - unit vector. Việc này sẽ khiến cho các SJM sẽ đưa về cùng một kích thước :
+\end{itemize}
+
 \begin{equation}
-v_\textit{spin-shouder} = (0;1)
+v_\textit{neck-root\_spine} = (0;1)
 \end{equation}
 
-Ta có tọa độ vị trí các SJM-J sau khi chuẩn hóa:\*
-
-\begin{tabular}{c c c}
-A(992.574; 411.311) & $\Rightarrow$ & ... \\ 
-B(987.327; 519.09) & $\Rightarrow$ & B(0;1) \\ 
-C(987.795; 783.878) & $\Rightarrow$ & C(0;0) \\ 
-D(870.784; 666.671) & $\Rightarrow$ & ... \\ 
-E(826.394; 825.466) & $\Rightarrow$ & ... \\ 
-F(1114.381; 662.63) & $\Rightarrow$ & ... \\ 
-G(1174.36; 825.96) & $\Rightarrow$ & ... \\ 
-\end{tabular} \*
-
-Công thức để tính toán vị trí mới, chuẩn hóa của A, B, C, D, E, F, G:
+Công thức để tính toán vị trí mới, chuẩn hóa của khớp A (tương tự với các khớp còn lại):
 
 \begin{equation}
-{y_{A'}} = \frac{1}{2}\left( {{{\left( {\frac{{AC}}{{BC}}} \right)}^2} - {{\left( {\frac{{AB}}{{BC}}} \right)}^2} + 1} \right) = \frac{{A{C^2} - A{B^2} + B{C^2}}}{{2B{C^2}}}
+{y_{A'}} = \frac{1}{2}\left( {{{\left( {\frac{{AB}}{{BK}}} \right)}^2} - {{\left( {\frac{{AK}}{{BK}}} \right)}^2} + 1} \right) = \frac{{A{B^2} - A{K^2} + B{K^2}}}{{2B{K^2}}}
 \end{equation}
 
 Một hàm tính toán được thêm vào để dễ dàng lập trình hơn:
 \begin{equation}
-{f_{BC}}(x,y) = ({y_B} - {y_C})x - ({x_B} - {x_c})y - ({y_B} - {y_C}){x_C} + ({x_B} - {x_c}){y_C}
+{f_{BK}}(x,y) = ({y_B} - {y_K})x - ({x_B} - {x_K})y - ({y_B} - {y_K}){x_K} + ({x_B} - {x_K}){y_K}
 \end{equation}
 
 với đặc điểm:\\
 
-$\bullet \text{   }  f_\text{BC}(x_A,y_A > 0$: điểm A nằm phía trên đoạn thẳng BC\\
+$\bullet \text{   }  f_\text{BK}(x_A,y_A > 0$: điểm A nằm phía trên đoạn thẳng BK\\
 
-$\bullet \text{   }  f_\text{BC}(x_A,y_A)< 0$: điểm A nằm phía dưới đoạn thẳng BC\\
+$\bullet \text{   }  f_\text{BK}(x_A,y_A)< 0$: điểm A nằm phía dưới đoạn thẳng BC\\
 
-$\bullet \text{   } f_\text{BC}(x_A,y_A)= 0$: điểm A nằm trên đường thẳng chứa đoạn thẳng BC\\
+$\bullet \text{   } f_\text{BC}(x_A,y_A)= 0$: điểm A nằm trên đường thẳng chứa đoạn thẳng BK\\
 
-Hàm BC không có ý nghĩa hình học tuy nhiên lại có ý nghĩa về mặt đại số, dựa vào hàm kết quả vị trí tương đối giữa điểm A và BC, ta có thể tìm được giá trị của $x_\text{A'}$ :
-
-\begin{equation}
-{x_{A'}} = {\mathop{\rm sgn}} ({f_{BC}}({x_A},{y_A})\sqrt {{{\left( {\frac{{AC}}{{BC}}} \right)}^2} - {y_{A'}}^2} 
-\end{equation}
-
-Tương tự với vị trí $D_0, E_0, F_0, G_0$ với điểm gốc là B,C. Sau khi tìm được $A_0, B_0, C_0, D_0, E_0, F_0, G_0$ ta có được 6 vectors đặc trưng tương ứng với $SJM_i$ như sau:
-
-\begin{tabular}{c c}
-$\overrightarrow {{v_{i,1}}}  = \overrightarrow {C'A'}  = $&$({x_{A'}};{y_{A'}})$ \\ 
-$\overrightarrow {{v_{i,0}}}  = \overrightarrow {C'B'}  = $&$(0;1)$ \\ 
-$\overrightarrow {{v_{i,2}}}  = \overrightarrow {C'D'}  = $&$({x_{D'}};{y_{D'}})$ \\ 
-$\overrightarrow {{v_{i,3}}}  = \overrightarrow {C'E'}  = $&$({x_{E'}};{y_{E'}})$ \\ 
-$\overrightarrow {{v_{i,4}}}  = \overrightarrow {C'F'}  = $&$({x_{F'}};{y_{F'}})$ \\ 
-$\overrightarrow {{v_{i,5}}}  = \overrightarrow {C'G'}  = $&$({x_{G'}};{y_{G'}})$ \\ 
-
-
-\end{tabular} 
-
-Áp dụng cách tính toán trên vào bảng \ref{BangSJM}, ta được tọa độ 6 vector đặc trưng của các $SJM_i$ tương ứng và minh họa trên hình \ref{figure48}:
-
-\begin{table}[htbp]
-\centering
-\caption{Một SJM đặc trưng sau khi chuẩn hóa}
-\begin{tabular}{|c|c|c|}
-\hline 
- Điểm SJM-J & Tên SJM-J & $(x_i; y_i) $\\ 
-\hline 
-A & Đầu  & (0.0205352100186477; -0.407002543626264) \\ 
-\hline 
-B & Cột sống vai & (0; 0) \\ 
-\hline 	
-C & Cột sống gốc & (0; 1) \\ 
-\hline 
-D & Khuỷu tay trái & (-0.441120735865053; 0.55657565862356) \\ 
-\hline 
-E & Bàn tay trái & (-0.60982370936332; 1.15598366430513) \\ 
-\hline
-F & Khuỷu tay phải & (0.478873301943448; 0.542940438030838) \\ 
-\hline
-G & Bàn tay phải & (0.704299437754533; 1.16017195694997) \\ 
-\hline 
-\end{tabular} 
-\label{BangSJMResult}
-\end{table}
-
-
-    \begin{figure}[htp]
-    \begin{center}
-     \includegraphics[scale=0.6]{chap4/c4_figs/joints_choose.png}
-    \end{center}
-    \caption{SJM sau chuẩn hóa} 
-    \label{figure48}
-    \end{figure}
-
-
-
-Giá trị bình phương sai lệch khoảng cách giữa hai $SJM_i$ và $SJM_j$ đã chuẩn hóa mang ý nghĩa là giá trị khác biệt giữa hai SJMs:
+Hàm BC không có ý nghĩa hình học tuy nhiên lại có ý nghĩa về mặt đại số, dựa vào hàm kết quả vị trí tương đối giữa điểm A và BK, ta có thể tìm được giá trị của $x_\text{A'}$ :
 
 \begin{equation}
-{\Delta _{ij}} = \sum\limits_{k = 1}^5 {\parallel \overrightarrow {{v_{i,k}}}  - \overrightarrow {{v_{j,k}}} \parallel } 
-\label{equ3.8}
+{x_{A'}} = {\mathop{\rm sgn}} ({f_{BK}}({x_A},{y_A})\sqrt {{{\left( {\frac{{AK}}{{BK}}} \right)}^2} - {y_{A'}}^2} 
 \end{equation}
 
+Tương tự với các vị trí $C', D', E', F', G' , H' , I' , J'$ với điểm gốc là B,C. Từ đó ta có tọa độ vị trí các SJM-J sau khi chuẩn hóa:\*
 
+\begin{tabular}{c c c}
+$A(x_A; y_A)$ & $\Rightarrow$ & $A'(x_{A'}; y_{A'})$ \\ 
+$B(x_B; y_B)$ & $\Rightarrow$ & $B'(0;1)$ \\ 
+$C(x_C; y_C)$ & $\Rightarrow$ & $C'(x_{C'}; y_{C'})$ \\ 
+$D(x_D; y_D)$ & $\Rightarrow$ & $D'(x_{D'}; y_{D'})$ \\ 
+$E(x_E; y_E)$ & $\Rightarrow$ & $E'(x_{E'}; y_{E'})$ \\ 
+$F(x_F; y_F)$ & $\Rightarrow$ & $F'(x_{F'}; y_{F'})$ \\ 
+$G(x_G; y_G)$ & $\Rightarrow$ & $G'(x_{G'}; y_{G'})$ \\ 
+$H(x_H; y_H)$ & $\Rightarrow$ & $H'(x_{A'}; y_{A'})$ \\ 
+$I(x_I; y_I)$ & $\Rightarrow$ & $I'(x_{I'}; y_{I'})$ \\ 
+$J(x_J; y_J)$ & $\Rightarrow$ & $J'(x_{J'}; y_{J'})$ \\ 
+$K(x_K; y_K)$ & $\Rightarrow$ & $K'(0;0)$ \\ 
+\end{tabular} \*
 
+Sau khi tìm được $(A', B', C', D', E', F', G' , H' , I' , J', K')$ ta có được SJM mới đã chuẩn hóa như hình \ref{fig:skeleton_2}.
 
-Sau khi loại bỏ các phần thừa và chuẩn hóa hết bộ dữ liệu các SJM, ta được các SJM với tọa độ các điểm khớp xương được chuẩn hóa nằm trong khoảng 0 --> 1 thể hiện trong hình \ref{fig:skeleton_normalize}
 \FloatBarrier
 \begin{figure}[htp]
 \begin{center}
-\includegraphics[scale=0.25]{chap4/c4_figs/datajoint.png}
+\includegraphics[scale=0.14]{chap4/c4_figs/skeleton_2.png}
+\end{center}
+\caption{SJM sau khi đã được chuẩn hóa}
+\label{fig:skeleton_2}
+\end{figure}
+\FloatBarrier
+
+Sau khi loại bỏ các phần thừa và chuẩn hóa hết bộ dữ liệu các SJM, ta được các SJM với tọa độ các điểm khớp xương được chuẩn hóa thể hiện trong hình \ref{fig:skeleton_normalize}.
+\FloatBarrier
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[scale=0.28]{chap4/c4_figs/datajoint.png}
 \end{center}
 \caption{Dữ liệu khớp xương sau khi đã được chuẩn hóa}
 \label{fig:skeleton_normalize}
@@ -308,8 +270,9 @@ Sau khi loại bỏ các phần thừa và chuẩn hóa hết bộ dữ liệu c
 
 \section{Cấu trúc mạng neural network xây dựng}
 Từ dữ liệu đầu vào là một ảnh RGB, qua bước phát hiện khung xương với mạng CNN và các bước chuẩn hóa, loại bỏ khớp xương thừa, dữ liệu cần phân loại gần như đã lấy ra hết đặc trưng cần tìm và giảm số chiều đến tối đa. Do đó mạng DNN cần dùng để phân loại các từ ngôn ngữ ký hiệu chỉ cần một cấu trúc vừa phải và giảm thiểu số trọng số đến tối đa.
+
 \begin{itemize}
-\item Input: Mạng với đầu vào là 20 nodes ứng với tọa độ của 10 khớp xương (mỗi khớp là 2 tọa độ).
+\item Input: Mạng với đầu vào là 20 nodes ứng với tọa độ của 10 khớp xương (mỗi khớp là 2 tọa độ x, y).
 \item Hidden layer: Là các lớp Fully connected (Dense) và Normalization xen kẽ nhau.
 \item Output: Với softmax với 16 nodes ứng với 16 từ ngữ nhận diện được.
 \end{itemize}
@@ -318,7 +281,7 @@ Cụ thể các thông số và cấu trúc được thể hiện trong hình \r
 \FloatBarrier
 \begin{figure}[htp]
 \begin{center}
-\includegraphics[scale=1.3]{chap4/c4_figs/model_param.png}
+\includegraphics[scale=1.2]{chap4/c4_figs/model_param.png}
 \end{center}
 \caption{Các thông số của mạng DNN}
 \label{fig:model_params}
@@ -360,11 +323,12 @@ Thuật toán GD thường được ví với tác dụng của trọng lực l�
 \begin{center}
 \includegraphics[scale=0.06]{chap4/c4_figs/momentum.png}
 \end{center}
-\caption{So sánh Gradient Descent với các hiện tượng vật lý (Nguồn: "Machine learning cơ bản" - Vũ Hữu Tiệp)}
+\caption{So sánh Gradient Descent với các hiện tượng vật lý}
 \label{fig:gradient}
 \end{figure}
 \FloatBarrier
 
+\centerline{(Nguồn: "Machine learning cơ bản" - Vũ Hữu Tiệp)}
 Tuy nhiên, nếu như bề mặt có hai đáy thung lũng như Hình \ref{fig:gradient}b thì tùy vào việc đặt bi ở A hay B, vị trí cuối cùng của bi sẽ ở C hoặc D. Điểm D là một điểm local minimum chúng ta không mong muốn.
 
 Nếu suy nghĩ một cách vật lý hơn, vẫn trong Hình \ref{fig:gradient}b, nếu vận tốc ban đầu của bi khi ở điểm B đủ lớn, khi bi lăn đến điểm D, theo đà, bi có thể tiếp tục di chuyển lên dốc phía bên trái của D. Và nếu giả sử vận tốc ban đầu lớn hơn nữa, bi có thể vượt dốc tới điểm E rồi lăn xuống C như trong Hình \ref{fig:gradient}c. Đây chính là điều chúng ta mong muốn.
@@ -393,12 +357,22 @@ Trong thực nghiệm, có một vài phương pháp như dưới đây để x�
 
 
 \subsection{Áp dụng vào bài toán}
-Với bộ dữ liệu của bài toán nhận dạng ngôn ngữ ký hiệu, dữ liệu là các SJM được thu thập từ trước. Dữ liệu sẽ được chia ra thành 2 tập gồm: train data (dữ liệu để huấn luyện) và test data (dữ liệu đánh giá) với tỷ lệ 80 và 20. Nghĩa là với mỗi hành động (data gồm 800 SJM) sẽ có 640 SJM để train và 160 SJM để đánh giá.
+Với bộ dữ liệu của bài toán nhận dạng ngôn ngữ ký hiệu, dữ liệu là các SJM được thu thập từ trước.
+
+Khi training một model, luận văn chia bộ dữ liệu thu thập được thành hai bộ riêng biệt:
+\begin{itemize}
+\item Đầu tiên là bộ dữ liệu dùng để huấn luyện. Bộ dữ liệu huận luyện được chia thành training dataset và validation dataset và có sự hòa trộn dữ liệu giữa 2 bộ này giữa các epoch trong quá trình huấn luyện. Training dataset được sử dụng để huấn luyện mô hình, tuy nhiên, độ chính xác mà mô hình đạt được trên training set là không đáng tin cậy để đánh giá độ chính xác của mô hình. Validation dataset được sử dụng để đo lường mức độ hiệu quả của models trên các ví dụ không phải là một phần của training dataset. Các số liệu được tính toán trên validation dataset có thể được sử dụng để điều chỉnh các hyperparameters của model. Tuy nhiên, mỗi khi đánh giá validation dataset và đưa ra quyết định dựa trên những điểm số đó, mô hình chia sẻ thông tin từ validation dataset vào model. Các đánh giá càng nhiều, càng có nhiều thông tin bị chia sẻ. Vì vậy, việc huấn luyện có thể kết thúc việc ghi đè lên validation dataset và một lần nữa, validation score sẽ không đáng tin cậy để dự đoán hành vi của model trong thế giới thực.
+
+\item Test dataset là bộ dữ liệu thứ hai, bộ dữ liệu này hoàn toàn riêng biệt so với 2 bộ dữ liệu trước. Test dataset không được sử dụng trong việc huấn luyện mà được sử dụng để đo lường mức độ hiệu quả của model trên các ví dụ không nhìn thấy trước đó. Bộ dữ liệu này chỉ được sử dụng khi đã hoàn tất việc huấn luyện trên 2 bộ dữ liệu kia.
+\end{itemize}
+
+Dữ liệu sẽ được chia ra thành 2 tập gồm: train data (dữ liệu để huấn luyện) và validation data (dữ liệu đánh giá) với tỷ lệ 80 và 20 và có sự xáo trộn dữ liệu giữa 2 bộ sau mỗi epoch. Nghĩa là với mỗi hành động (data gồm 800 SJM) sẽ có khoảng 640 SJM để huấn luyện và khoảng 160 SJM để đánh giá. Test data gồm khoảng 400 SJM đối với mỗi ký để kiểm tra và đánh giá mô hình. Các đánh giá trong chương 5 sẽ đánh giá trên bộ dữ liệu này của bài toán.
 Áp dụng thuật toán SGD, với các thông số ban đầu được khởi tạo trước khi huấn luyện như sau:
 \begin{itemize}
 \item epoch: 50
-\item learning rate: 0.0001
+\item learning rate: 0.001
 \item batch$\_$size : 32
+\item iterations : 400
 \end{itemize}
 Trong quá trình huấn luyện, luận văn sử dụng phương pháp lưu lại checkpoint. Cách thức hoạt động của phương pháp này là sau mỗi epoch, accuracy trên tập test của model hiện tại được so sánh với accuracy của model trước đó. Nếu nó lớn hơn thì trọng số của mô hình sẽ được cập nhật theo trọng số mới nhất. Nếu nhỏ hơn, trọng số của mô hình trước đó vẫn được giữ lại cho đến khi accuracy khác cao hơn. Phương pháp này giúp tìm được model tối ưu nhất với accuracy cao nhất có thể.
 Sau 50 epoch, ta có kết quả về độ chính xác(accuracy) và sai số (loss) trên tập train và tập test như sau:
@@ -435,17 +409,3 @@ Nhận thấy kết quả mô hình đã học được rất tốt với thuậ
 \end{itemize}
 
 Dựa vào những thông số trên có thể thấy kết quả sau khi huấn luyện mô hình khá tốt. Nhưng để áp dụng mô hình vào thực tế được, ta cần phải thử nghiệm và đánh giá bằng nhiều phương pháp trên tập dữ liệu mới. Trong chương 5 luận văn sẽ trình bày về cách thức thử nghiệm, đánh giá mô hình cũng như xây dựng phần mềm ứng dụng từ mô hình.  Chương 4 tiếp theo luận văn sẽ trình bày giải thuật Deep Sort dùng để theo dõi những người trong khung ảnh, từ đó có thể áp dụng nhận diện dc chuỗi các ký tự của ngôn ngữ ký hiệu mà từng người diễn đạt.
-
-
-
-
-
-
-
-
-
-
-
-
-
-

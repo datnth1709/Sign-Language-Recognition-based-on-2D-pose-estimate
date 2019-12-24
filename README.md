@@ -7,6 +7,6 @@ It can recognize 16 words of Vietnamese sign language for mutlti people in realt
 <img src="doi_bung.png">
 
 ## reference
-[tf-pose-estimation](https://github.com/ildoonet/tf-pose-estimation)
+[tf-pose-estimation](https://github.com/ildoonet/tf-pose-estimation) \\
 [Real-Time-Action-Recognition](https://github.com/TianzhongSong/Real-Time-Action-Recognition)
 

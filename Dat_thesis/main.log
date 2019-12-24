@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.11.28)  23 DEC 2019 05:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.11.28)  23 DEC 2019 06:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -3299,6 +3299,11 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 (hyperref)                removing `\uhorn' on input line 143.
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 151--153
+
+ []
+
+
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 15.70145pt.
  We now make it that large for the rest of the document.
@@ -4323,7 +4328,7 @@ onts/type1/vntex/vnr/vnr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/vntex
 e/texmf-dist/fonts/type1/vntex/vnr/vnti12.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/vntex/vnr/vnti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/vntex/
 vnr/vntt12.pfb>
-Output written on main.pdf (118 pages, 17198381 bytes).
+Output written on main.pdf (118 pages, 17198532 bytes).
 PDF statistics:
  1516 PDF objects out of 1728 (max. 8388607)
  1204 compressed objects within 13 object streams

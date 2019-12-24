@@ -18,11 +18,11 @@ $\bullet$ Nếu một phần cơ thể bị che khuất bởi các vật thể t
 Đố với những vấn đề trên, mô hình nhận dạng được xây dựng có đặc điểm như sau. Trong các từ ngữ ký hiệu, nhận thấy có những từ ngữ phải thể hiện qua nhiều tư thế, cử chỉ tay liên tiếp nhau. Nhưng có những từ chỉ cần đưa về một tư thế hoặc một tư thế đó nhưng có sự dao động của một số bộ phận. Trong phạm vi luận văn này tập trung nhận dạng những từ ngữ với tư thế cố định đó. Mô hình xây dựng sẽ nhận dạng 16 cử chỉ với tư thế cố định và các cử chỉ tương đối khác nhau: (\textbf{Xin chào, Tôi, thành phố, vui vẻ, ẵm em, Sài Gòn, Vĩnh Long, đi bộ, mùa màng, đói bụng, yêu, ăn, biểu quyết, đứng yên, hẹp, rộng}).
 
 \section{Thu thập dữ liệu}
-Dữ liệu đầu vào là tọa độ của 18 khớp xương được dự đoán từ mạng ước tính tư thế khung xương từ chương 3. Các khớp xương được xuất ra từ mạng được đánh số thứ tự từ 0 tới 17. Các khớp xương cụ thể được thể hiện trong bảng \ref{table:joints} và trong hình \ref{fig:joints}.
+Dữ liệu đầu vào là tọa độ của 18 khớp xương được dự đoán từ mạng ước tính tư thế khung xương từ chương 3. Các khớp xương được dự đoán từ mạng được đánh số thứ tự từ 0 tới 17. Các khớp xương cụ thể được thể hiện trong bảng \ref{table:joints} và trong hình \ref{fig:joints}.
 
 
 \begin{table}[h]
-\caption{Các khớp xương được xuất ra từ mạng}
+\caption{Các khớp xương được dự đoán từ mạng ước tính khung xương}
 \label{table:joints}
 \centering
 \begin{center}
@@ -148,18 +148,18 @@ Dựa vào dữ liệu thu thập được, ta có thể nhận thấy hai đi�
 \item Nếu góc để camera không được đặt thẳng đứng theo chiều dọc khiến cho hình ảnh người đưa vào không thẳng đứng. Các SJM ước tính ra cũng sẽ khác với khi đặt camera thẳng.
 \end{itemize}
 
-Nếu đưa dữ liệu các SJM này vào huấn luyện thì phải cần rất nhiều dữ liệu cho các trường hợp nêu trên. Do đó ta cần phải sử dụng phương pháp chuẩn hóa dữ liệu các SJm, đưa các vector đặc trưng SJM về theo chiều thẳng đứng và cùng kích cỡ thì dữ liệu đưa vào huấn luyện sẽ có thể giảm bớt đi và từng cử chỉ mới có cùng những đặc trưng giống nhau.
-
+Nếu đưa dữ liệu các SJM này vào huấn luyện thì phải cần rất nhiều dữ liệu cho các trường hợp nêu trên. Do đó ta cần phải sử dụng phương pháp chuẩn hóa dữ liệu các SJM, đưa các vector đặc trưng SJM về theo chiều thẳng đứng và cùng kích cỡ thì dữ liệu đưa vào huấn luyện sẽ có thể giảm bớt đi và từng cử chỉ mới có cùng những đặc trưng giống nhau.
+\\[2cm]
 \begin{itemize}
 \item[$\square$] Phương pháp chuẩn hóa trong đề tài được áp dụng như sau:
 \end{itemize}
 \begin{itemize}
-\item Đầu tiên, ta sử dụng các dữ liệu ban đầu - raw data cho việc gán đặc trưng. Để dễ hình dung, ta đặt tên các SJM-J trong SJM cần xét là các điểm từ A $\Rightarrow$ J. Xem xét bảng vị trí của các SJM-J của SJM đặc trưng từ bảng \ref{BangSJM}.
+\item Đầu tiên, ta sử dụng các dữ liệu ban đầu - raw data cho việc gán đặc trưng. Để dễ hình dung, ta đặt tên các SJM-J trong SJM cần xét là các điểm từ A $\rightarrow$ J. Xem xét bảng vị trí của các SJM-J của SJM đặc trưng từ bảng \ref{BangSJM}.
 \end{itemize}
 
 \begin{table}[htp]
 \centering
-\caption{SJM đặc trưng nhận được từ quá trình ước tính khung xương}
+\caption{Đặt tên các SJM từ $\rightarrow$ J}
 \begin{tabular}{|c|c|c|}
 \hline 
  Điểm SJM-J & Tên SJM-J & $(x_i; y_i) $\\ 

@@ -1,6 +1,0 @@
-face_reg_in_payment:   http://global.chinadaily.com.cn/a/201809/21/WS5ba4b093a310c4cc775e79a0.html
-facetech: 	https://www.forbes.com/sites/quora/2017/02/22/why-did-apple-acquire-facial-recognition-company-realface/#366e68fe500b
-advertising: https://www.shutterstock.com/image-photo/intelligent-digital-signage-augmented-reality-marketing-757774591?src=XPuEQXOFZWaa3QwlH6QczA-1-3
-FBI: https://hangthebankers.com/fbi-launches-1-billion-face-recognition-project/
-security: https://www.viatech.com/en/2018/04/fake-id-problem-facial-recognition/
-			https://www.viatech.com/en/systems/edge-ai-systems/smart-access-control/

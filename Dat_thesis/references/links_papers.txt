@@ -1,5 +1,0 @@
-Edge detection techniques: An overview 
-	https://www.researchgate.net/publication/2336485_Edge_Detection_Techniques_-_An_Overview
-
-Face Recognition Using Line Edge Mapping Approach:
-	http://pubs.sciepub.com/ajeee/1/3/4/index.html

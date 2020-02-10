@@ -5,6 +5,7 @@ It can recognize 16 words of Vietnamese sign language for mutlti people in realt
 ## Result
 <img src="image/bieu_quyet.png">
 <img src="image/doi_bung.png">
+<img src="image/kq.png">
 
 ## reference
 [tf-pose-estimation](https://github.com/ildoonet/tf-pose-estimation) \\
